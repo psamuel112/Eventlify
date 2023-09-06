@@ -35,6 +35,7 @@
         </div> 
     </div>
 </template>
+
 <script setup>
 import LpExplore from '~/components/Landing-page/LpExplore.vue'
 import LpKnowUs from '~/components/Landing-page/LpKnowUs.vue';
@@ -48,5 +49,7 @@ import LpContactUs from '~/components/Landing-page/LpContactUs.vue';
 import LpFooter from '~/components/Landing-page/LpFooter.vue';
 import LpHeader from '~/components/Landing-page/LpHeader.vue';
 </script>
+
 <style scoped>
+
 </style>

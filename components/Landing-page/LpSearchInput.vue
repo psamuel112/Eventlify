@@ -5,12 +5,12 @@
           :loading="loading"
           density="compact"
           class="search-bar"
-          variant="solo"
+          variant=""
           flat
           :label="label"
           append-inner-icon="mdi-magnify"
-          single-line
-          hide-details
+         
+         
           @click:append-inner="onClick"
         ></v-text-field>
       </v-card-text>
@@ -40,6 +40,5 @@
     border: 1.5px solid #e0def7;
     border-radius: 16px;
     height: 56px;
-    
   }
   </style>
