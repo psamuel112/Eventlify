@@ -40,7 +40,7 @@
                 </div>
                 <div class="">
                     <div class="pl-12">
-                        <img src="../../assets/images/png/Kuda_bank.png" />
+                        <img src="../../assets/images/png/kuda_bank.png" />
                     </div>
                 </div>
                 <div class="">
