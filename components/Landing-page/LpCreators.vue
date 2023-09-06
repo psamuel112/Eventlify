@@ -61,7 +61,6 @@
 .creator_container {
     padding: 80px 104px 80px 104px;
 }
-
 .creator_text {
     font-size: 16px;
     font-weight: 500;
@@ -70,20 +69,16 @@
     text-align: left;
     color: #3F434A;
 }
-
 .creator_details {
     gap: 1rem;
 }
-
 .creator_company {
-
     font-size: 16px;
     font-weight: 500;
     line-height: 24px;
     letter-spacing: 0em;
     color: #6B6478;
 }
-
 .creator_name {
     font-size: 16px;
     font-weight: 600;
@@ -91,24 +86,19 @@
     letter-spacing: 0em;
     color: #3F434A;
 }
-
 .primary_wrapper {
     margin-bottom: 5rem
 }
-
 .creator_card {
     background-color: #F7F7FD;
     border-radius: 12px;
 }
-
 .primary_img {
     margin-top: -7rem
 }
-
 .card_wrapper {
     gap: 1.5rem;
 }
-
 .primary_text {
     font-size: 48px;
     font-weight: 600;

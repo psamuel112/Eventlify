@@ -30,9 +30,9 @@
         <div>
             <LpContactUs />
         </div>
-         <div>
+        <div>
             <LpFooter />
-        </div> 
+        </div>
     </div>
 </template>
 <script setup>
@@ -49,4 +49,5 @@ import LpFooter from '~/components/Landing-page/LpFooter.vue';
 import LpHeader from '~/components/Landing-page/LpHeader.vue';
 </script>
 <style scoped>
+
 </style>

@@ -101,7 +101,6 @@ line-height: 32px;
 letter-spacing: 0em;
 border-radius: 8px;
 color: #2A282B;
-
 }
 .event_btn:hover{
     background-color:  #624CF5;

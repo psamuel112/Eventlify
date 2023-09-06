@@ -11,19 +11,19 @@
         </div>
         <div class="d-md-flex secondary_card mt-6">
             <div>
-                <img src="../../assets/images/svg/frame.svg" alt="" />
+                <img src="../../assets/images/svg/Frame.svg" alt="" />
                 <p class="secondary_title mt-4">Create an Event</p>
                 <p class="secondary_text mt-4">Choose a date, time and location for your event.<br> Determine the purpose and
                     goals of the event, as<br> well as the target audience and then create!</p>
             </div>
             <div>
-                <img src="../../assets/images/svg/frame1.svg" alt="" />
+                <img src="../../assets/images/svg/Frame1.svg" alt="" />
                 <p class="secondary_title mt-4">Share Your Event</p>
                 <p class="secondary_text mt-4">Share the invitation with your intended audience<br> through the chosen platform,
                     and follow up with any<br> necessary reminders or updates.</p>
             </div>
             <div>
-                <img src="../../assets/images/svg/frame9.svg" alt="" />
+                <img src="../../assets/images/svg/Frame9.svg" alt="" />
                 <p class="secondary_title mt-4">Earn on bought tickets</p>
                 <p class="secondary_text mt-4">When your potential audience accesses your ticket,<br> you earn a certain
                     percentage for every ticket<br> someone buys via your link</p>
