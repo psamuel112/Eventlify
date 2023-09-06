@@ -32,6 +32,7 @@
         </div>
         <div>
             <LpFooter />
+            
         </div>
     </div>
 </template>
