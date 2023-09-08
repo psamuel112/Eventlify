@@ -1,10 +1,10 @@
 <template>
-    <div class="main_container">
+    <div class="main_container px-md-24 px-8 py-24">
         <div class="secondary_container d-md-flex">
-            <div class="">
-                <img class="w-100" src="../../assets/images/png/intro.png" alt="" />
+            <div class="w-100">
+                <img class="" src="../../assets/images/png/intro.png" alt="" />
             </div>
-            <div class="text_container">
+            <div class="text_container w-100">
                 <div>
                     <div class=" d-flex mb-5">
                         <p class="primary_text mt-3 ">Get to Know Us</p>
@@ -46,7 +46,6 @@
 
 .main_container {
     background-color: #ffffff;
-    padding: 80px 104px 80px 104px;
     background-image: url(../../assets/images/png/group.png);
     background-position: right bottom 20px;
 }

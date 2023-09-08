@@ -1,7 +1,7 @@
 <template>
-  <div class="explore_container w-100">
+  <div class="explore_container px-24 py-24 w-full">
     <div class="">
-      <p class="primary_text relative w-100 text-5xl md:text-4xl lg:text-3xl xl:text-2xl text-9xl">Manage all Events as a <br><span>Creator</span> or an <span>Attendee</span> all<br>
+      <p class="primary_text w-100 relative text-5xl md:text-4xl lg:text-3xl xl:text-2xl text-9xl">Manage all Events as a <br><span>Creator</span> or an <span>Attendee</span> all<br>
         in one platform</p>
       <p class="secondary_text mt-6">Create/ attend events (virtually or live) and sell your tickets<br> right from the
         comfort of your device when you utilize the <br> application</p>
@@ -24,7 +24,6 @@
 
 .explore_container {
   background-color: #0E0B26;
-  padding: 96px 104px 96px 104px;
   background-image: url(../../assets/images/png/tickets.png);
   background-position: right bottom 20px;
 }

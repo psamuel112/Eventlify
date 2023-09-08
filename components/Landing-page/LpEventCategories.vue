@@ -1,5 +1,5 @@
 <template>
-    <div class="category_container">
+    <div class="category_container px-md-24 px-8 py-24">
         <div class="mb-6 d-md-flex justify-space-between primary_container">
             <div class="mt-n5">
                 <div>
@@ -8,7 +8,7 @@
                         <img class="mb-10" src="../../assets/images/svg/splash.svg" alt="" />
                     </div>
                     <p class="primary_text">to Celebrate</p>
-                </div>
+               aw34 </div>
                 <p class="secondary_text mt-6">You’re provided with an avenue to create the most<br> engaging activities for
                     thousands of audiences. Also,<br> you
                     can find events to attend based on your interests</p>
@@ -32,7 +32,6 @@
 <style scoped>
 .category_container {
     background-color: #F7F7FD;
-    padding: 80px 104px 80px 104px;
 }
 
 .primary_container {

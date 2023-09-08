@@ -1,6 +1,6 @@
 <template>
         <div class=" header_container  d-flex justify-space-between align-center">
-            <div class="d-flex align-center  w-50">
+            <div class="d-flex align-center">
                 <p class="header_icon mr-8">Eventlify</p>
                 <LpSearchInput label="Search events" />
             </div>
