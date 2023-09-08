@@ -4,16 +4,16 @@
             <div class="d-none  d-md-block">
                 <img class="" src="../../assets/images/png/cover.png" />
             </div>
-            <div class="mx-auto justify-center  pt-32 px-sm-16 px-8 align-center form_container">
+            <div class="mx-auto justify-center  py-32 px-sm-16 px-8 px-md-32 align-center form_container">
                 <p class="primary_text ml-2 mb-4 ml-md-n7">Sign Up for an Account 🚀</p>
                 <EvSignupForm />
-                <div class="d-flex mt-8 gap-4 justify-center align-center">
+                <div class="d-flex mt-6  justify-between align-center">
                     <div class="line">
                     </div>
-                    <div class="">
-                        <span class="divider_text">Or sign up with</span>
+                    <div class="text-center">
+                        <span class="divider_text w-100">Or sign up with</span>
                     </div>
-                    <div class="line"></div>
+                    <div class="line "></div>
                 </div>
                 <div class="d-flex mt-8 gap-4 justify-center align-center">
                     <v-btn border
@@ -79,6 +79,7 @@ line-height: 20px;
 letter-spacing: 0em;
 text-align: center;
 color:#0e0b26;
+
 }
 .signup_text span{
     color: #624CF5;

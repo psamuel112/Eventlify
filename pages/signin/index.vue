@@ -4,14 +4,14 @@
             <div class="d-none  d-md-block">
                 <img class="" src="../../assets/images/png/cover.png" />
             </div>
-            <div class="mx-auto justify-center  pt-32 px-sm-16 px-8 align-center form_container">
+            <div class="mx-auto justify-center  py-32 px-sm-16 px-8 align-center form_container">
                 <p class="primary_text ml-2 ml-md-n7">Sign In to your Account 🚀</p>
                 <p class="secondary_text ml-2 ml-md-n7 mt-4 mb-4">Welcome back. Kindly enter your details</p>
                 <EvSigninForm />
-                <div class="d-flex mt-8 gap-4 justify-center align-center">
+                <div class="d-flex mt-6  justify-between align-center">
                     <div class="line">
                     </div>
-                    <div class="">
+                    <div class="text-center">
                         <span class="divider_text">Or sign in with</span>
                     </div>
                     <div class="line"></div>

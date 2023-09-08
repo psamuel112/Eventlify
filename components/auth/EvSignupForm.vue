@@ -10,7 +10,7 @@
       placeholder="Full name"
       prepend-inner-icon="mdi-account-outline"
       variant="outlined"
-    ></v-text-field>
+    ></v-text-field> 
     <v-text-field
     label="Email address"
       density="compact"
@@ -28,8 +28,8 @@
       variant="outlined"
       @click:append-inner="visible = !visible"
     ></v-text-field>
-<div class="d-flex gap-2 mt-n2 ml-n2">
-    <v-checkbox
+<div class="d-flex terms_wrapper gap-4 mt-n2 ml-n2">
+    <v-checkbox class="mt-n2"
     v-model="isenable"></v-checkbox><p class="terms_text">By creating an account means you agree to the<span>Terms
 & Conditions</span>  and our <span>Privacy Policy</span></p>
 </div>
@@ -74,6 +74,12 @@ letter-spacing: 0em;
 text-align: left;
 color: #6B6478;
 }
+@media (min-width: 992px) {
+    .terms_wrapper{
+    width: 25.5rem;
+}
+}
+
 .terms_text span{
 color: #0E0B26;
 font-size: 14px;
