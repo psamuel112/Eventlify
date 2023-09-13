@@ -3,10 +3,9 @@
         <div>
             <div>
                 <div class="d-flex">
-                    <p class="primary_text mt-3">Create Your Virtual Event in Just 5 Minutes</p>
-                    <img class="mb-10 primary_image" src="../../assets/images/svg/splashdark.svg" alt="" />
+                    <p class="primary_text mt-3 ml-md-6">Create Your Virtual Event in Just 5 Minutes</p>
+                    <img class="primary_image ml-md-n6 mb-24" src="../../assets/images/svg/splashdark.svg" alt="" />
                 </div>
-                <p class="primary_text  mt-md-0">in Just 5 Minutes</p>
             </div>
         </div>
         <div class="d-md-flex secondary_card mt-6">
@@ -42,17 +41,27 @@
     font-weight: 600;
     line-height: 64px;
     color: #ffffff;
+    width: 50%
+}
+@media screen and (max-width: 1200px) {
+  .primary_text {
+    font-size: 36px;
+    line-height: 48px;
+    width: 75%
+  }
 }
 @media screen and (max-width: 768px) {
   .primary_text {
     font-size: 36px;
     line-height: 48px;
+    width: 100%
   }
 }
 @media screen and (max-width: 550px) {
   .primary_text {
     font-size: 24px;
     line-height: 32px;
+    width: 100%
   }
 }
 .virtual_container {
