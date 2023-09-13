@@ -124,11 +124,10 @@ color: #2A282B;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
 }
-.card_container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto;
-  gap: 1rem;
+@media screen and (max-width: 1200px) {
+  .card_container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 @media screen and (max-width: 768px) {
   .card_container {
