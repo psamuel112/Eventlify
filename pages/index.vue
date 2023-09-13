@@ -27,9 +27,9 @@
         <div>
             <LpUsers />
         </div>
-        <!-- <div>
+         <div class="d-none d-md-block">
             <LpInform />
-        </div> -->
+        </div> 
         <div>
             <LpContactUs />
         </div>

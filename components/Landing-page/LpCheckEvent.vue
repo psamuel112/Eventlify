@@ -1,6 +1,6 @@
 <template>
     <div class="event_container px-12 px-md-16 py-20">
-        <div class=" d-flex mb-5">
+        <div class=" d-flex">
             <p class="primary_text mt-3">Check out events</p>
             <img class="mb-10 primary_img" src="../../assets/images/svg/splash.svg" alt="" />
         </div>
@@ -124,7 +124,7 @@ color: #2A282B;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
 }
-.properties-grid {
+.card_container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;

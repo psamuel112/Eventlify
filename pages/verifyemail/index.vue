@@ -2,7 +2,7 @@
     <div>
         <div class="d-md-flex">
             <div class="d-none  d-md-block">
-                <img class="" src="../../assets/images/png/cover.png" />
+                <img class="" src="../../assets/images/png/Cover.png" />
             </div>
             <div class="mx-auto justify-center  py-32 px-sm-16 px-8 align-center form_container">
                 <p class="primary_text ml-2 ml-md-n7">Verify your Email</p>
