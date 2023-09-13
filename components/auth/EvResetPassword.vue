@@ -4,38 +4,17 @@
     <v-col
     class=""
         >
-        <v-text-field
-    label="Full name"
-      density="compact"
-      placeholder="Full name"
-      prepend-inner-icon="mdi-account-outline"
-      variant="outlined"
-    ></v-text-field> 
     <v-text-field
-    label="Email address"
       density="compact"
-      placeholder="Email address"
+      placeholder="Email"
       prepend-inner-icon="mdi-email-outline"
       variant="outlined"
     ></v-text-field>
-    <v-text-field
-    label="Password"
-      :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
-      :type="visible ? 'text' : 'password'"
-      density="compact"
-      placeholder="Enter your password"
-      prepend-inner-icon="mdi-lock-outline"
-      variant="outlined"
-      @click:append-inner="visible = !visible"
-    ></v-text-field>
-<div class="d-flex terms_wrapper gap-4 mt-n2 ml-n2">
-    <v-checkbox class="mt-n2"
-    v-model="isenable"></v-checkbox><p class="terms_text">By creating an account means you agree to the<span>Terms
-& Conditions</span>  and our <span>Privacy Policy</span></p>
-</div>
-    <v-btn :disabled="!isenable" block class="text-none signin_btn" color="#624CF5" size="large" >
-        Sign Up
+    <NuxtLink to="verifyemail">
+        <v-btn  block class="text-none signin_btn" color="#624CF5" size="large" >
+        Continue
       </v-btn>
+    </NuxtLink>
     </v-col>        
      </v-form>    
     </div>

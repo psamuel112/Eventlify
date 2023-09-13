@@ -1,11 +1,11 @@
 <template>
-  <div class="explore_container px-24 py-24 w-full">
+  <div class="explore_container w-100 px-8 py-20 px-md-16">
     <div class="">
-      <p class="primary_text w-100 relative text-5xl md:text-4xl lg:text-3xl xl:text-2xl text-9xl">Manage all Events as a <br><span>Creator</span> or an <span>Attendee</span> all<br>
+      <p class="primary_text  px-md-8">Manage all Events as a<span> Creator</span> or an <span>Attendee</span> all
         in one platform</p>
-      <p class="secondary_text mt-6">Create/ attend events (virtually or live) and sell your tickets<br> right from the
-        comfort of your device when you utilize the <br> application</p>
-      <button class="explore_btn mt-6">Explore now</button>
+      <p class="secondary_text px-md-8 mt-6 ">Create/ attend events (virtually or live) and sell your tickets right from the
+        comfort of your device when you utilize the application</p>
+      <button class="explore_btn ml-md-8 mt-6">Explore now</button>
     </div>
     <!-- <div class="">
   <img class="ticket" src="../../assets/images/png/tickets.png" alt="" />  
@@ -25,16 +25,53 @@
 .explore_container {
   background-color: #0E0B26;
   background-image: url(../../assets/images/png/tickets.png);
-  background-position: right bottom 20px;
-}
+  background-position: right 25px bottom 10px;
 
+}
+@media screen and (max-width: 1200px) {
+  .explore_container {
+    background-position: right bottom -20px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .explore_container {
+    background-position: center bottom -70px;
+  }
+}
+@media screen and (max-width: 550px) {
+  .explore_container {
+    background-position: center bottom -180px;
+    height: 100vh
+  }
+}
 .primary_text {
   color: #ffffff;
   font-size: 72px;
   font-weight: 600;
-  line-height: 80px
+  line-height: 80px;
+  width: 75%;
 }
-
+@media screen and (max-width: 1200px) {
+  .primary_text {
+    font-size: 72px;
+    line-height: 80px;
+    width: 100%
+  }
+}
+@media screen and (max-width: 768px) {
+  .primary_text {
+    font-size: 52px;
+    line-height: 70px;
+    width: 100%
+  }
+}
+@media screen and (max-width: 550px) {
+  .primary_text {
+    font-size: 32px;
+    line-height: 42px;
+    width: 100%
+  }
+}
 .primary_text span {
   color: #624cf5;
 }
@@ -43,9 +80,19 @@
   color: #EFEDFE;
   font-size: 24px;
   font-weight: 500;
-  line-height: 32px
+  line-height: 32px;
+  width: 50%
 }
-
+@media screen and (max-width: 768px) {
+  .secondary_text {
+    width: 100%
+  }
+}
+@media screen and (max-width: 550px) {
+  .secondary_text {
+    font-size: 20px;
+  }
+}
 .explore_btn {
   padding: 16px 40px 16px 40px;
   border-radius: 12px;

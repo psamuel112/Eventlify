@@ -1,9 +1,9 @@
 <template>
-    <div class="user_container">
+    <div class="user_container py-20">
         <div>
             <p class="primary_text mb-16">Trusted by nearly 1000+ users </p>
         </div>
-        <div class="logo_container">
+        <div class="w-100 logo_container">
             <div class="top_wrapper d-flex align-center px-8 justify-space-between">
                 <div class="">
                     <div class="">
@@ -59,7 +59,7 @@
 
 <style scoped>
 .user_container {
-    padding: 80px 168px 80px 168px;
+ 
     background: #F7F7FD;
 }
 .primary_text{

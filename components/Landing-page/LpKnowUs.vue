@@ -1,18 +1,18 @@
 <template>
-    <div class="main_container px-md-24 px-8 py-24">
+    <div class="main_container px-md-16 px-8 py-20">
         <div class="secondary_container d-md-flex">
             <div class="w-100">
                 <img class="" src="../../assets/images/png/intro.png" alt="" />
             </div>
             <div class="text_container w-100">
                 <div>
-                    <div class=" d-flex mb-5">
+                    <div class=" d-flex mb-2 mb-md-6">
                         <p class="primary_text mt-3 ">Get to Know Us</p>
                         <img class="mb-10" src="../../assets/images/svg/splash.svg" alt="" />
                     </div>
-                    <p class="secondary_text mb-8">At Eventlify, we are about bringing the very best<br> opportunity for
-                        users (creators) to create content for <br> a set of audiences as well give everyone (audience) a
-                        <br>chance at enjoying various categories of events </p>
+                    <p class="secondary_text mb-8">At Eventlify, we are about bringing the very best opportunity for
+                        users (creators) to create content for a set of audiences as well give everyone (audience) a
+                        chance at enjoying various categories of events </p>
                 </div>
                 <div class="d-flex align-center option">
                     <img src="../../assets/images/svg/tick-circle.svg" alt="" />
@@ -43,6 +43,28 @@
     line-height: 64px;
     color: #2A282B;
 }
+@media screen and (max-width: 768px) {
+  .primary_text {
+    font-size: 36px;
+    line-height: 48px;
+  }
+}
+@media screen and (max-width: 550px) {
+  .primary_text {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  .primary_img{
+    width: 24px
+  }
+
+}
+.secondary_text {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 32px;
+    color: #6B6478;  
+}
 
 .main_container {
     background-color: #ffffff;
@@ -59,6 +81,12 @@
     font-weight: 500;
     line-height: 32px;
     color: #6B6478;
+}
+@media screen and (max-width: 550px) {
+  .secondary_text {
+    font-size: 20px;
+  
+  }
 }
 
 .text_container {

@@ -1,19 +1,26 @@
 <template>
-        <div class=" header_container  d-flex justify-space-between align-center">
-            <div class="d-flex align-center">
+    <div>
+        <div class="header_container  d-flex justify-space-between align-center">
+            <div class="d-flex align-center  w-50">
                 <p class="header_icon mr-8">Eventlify</p>
                 <LpSearchInput label="Search events" />
             </div>
-            <div class="d-flex align-center gap-8">
+            <div class="d-flex align-center ">
                 <button class="create_event mr-8">Create an event</button>
-                <button class="login_btn mr-8">Login</button>
-                <button class="signup_btn">Get Started</button>
+                <NuxtLink to="/signin">
+                    <button class="login_btn mr-8">Login</button>
+                </NuxtLink>
+                <NuxtLink to="/signup">
+                    <button class="signup_btn">Get Started</button>
+                </NuxtLink>
             </div>
-        </div>
+        </div> 
+    </div>
 </template>
 
 <script setup>
 import LpSearchInput from '~/components/Landing-page/LpSearchInput.vue';
+
 </script>
 
 <style scoped>

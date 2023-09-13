@@ -30,7 +30,9 @@
                     </v-btn>
                 </div>
                 <div class="mt-8">
-                    <p class="signup_text">Don’t have an account? <span class="signup">Sign Up</span></p>
+                    <NuxtLink to="/signup">
+                        <p class="signup_text">Don’t have an account? <span class="signup">Sign Up</span></p>
+                    </NuxtLink>
                 </div>
             </div>
         </div>

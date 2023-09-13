@@ -1,0 +1,77 @@
+<template>
+  <div :class="{ 'h-100': drawer }" class="w-100 z-200 app-navbar-container">
+    <v-card>
+      <v-layout>
+        <v-app-bar color="#ffffff" prominent>
+          <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+          <v-toolbar-title>Menu</v-toolbar-title>
+        </v-app-bar>
+        <v-navigation-drawer v-model="drawer" location="top" temporary>
+          <div class="header_container justify-center px-8 text-center align-center">
+            <div class=" align-center ">
+              <p class="header_icon mt-4">Eventlify</p>
+              <LpSearchInput label="Search events" />
+            </div>
+            <div>
+              <button class="create_event">Create an event</button>
+            </div>
+            <div class="d-flex gap-2 mt-4">
+              <div>
+              <NuxtLink to="/signin">
+                <button class="login_btn">Login</button>
+              </NuxtLink>
+            </div>
+            <div class="">
+              <NuxtLink to="/signup">
+                <button class="signup_btn">Get Started</button>
+              </NuxtLink>
+            </div>
+            </div>
+           
+          </div>
+        </v-navigation-drawer>
+      </v-layout>
+    </v-card>
+  </div>
+</template>
+
+<script setup>
+import LpSearchInput from '~/components/Landing-page/LpSearchInput.vue';
+import { ref } from 'vue';
+
+const drawer = ref(null);
+</script>
+<style scoped>
+.header_icon {
+  font-weight: 600;
+  line-height: 32px;
+  font-size: 24px;
+}
+
+.login_btn {
+  padding: 16px 40px 16px 40px;
+  border-radius: 12px;
+  border: 1.5px solid #624CF5;
+  font-size: 16px;
+  line-height: 24px;
+  color: #624CF5;
+  font-weight: 700;
+}
+
+.signup_btn {
+  padding: 16px 40px 16px 40px;
+  border-radius: 12px;
+  background-color: #624CF5;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
+}
+
+.create_event {
+  color: #624CF5;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+}
+</style>

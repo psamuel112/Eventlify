@@ -19,6 +19,11 @@
   padding: 40px 104px 40px 104px;
   background-color: #F7F7FD;  
 }
+@media screen and (max-width: 550px) {
+  .footer_container {
+   padding: 40px 80px 40px 80px
+  }
+}
 .footer_text{
 font-size: 16px;
 font-weight: 600;
@@ -26,5 +31,10 @@ line-height: 24px;
 letter-spacing: 0em;
 text-align: right;
 color: #3F434A;
+}
+@media screen and (max-width: 550px) {
+  .footer_text {
+   font-size: 12px
+  }
 }
 </style>

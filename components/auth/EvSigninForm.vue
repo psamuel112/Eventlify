@@ -25,7 +25,9 @@
     <v-checkbox class="checkbox"><template v-slot:label>
     <div class="checkbox"><p>Remember me</p></div>
     </template></v-checkbox>
-    <p class="forgot_password mt-n6">Forgot Password</p>
+    <NuxtLink to="/resetpassword">
+      <p class="forgot_password mt-n5">Forgot Password</p>
+    </NuxtLink>
 </div>
     <v-btn block class="text-none signin_btn" color="#624CF5" size="large" >
         Sign In
@@ -49,7 +51,10 @@ text-align: left;
 color:#0E0B26;
 }
 .signin_btn{
-    color: #ffffff
+color: #ffffff;
+font-size: 16px;
+font-weight: 700;
+line-height: 24px;
 }
 .forgot_password{
 font-size: 14px;

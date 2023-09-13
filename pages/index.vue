@@ -1,9 +1,12 @@
 <template>
     <div>
-        <div>
-            <EvSigni />
+        <div class="d-md-none">
+            <LpSidebar />
         </div>
-        <!-- <div>
+        <div class="d-none d-md-block">
+            <LpHeader />
+        </div>
+         <div>
             <LpExplore />
         </div>
         <div>
@@ -24,31 +27,30 @@
         <div>
             <LpUsers />
         </div>
-        <div>
+        <!-- <div>
             <LpInform />
-        </div>
+        </div> -->
         <div>
             <LpContactUs />
         </div>
         <div>
             <LpFooter />
-
-        </div> -->
+        </div> 
     </div>
 </template>
 <script setup>
-import EvSignin from '~/components/auth/EvSignin.vue';
-// import LpExplore from '~/components/Landing-page/LpExplore.vue'
-// import LpKnowUs from '~/components/Landing-page/LpKnowUs.vue';
-// import LpEventCategories from '~/components/Landing-page/LpEventCategories.vue';
-// import LpVirtualEvent from '~/components/Landing-page/LpVirtualEvent.vue';
-// import LpCheckEvent from '~/components/Landing-page/LpCheckEvent.vue';
-// import LpCreators from '~/components/Landing-page/LpCreators.vue';
-// import LpUsers from '~/components/Landing-page/LpUsers.vue';
-// import LpInform from '~/components/Landing-page/LpInform.vue';
-// import LpContactUs from '~/components/Landing-page/LpContactUs.vue';
-// import LpFooter from '~/components/Landing-page/LpFooter.vue';
-// import LpHeader from '~/components/Landing-page/LpHeader.vue';
+ import LpExplore from '~/components/Landing-page/LpExplore.vue'
+ import LpKnowUs from '~/components/Landing-page/LpKnowUs.vue';
+ import LpEventCategories from '~/components/Landing-page/LpEventCategories.vue';
+ import LpVirtualEvent from '~/components/Landing-page/LpVirtualEvent.vue';
+ import LpCheckEvent from '~/components/Landing-page/LpCheckEvent.vue';
+ import LpCreators from '~/components/Landing-page/LpCreators.vue';
+ import LpUsers from '~/components/Landing-page/LpUsers.vue';
+ import LpInform from '~/components/Landing-page/LpInform.vue';
+ import LpContactUs from '~/components/Landing-page/LpContactUs.vue';
+ import LpFooter from '~/components/Landing-page/LpFooter.vue';
+ import LpHeader from '~/components/Landing-page/LpHeader.vue';
+ import LpSidebar from '~/components/Landing-page/LpSidebar.vue';
 </script>
 <style scoped>
 

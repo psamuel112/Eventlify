@@ -29,7 +29,9 @@
                     </v-btn>
                 </div>
                 <div class="mt-8">
-                    <p class="signup_text">Already have an account? <span>Login</span></p>
+                    <NuxtLink to="/signin">
+                        <p class="signup_text">Already have an account? <span>Login</span></p>
+                    </NuxtLink>
                 </div>
             </div>
         </div>

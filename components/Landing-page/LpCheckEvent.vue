@@ -1,10 +1,10 @@
 <template>
-    <div class="event_container">
+    <div class="event_container px-12 px-md-16 py-20">
         <div class=" d-flex mb-5">
             <p class="primary_text mt-3">Check out events</p>
-            <img class="mb-10" src="../../assets/images/svg/splash.svg" alt="" />
+            <img class="mb-10 primary_img" src="../../assets/images/svg/splash.svg" alt="" />
         </div>
-        <div class="btn_wrapper justify-space-between py-4 d-flex align-center ">
+        <div class="btn_wrapper md:px-24 w-100 justify-space-between py-4 d-md-flex align-center ">
             <button class="px-6 py-2 event_btn">All</button>
             <button class=" px-6 py-1 event_btn">Entertainment</button>
             <button class=" px-6 py-1 event_btn">Business</button>
@@ -13,7 +13,7 @@
             <button class="px-6 py-1 event_btn">Digital Marketing</button>
             <button class="px-6 py-1 event_btn">Artificial Intelligence</button>
         </div>
-        <div class="card_container py-6">
+        <div class="card_container justify-center align-center w-100 py-6">
             <div v-for="card in cards" :key="card" class="event_cards w-100">
                 <img class="card_image" :src="card.img" alt="" />
                 <div class="px-6 py-4">
@@ -92,7 +92,7 @@ const cards = ref([
 
 <style scoped>
 .event_container {
-    padding: 80px 104px 80px 104px;
+
 }
 .event_btn{
 font-size: 24px;
@@ -115,7 +115,7 @@ color: #2A282B;
 .event_cards {
     border-radius: 16px;
     border: 1px solid #EFEDFE;
-    max-width: 18.1rem;
+ max-width: 18.1rem;
 }
 
 .card_container {
@@ -124,12 +124,46 @@ color: #2A282B;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
 }
+.properties-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 1rem;
+}
+@media screen and (max-width: 768px) {
+  .card_container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media screen and (max-width: 550px) {
+  .card_container {
+    grid-template-columns: 1fr;
+  }
+}
 
 .primary_text {
     font-size: 48px;
     font-weight: 600;
     line-height: 64px;
     color: #2A282B;
+}
+@media screen and (max-width: 768px) {
+  .primary_text {
+    font-size: 36px;
+    line-height: 48px;
+  }
+}
+@media screen and (max-width: 550px) {
+  .primary_text {
+    font-size: 24px;
+    line-height: 32px;
+  }
+}
+@media screen and (max-width: 550px) {
+  .primary_img {
+    width: 24px;
+    line-height: 32px;
+  }
 }
 .card_image {
     border-radius: 16px 16px 0px 0px;
