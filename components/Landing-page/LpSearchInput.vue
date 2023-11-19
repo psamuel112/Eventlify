@@ -9,8 +9,7 @@
           flat
           :label="label"
           append-inner-icon="mdi-magnify"
-         
-         
+         :width="width"
           @click:append-inner="onClick"
         ></v-text-field>
       </v-card-text>

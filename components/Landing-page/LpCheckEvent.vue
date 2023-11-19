@@ -13,10 +13,10 @@
             <button class="px-6 py-1 event_btn">Digital Marketing</button>
             <button class="px-6 py-1 event_btn">Artificial Intelligence</button>
         </div>
-        <div class="card_container justify-center align-center w-100 py-6">
+        <div class="card_container  w-100 align-center py-6">
             <div v-for="card in cards" :key="card" class="event_cards w-100">
-                <img class="card_image" :src="card.img" alt="" />
-                <div class="px-6 py-4">
+                <img class="card_image w-100" :src="card.img" alt="" />
+                <div class="px-6 w-100 py-4">
                     <p class="card_date">{{ card.date }}</p>
                     <p class="card_text mt-4">{{ card.text }}</p>
                     <p class="card_name mt-6">{{ card.name }}</p>
@@ -136,6 +136,7 @@ color: #2A282B;
 }
 @media screen and (max-width: 550px) {
   .card_container {
+    width: 100%;
     grid-template-columns: 1fr;
   }
 }
@@ -151,19 +152,18 @@ color: #2A282B;
     font-size: 36px;
     line-height: 48px;
   }
+  
 }
 @media screen and (max-width: 550px) {
   .primary_text {
     font-size: 24px;
     line-height: 32px;
   }
-}
-@media screen and (max-width: 550px) {
-  .primary_img {
-    width: 24px;
-    line-height: 32px;
+  .primary_img{
+    width: 24px
   }
 }
+
 .card_image {
     border-radius: 16px 16px 0px 0px;
 }

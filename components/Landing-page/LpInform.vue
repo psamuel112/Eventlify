@@ -1,7 +1,7 @@
 <template>
     <div class="inform_container  px-10">
         <div class="inform_wrapper d-flex align-center justify-space-between">
-                <div class="d-flex primary_details">
+                <div class="d-flex  primary_details">
                     <p class="primary_text">Want to Be Informed on <br> The Next Event</p>
                     <img class="primary_image" src="../../assets/images/svg/splash.svg" alt="" />
                 </div>

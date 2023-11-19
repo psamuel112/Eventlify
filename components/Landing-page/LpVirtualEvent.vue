@@ -4,7 +4,7 @@
             <div>
                 <div class="d-flex">
                     <p class="primary_text mt-3 ml-md-6">Create Your Virtual Event in Just 5 Minutes</p>
-                    <img class="primary_image ml-md-n6 mb-24" src="../../assets/images/svg/splashdark.svg" alt="" />
+                    <img class="primary_img  mb-24" src="../../assets/images/svg/splashdark.svg" alt="" />
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
     line-height: 64px;
     color: #ffffff;
     width: 50%
-}
+components/Landing-page/LpCreators.vue}
 @media screen and (max-width: 1200px) {
   .primary_text {
     font-size: 36px;
@@ -62,6 +62,9 @@
     font-size: 24px;
     line-height: 32px;
     width: 100%
+  }
+  .primary_img{
+    width: 24px
   }
 }
 .virtual_container {
