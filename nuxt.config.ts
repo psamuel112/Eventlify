@@ -6,8 +6,13 @@ export default defineNuxtConfig({
      transpile: ["vuetify"],
    },
    modules: [
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@vueuse/motion/nuxt'
+
   ],
+
+
+  
   css: [
     "vuetify/lib/styles/main.sass",
   ],
@@ -16,4 +21,5 @@ export default defineNuxtConfig({
         'process.env.DEBUG': false,
     },
   },
+ 
 })

@@ -29,9 +29,11 @@
       <p class="forgot_password mt-n5">Forgot Password</p>
     </NuxtLink>
 </div>
-    <v-btn block class="text-none signin_btn" color="#624CF5" size="large" >
+<NuxtLink to="/dashboard">
+  <v-btn block class="text-none signin_btn" color="#624CF5" size="large" >
         Sign In
       </v-btn>
+</NuxtLink>
     </v-col>        
      </v-form>    
     </div>

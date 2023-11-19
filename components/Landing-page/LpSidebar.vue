@@ -1,7 +1,7 @@
 <template>
-  <div :class="{ 'h-100': drawer }" class="w-100 z-200 app-navbar-container">
+  <div :class=" { 'h-100': drawer }" class="w-100 app-navbar-container">
     <v-card>
-      <v-layout>
+      <v-layout style="position: relative,z-index: 1000" class="layout">
         <v-app-bar color="#ffffff" prominent>
           <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
           <v-toolbar-title>Menu</v-toolbar-title>
@@ -27,7 +27,6 @@
               </NuxtLink>
             </div>
             </div>
-           
           </div>
         </v-navigation-drawer>
       </v-layout>
@@ -42,6 +41,14 @@ import { ref } from 'vue';
 const drawer = ref(null);
 </script>
 <style scoped>
+.v-layout{
+position: relative;
+z-index: 1000;
+}
+.app.navbar-container{
+  position: relative !important; 
+  height: 100% !important;  
+}
 .header_icon {
   font-weight: 600;
   line-height: 32px;
@@ -70,7 +77,7 @@ const drawer = ref(null);
 
 .create_event {
   color: #624CF5;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 16px;
   line-height: 24px;
 }

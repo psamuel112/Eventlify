@@ -100,7 +100,7 @@
   .primary_img {
     width: 24px;
     margin-top: -5rem;
-    margin-left: -3rem
+    
   }
 }
 .card_wrapper {
