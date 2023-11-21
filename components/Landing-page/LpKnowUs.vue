@@ -1,30 +1,11 @@
 <template>
   <div class="main_container  px-md-16 px-8 py-20">
-    <div class="secondary_container z-100 d-md-flex">
-      <div class="image">
-        <div
-          class="relative z-0 w-100"
-          v-motion-slide-left
-          :initial="{ opacity: 0, x: -100 }"
-          :visible="{
-            opacity: 1,
-            x: 0,
-            scale: 1,
-            transition: { ease: 'easeIn', duration: 1000 },
-          }"
-        >
+    <div class="secondary_container d-md-flex">
+      <div class="image">  
           <img class="mx-auto" src="../../assets/images/png/intro.png" alt="" />
         </div>
-      </div>
       <div
-        v-motion-slide-right
-        :initial="{ opacity: 0, x: 100 }"
-        :visible="{
-          opacity: 1,
-          x: 0,
-          scale: 1,
-          transition: { ease: 'easeIn', duration: 1300 },
-        }"
+       
         class="text_container w-100"
       >
         <div>
@@ -69,8 +50,7 @@
 
 <style scoped>
 .image {
-  position: relative !important;
-  z-index: 0 !important;
+
 }
 .primary_text {
   font-size: 48px;

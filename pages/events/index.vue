@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="px-28">
+    <div class="px-8 px-md-16">
       <p class="heading_text mt-8 ml-4">Events</p>
       <div class="d-flex align-center justify-between">
         <div class="d-flex gap-4 align-center">
@@ -200,6 +200,20 @@ const cards = ref([
 .card_container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr
+}
+.card_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+@media screen and (max-width: 1200px) {
+  .card_container {
+    grid-template-columns: 1fr 1fr ;
+  }
+}
+@media screen and (max-width: 768px) {
+  .card_container {
+    grid-template-columns: 1fr;
+  }
 }
 .create_btn {
   width: 209px;

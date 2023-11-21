@@ -2,16 +2,7 @@
   <div class="explore_container w-100 px-8 py-20 px-md-16">
     <div>
     <div
-      v-motion
-      :initial="{ opacity: 0, y: 100 }"
-      :visible="{
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        transition: { duration: 1000, ease: 'easein' },
-      }"
-      :variants="{ custom: { scale: 1 } }"
-      :delay="500"
+    
       class="w-100"
     >
       <p class="primary_text px-md-8">
@@ -24,14 +15,6 @@
       </p>
     </div>
       <button
-        v-motion
-        :initial="{ opacity: 0, y: 100 }"
-        :visible="{
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        transition: { duration: 2000, ease: 'easein' },
-      }"
         class="explore_btn ml-md-8 mt-6"
       >
         Explore now
