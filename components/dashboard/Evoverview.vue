@@ -104,6 +104,17 @@
         </div>
       </div>
     </div>
+    <div>
+      <div class="px-14 chart">
+      <img class="w-100" src="../../assets/images/png/frame1.png" />
+      <img class="w-100" src="../../assets/images/png/frame2.png" />
+    </div>
+    <div class="px-14 mb-16 mt-8 chart2">
+      <img class="w-100" src="../../assets/images/png/frame3.png" />
+      <img class="w-100" src="../../assets/images/png/frame4.png" />
+    </div>
+    </div>
+   
     <!-- <div class="d-flex justify-between w-100">
       <div class="w-100">
   
@@ -112,7 +123,7 @@
             type="area"
             :options="splineOptions"
             :series="splineSeries"
-          ></apexchart>
+          ></apexchahgrt>
         </client-only>
       </div>
       <div class="w-100">
@@ -298,10 +309,31 @@ const bars = {
 </script>
 
 <style lang="scss" scoped>
+.chart{
+  display: grid;
+  grid-template-columns:58% 40%;
+  gap: 1.5rem
+}
+@media screen and (max-width: 768px) {
+  .chart {
+    grid-template-columns: 1fr;
+  }
+}
+.chart2{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 1.5rem
+}
+@media screen and (max-width: 768px) {
+  .chart2 {
+    grid-template-columns: 1fr;
+  }
+}
 .card_container {
   border-radius: 16px;
   border: 1px solid #e2e8f0;
 }
+
 
 .custom-dropdown {
   display: flex;
