@@ -111,7 +111,7 @@
                     <p class="mt-n1 more_card_heading">{{ moreEvent.name }}</p>
                     <div class="d-flex mt-5 gap-2">
                       <img
-                        src="../../assets/images/svg/calenderevent.svg"
+                        src="../../assets/images/svg/calendarevent.svg"
                         alt=""
                       />
                       <p class="card_text">{{ moreEvent.date }}</p>
