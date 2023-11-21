@@ -1,5 +1,5 @@
 <template>
-    <div  :class=" { 'h-100': drawer }" class="z-200 container">
+    <div  :class=" { 'h-100': drawer }" class=" container">
       <v-card>
         <v-layout>
           <v-app-bar  color="#ffffff" prominent>
