@@ -15,7 +15,7 @@
   </template>
   
   <script setup>
-  import navBar from "~/components/userEvent/navBar.vue";
+  import navBar from "~/components/eventDetails/navBar.vue";
   </script>
   
   <style lang="scss" scoped>

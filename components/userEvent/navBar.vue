@@ -4,31 +4,31 @@
       <div>
         <img src="../../assets/images/png/Logo.png" alt="" />
       </div>
-      <div class="">
+      <div class="mt-4">
         <v-tabs v-model="tab" color="deep-purple-accent-4">
-          <v-tab class="text-none pb-12" value="1"
+          <v-tab class="text-none pb-8" value="1"
             ><img
               class="pr-1"
-              src="../../assets/images/svg/element-3.svg"
+              src="../../assets/images/svg/home.svg"
               alt=""
             />
-            Overview</v-tab
+            Home</v-tab
           >
           <v-tab class="text-none pb-8" value="2"
             ><img
               class="pr-1"
-              src="../../assets/images/svg/Icons2.svg"
+              src="../../assets/images/svg/tickets.svg"
               alt=""
-            />
-            Events</v-tab
+            />Favorite
+            </v-tab
           >
           <v-tab class="text-none pb-8" value="3"
             ><img
               class="pr-1"
-              src="../../assets/images/svg/Icons3.svg"
+              src="../../assets/images/svg/ticket.svg"
               alt=""
             />
-            Records</v-tab
+            Tickets</v-tab
           >
         </v-tabs>
       </div>
@@ -42,20 +42,31 @@
           <v-divider class="border-opacity-100" vertical="" height="20px"></v-divider>    
         <div class="custom-dropdown">
           <div class="prepend-icon">
-            <v-icon icon="mdi-home" />
+            <img src="../../assets/images/svg/profilepic.svg" />
           </div>
-          <select
-            density="compact"
-            label="Compact"
-            class="v-btn v-btn--small text-none"
-            v-model="selectedOption"
-            @change="handleChange"
-          >
-            Hendrix
-            <option class="text-none" value="option1">Hendrix</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
-          </select>
+          <div class="">
+            <v-menu open-on-hover>
+              <template v-slot:activator="{ props }">
+                <p v-bind="props">Hendrix</p>
+              </template>
+
+              <v-list>
+                <v-list-item v-for="(item, index) in items" :key="index">
+                  <v-list-item-title>
+                    <div class="d-flex gap-6 pl-4 pr-16">  
+                      <!-- <img :src="item.icon" />
+                       -->
+                      <p>
+                        <nuxt-link :to="item.route">
+                        {{ item.title }}
+                        </nuxt-link>
+                      </p>            
+                    </div>
+                  </v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+          </div>
           <div class="append-icon">
             <v-icon icon="mdi-chevron-down" />
           </div>
@@ -79,6 +90,15 @@ import Evoverview from "~/components/dashboard/Evoverview.vue";
 import EvRecords from "~/components/dashboard/EvRecords.vue";
 const selectedOption = ref("");
 const tab = ref(null);
+
+
+const items = ref([
+  {  title: "Profile", },
+  {  title: "Explore events" , route: "/user-event" },
+  {  title: "Switch to creator", route: "/event-details" },
+  {  title: "Become an affiliate" },
+  {  title: "Logout" },
+]);
 </script>
 
 <style lang="scss" scoped>

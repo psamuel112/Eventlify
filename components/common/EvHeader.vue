@@ -4,7 +4,7 @@
       <div>
         <img src="../../assets/images/png/Logo.png" alt="" />
       </div>
-      <div class="">
+      <div class="mt-2">
         <v-tabs v-model="tab" color="deep-purple-accent-4">
           <v-tab class="text-none pb-12" value="1"
             ><img
@@ -33,27 +33,40 @@
         </v-tabs>
       </div>
       <div class="d-flex gap-6">
-        <NuxtLink to="/basicInfo">        <v-btn class="text-none create_btn">+ Create</v-btn></NuxtLink>
+        <NuxtLink to="/basicInfo">
+          <v-btn class="text-none create_btn">+ Create</v-btn></NuxtLink
+        >
 
         <img src="../../assets/images/svg/notification.svg" alt="" />
         <v-divider class="border-opacity-100" vertical=""></v-divider>
 
         <div class="custom-dropdown">
           <div class="prepend-icon">
-            <v-icon icon="mdi-home" />
+            <img src="../../assets/images/svg/profilepic.svg" />
           </div>
-          <select
-            density="compact"
-            label="Compact"
-            class="v-btn v-btn--small text-none"
-            v-model="selectedOption"
-            @change="handleChange"
-          >
-            Hendrix
-            <option class="text-none" value="option1">Hendrix</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
-          </select>
+          <div class="">
+            <v-menu open-on-hover>
+              <template v-slot:activator="{ props }">
+                <p v-bind="props">Hendrix</p>
+              </template>
+
+              <v-list>
+                <v-list-item v-for="(item, index) in items" :key="index">
+                  <v-list-item-title>
+                    <div class="d-flex gap-6 pl-4 pr-16">  
+                      <!-- <img :src="item.icon" />
+                       -->
+                      <p>
+                        <nuxt-link :to="item.route">
+                        {{ item.title }}
+                        </nuxt-link>
+                      </p>            
+                    </div>
+                  </v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+          </div>
           <div class="append-icon">
             <v-icon icon="mdi-chevron-down" />
           </div>
@@ -71,11 +84,25 @@
 
 <script setup>
 import { ref } from "vue";
+
 import indexVue from "~/pages/events/index.vue";
 import Evoverview from "~/components/dashboard/Evoverview.vue";
 import EvRecords from "~/components/dashboard/EvRecords.vue";
+// import icon1 from "../../assets/images/svg/profile.svg";
+// import icon2 from "../../assets/images/svg/remain.svg";
+// import icon3 from "../../assets/images/svg/creator.svg";
+// import icon4 from "../../assets/images/svg/affiliate.svg";
+// import icon5 from "../../assets/images/svg/logout.svg";
 const selectedOption = ref("");
 const tab = ref(null);
+
+const items = ref([
+  {  title: "Profile", },
+  {  title: "Explore events", route: "/user-event" },
+  {  title: "Switch to creator", route: "/event-details" },
+  {  title: "Become an affiliate" },
+  {  title: "Logout" },
+]);
 </script>
 
 <style lang="scss" scoped>
@@ -97,7 +124,10 @@ const tab = ref(null);
   text-align: left;
   color: #ffffff;
 }
-
+.option {
+  background-color: red;
+  color: red;
+}
 .custom-dropdown {
   display: flex;
   align-items: center;

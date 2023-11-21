@@ -70,9 +70,9 @@
         </div>
         <div class="organizer_container">
           <div>
-            <img src="../../assets/images/svg/map1.png" alt="" />
+            <img class="w-100" src="../../assets/images/svg/map1.png" alt="" />
           </div>
-          <div class="grid grid-cols-4">
+          <div class="organizer_cards">
             <div
               class="follow_card px-6 py-8"
               v-for="followCard in followCards"
@@ -96,7 +96,7 @@
           <p class="see_all">See all</p>
         </div>
         <div class=" ">
-          <div class="gap-4 grid grid-cols-2">
+          <div class="more_events_cards">
             <div
               class="more_event"
               v-for="moreEvent in moreEvents"
@@ -253,6 +253,37 @@ const moreEvents = ref([
   display: grid;
   gap: 1.5rem;
   grid-template-columns: 36% 64%;
+}
+@media screen and (max-width: 768px) {
+  .organizer_container {
+    grid-template-columns: 1fr;
+  }
+}
+.organizer_cards{
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+@media screen and (max-width: 768px) {
+  .organizer_cards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media screen and (max-width: 500px) {
+  .organizer_cards {
+    grid-template-columns: 1fr 1fr ;
+  }
+}
+.more_events_cards{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+@media screen and (max-width: 768px) {
+  .more_events_cards {
+    grid-template-columns: 1fr ;
+   
+  }
 }
 .plan_btn:focus {
   color: #624cf5;
@@ -441,5 +472,19 @@ const moreEvents = ref([
 .card_container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+}
+.card_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+@media screen and (max-width: 1200px) {
+  .card_container {
+    grid-template-columns: 1fr 1fr ;
+  }
+}
+@media screen and (max-width: 768px) {
+  .card_container {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

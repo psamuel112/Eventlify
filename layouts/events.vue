@@ -6,9 +6,12 @@
           <Navbar />
         </nav>
       </header>
-      <div class="d-flex  justify-center">
-        <div>
+      <div class="d-flex d-none  justify-center">
+        <div class="d-none d-md-block">
           <Sidebar />
+        </div>
+        <div class="d-block d-md-none">
+         <mobileSidebar/> 
         </div>
         <div class="content">
         <slot></slot>
@@ -20,6 +23,7 @@
 </template>
 
 <script setup>
+import mobileSidebar from '~/components/event/mobileSidebar.vue';
 import Sidebar from '~/components/event/Sidebar.vue';
 import Navbar from '~/components/event/Navbar.vue'
 </script>

@@ -4,18 +4,18 @@
       <v-layout style="position: relative,z-index: 1000" class="layout">
         <v-app-bar color="#ffffff" prominent>
           <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-          <v-toolbar-title>Menu</v-toolbar-title>
+         
         </v-app-bar>
-        <v-navigation-drawer v-model="drawer" location="top" temporary>
+        <v-navigation-drawer v-model="drawer" location="left" temporary>
           <div class="header_container justify-center px-8 text-center align-center">
-            <div class=" align-center ">
+            <div class="">
               <p class="header_icon mt-4">Eventlify</p>
-              <LpSearchInput label="Search events" />
+             
             </div>
-            <div>
+            <div class="mt-4">
               <button class="create_event">Create an event</button>
             </div>
-            <div class="d-flex gap-2 mt-4">
+            <div class="mt-4">
               <div>
               <NuxtLink to="/signin">
                 <button class="login_btn">Login</button>
@@ -56,17 +56,18 @@ z-index: 1000;
 }
 
 .login_btn {
-  padding: 16px 40px 16px 40px;
+  padding: 12px 40px 12px 40px;
   border-radius: 12px;
   border: 1.5px solid #624CF5;
   font-size: 16px;
   line-height: 24px;
   color: #624CF5;
   font-weight: 700;
+  margin-bottom: 1rem
 }
 
 .signup_btn {
-  padding: 16px 40px 16px 40px;
+  padding: 12px 20px 12px 20px;
   border-radius: 12px;
   background-color: #624CF5;
   color: #ffffff;

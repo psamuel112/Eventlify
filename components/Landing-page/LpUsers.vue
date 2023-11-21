@@ -1,5 +1,5 @@
 <template>
-    <div class="user_container py-20">
+    <div class="user_container mt-8 px-24 py-20">
         <div>
             <p class="primary_text mb-16">Trusted by nearly 1000+ users </p>
         </div>
