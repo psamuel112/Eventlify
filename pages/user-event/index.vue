@@ -70,7 +70,7 @@
         </div>
         <div class="organizer_container">
           <div>
-            <img class="w-100" src="../../assets/images/svg/map1.png" alt="" />
+            <img class="w-100" src="../../assets/images/png/map1.png" alt="" />
           </div>
           <div class="organizer_cards">
             <div
