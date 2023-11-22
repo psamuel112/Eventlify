@@ -194,7 +194,7 @@ const followCards = ref([
   },
   {
     img: frame16,
-    name: "Rewind Studio",
+    name: "Rewin Studio",
     followers: "25k Followers",
     follow_btn: "Follow",
   },
