@@ -74,9 +74,7 @@ definePageMeta({
 });
 
 import { defineProps } from "vue";
-const props = defineProps({
-  layout: "events",
-});
+
 </script>
 
 <style lang="scss" scoped>

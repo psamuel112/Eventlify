@@ -7,7 +7,7 @@
           class="search-bar"
           variant="plain"
           flat
-          :label="label"
+          label="Search records"
           prepend-inner-icon="mdi-magnify"
           @click:append-inner="onClick"
         ></v-text-field>

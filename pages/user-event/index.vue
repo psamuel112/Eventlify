@@ -152,9 +152,7 @@ definePageMeta({
   layout: "user-event",
 });
 
-const props = defineProps({
-  layout: "user-event",
-});
+
 
 const selectedOption = ref("option1");
 
