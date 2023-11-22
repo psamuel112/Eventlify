@@ -2,12 +2,12 @@
   <div class="">
     <div class="nav_wrapper d-flex pt-8 pb-4 align-center">
       <div>
-        <NuxtLink to="/dashboard">
+        <nuxt-link to="/dashboard">
           <button class="d-flex pl-16 gap-4 align-center">
             <img src="../../assets/images/svg/arrowback.svg" alt="" />
             <p class="back_text">Back to Events dashboard</p>
           </button>
-        </NuxtLink>
+        </nuxt-link>
       </div>
 
       <div class="nav_logo align-center ">

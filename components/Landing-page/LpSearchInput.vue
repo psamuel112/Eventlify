@@ -5,11 +5,10 @@
           :loading="loading"
           density="compact"
           class="search-bar"
-          variant=""
+          variant="plain"
           flat
-          :label="label"
-          append-inner-icon="mdi-magnify"
-         :width="width"
+          label="Search"
+          append-inner-icon="mdi-magnify"        
           @click:append-inner="onClick"
         ></v-text-field>
       </v-card-text>
@@ -33,7 +32,7 @@
     }, 2000);
   }
   </script>
-  
+ 
   <style lang="scss" scoped>
   .search-bar {
     border: 1.5px solid #e0def7;

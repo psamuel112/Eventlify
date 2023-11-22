@@ -16,7 +16,7 @@
           density="compact"
           label="Compact"
           class="v-btn v-btn--small text-none"
-          v-model="selectedOption"
+         
           @change="handleChange"
         >
           Hendrix

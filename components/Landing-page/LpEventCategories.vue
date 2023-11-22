@@ -8,7 +8,7 @@
           <div class="d-flex">
             <p class="primary_text mt-3">All Categories of Events</p>
             <img
-              class="mb-10 primary_img"
+              class="mb-10  primary_img"
               src="../../assets/images/svg/splash.svg"
               alt=""
             />

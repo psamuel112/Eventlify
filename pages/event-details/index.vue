@@ -149,9 +149,6 @@ definePageMeta({
   layout: "event-details",
 });
 
-const props = defineProps({
-  layout: "event-details",
-});
 
 const tags = ref([
   {

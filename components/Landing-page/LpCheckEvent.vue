@@ -115,7 +115,7 @@ color: #2A282B;
 .event_cards {
     border-radius: 16px;
     border: 1px solid #EFEDFE;
- max-width: 18.1rem;
+ 
 }
 
 .card_container {

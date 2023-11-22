@@ -1,13 +1,10 @@
 <template>
   <div class="main_container  px-md-16 px-8 py-20">
-    <div class="secondary_container d-md-flex">
-      <div class="image">  
-          <img class="mx-auto" src="../../assets/images/png/intro.png" alt="" />
+    <div class="secondary_container  d-md-flex">
+      <div class="image w-100">  
+          <img class="mx-auto w-100" src="../../assets/images/png/intro.png" alt="" />
         </div>
-      <div
-       
-        class="text_container w-100"
-      >
+      <div class="text_container">
         <div>
           <div class="d-flex mb-2 mb-md-6">
             <p class="primary_text mt-3">Get to Know Us</p>
@@ -49,9 +46,7 @@
 <script setup></script>
 
 <style scoped>
-.image {
 
-}
 .primary_text {
   font-size: 48px;
   font-weight: 600;
