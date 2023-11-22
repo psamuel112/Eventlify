@@ -3,7 +3,7 @@
         <div class="header_container  d-flex justify-space-between align-center">
             <div class="d-flex align-center  w-50">
                 <p class="header_icon mr-8">Eventlify</p>
-                <LpSearchInput label="Search events" />
+                <EvSearchInput label="Search events" />
             </div>
             <div class="d-flex align-center ">
                 <button class="create_event mr-8">Create an event</button>
@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import LpSearchInput from '~/components/Landing-page/LpSearchInput.vue';
+import EvSearchInput from '~/components/common/EvSearchInput.vue';
 
 </script>
 
