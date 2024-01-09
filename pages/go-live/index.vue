@@ -2,7 +2,7 @@
   <div class="container mt-8">
     <div class="m-auto text-center">
       <p class="header_text">Create An Event</p>
-      <p class="sub_text mt-4 mb-8 px-28">
+      <p class="sub_text mt-4 mb-8 px-8 px-md-28">
         Kindly fill out the details carefully and make sure to fill in required
         fields as you create your event of a lifetime
       </p>
@@ -59,9 +59,12 @@
         </div>
       </div>
     </div>
-    <div class="d-flex justify-end gap-4 mt-8 mb-16">
+    <nuxt-link to="go-live2">
+      <div class="d-flex justify-end gap-4 mt-8 mb-16">
       <button class="text-none nxt_btn py-3 px-10">Go Live</button>
     </div>
+    </nuxt-link>
+   
   </div>
 </template>
 

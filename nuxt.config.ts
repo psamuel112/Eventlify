@@ -6,21 +6,16 @@ export default defineNuxtConfig({
   build: {
      transpile: ["vuetify"],
    },
-   modules: [
-    '@nuxtjs/tailwindcss',
-    '@vueuse/motion/nuxt'
-
-  ],
-
-
-  
-  css: [
-    "vuetify/lib/styles/main.sass",
-  ],
-  vite: {
+   vite: {
     define: {
         'process.env.DEBUG': false,
     },
   },
- 
+  css: [
+    "vuetify/lib/styles/main.sass",
+  ],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    '@vueuse/motion/nuxt'
+  ],
 })

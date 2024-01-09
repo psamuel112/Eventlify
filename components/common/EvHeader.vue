@@ -6,30 +6,36 @@
       </div>
       <div class="mt-2">
         <v-tabs v-model="tab" color="deep-purple-accent-4">
-          <v-tab class="text-none pb-12" value="1"
-            ><img
-              class="pr-1"
-              src="../../assets/images/svg/element-3.svg"
-              alt=""
-            />
-            Overview</v-tab
-          >
-          <v-tab class="text-none pb-8" value="2"
-            ><img
-              class="pr-1"
-              src="../../assets/images/svg/Icons2.svg"
-              alt=""
-            />
-            Events</v-tab
-          >
-          <v-tab class="text-none pb-8" value="3"
-            ><img
-              class="pr-1"
-              src="../../assets/images/svg/Icons3.svg"
-              alt=""
-            />
-            Records</v-tab
-          >
+          <nuxt-link to="overview">
+            <v-tab class="text-none pb-12" value="1">
+              <img
+                class="pr-1"
+                src="../../assets/images/svg/element-3.svg"
+                alt=""
+              />
+              Overview
+            </v-tab>
+          </nuxt-link>
+          <nuxt-link to="events">
+            <v-tab class="text-none pb-8" value="2">
+              <img
+                class="pr-1"
+                src="../../assets/images/svg/Icons2.svg"
+                alt=""
+              />
+              Events
+            </v-tab>
+          </nuxt-link>
+          <nuxt-link to="records">
+            <v-tab class="text-none pb-8" value="3">
+              <img
+                class="pr-1"
+                src="../../assets/images/svg/Icons3.svg"
+                alt=""
+              />
+              Records
+            </v-tab>
+          </nuxt-link>
         </v-tabs>
       </div>
       <div class="d-flex gap-6">
@@ -45,7 +51,7 @@
             <img src="../../assets/images/svg/profilepic.svg" />
           </div>
           <div class="">
-            <v-menu open-on-hover>
+            <v-menu open-on-click>
               <template v-slot:activator="{ props }">
                 <p v-bind="props">Hendrix</p>
               </template>
@@ -53,14 +59,14 @@
               <v-list>
                 <v-list-item v-for="(item, index) in items" :key="index">
                   <v-list-item-title>
-                    <div class="d-flex gap-6 pl-4 pr-16">  
+                    <div class="d-flex gap-6 pl-4 pr-16">
                       <!-- <img :src="item.icon" />
                        -->
                       <p>
                         <nuxt-link :to="item.route">
-                        {{ item.title }}
+                          {{ item.title }}
                         </nuxt-link>
-                      </p>            
+                      </p>
                     </div>
                   </v-list-item-title>
                 </v-list-item>
@@ -97,11 +103,11 @@ const selectedOption = ref("");
 const tab = ref(null);
 
 const items = ref([
-  {  title: "Profile", },
-  {  title: "Explore events", route: "/user-event" },
-  {  title: "Switch to creator", route: "/event-details" },
-  {  title: "Become an affiliate" },
-  {  title: "Logout" },
+  { title: "Profile" },
+  { title: "Explore events", route: "/user-event" },
+  { title: "Switch to creator", route: "/event-details" },
+  { title: "Become an affiliate" },
+  { title: "Logout" },
 ]);
 </script>
 

@@ -10,14 +10,13 @@
         <div class="d-none d-md-block">
           <Sidebar />
         </div>
-        <div class="d-block d-md-none">
-         <mobileSidebar/> 
-        </div>
         <div class="content">
         <slot></slot>
         </div>
-      </div>
-       
+        <div class="d-block d-md-none">
+         <mobileSidebar/> 
+        </div>
+      </div>   
   </main>
 </div>
 </template>

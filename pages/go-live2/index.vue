@@ -2,7 +2,7 @@
   <div class="container mt-8">
     <div class="m-auto text-center">
       <p class="header_text">Create An Event</p>
-      <p class="sub_text mt-4 mb-8 px-28">
+      <p class="sub_text mt-4 mb-8 px-8 px-md-28">
         Kindly fill out the details carefully and make sure to fill in required
         fields as you create your event of a lifetime
       </p>
@@ -14,10 +14,10 @@
         invite
       </p>
     </div>
-    <div class="form_container">
+    <div class="form_container w-100">
       <div class="px-8 py-8">
         <img class="w-100" src="../../assets/images/png/image.png" alt="" />
-        <div class="form_container mt-8 mx-40 m-auto text-center">
+        <div class="form_container w-100 mt-8 mx-40 mx-auto text-center">
           <div class="py-4">
             <div class="text-center">
               <p class="info_head">Go Live</p>
@@ -51,8 +51,8 @@
             </div>
           </div>
         </div>
-        <div class="d-flex mt-10 gap-6">
-          <div class="w-50">
+        <div class="d-md-flex mt-10 gap-6">
+          <div class="w-100">
             <p class="tags_head">Additional Info</p>
             <p class="info_text">
               Indulge in an unforgettable birthday celebration at a paid event
@@ -61,7 +61,7 @@
               special day truly memorable.
             </p>
           </div>
-          <div class="w-50">
+          <div class="w-100 mt-8 mt-md-0">
             <p class="tags_head">Tags</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2"> <v-btn flat class="text-none tag_wrapper">
               <p class="tag_btn_text">besttime</p>

@@ -105,7 +105,10 @@
           <div class="py-6">
               <v-divider border-opacity-100></v-divider>
             </div>
-          <v-btn border flat class="w-100  follow_btn text-none"> Buy Ticket </v-btn>
+            <nuxt-link to="/event-booking-tickets">
+              <v-btn border flat class="w-100  follow_btn text-none"> Buy Ticket </v-btn>
+            </nuxt-link>
+         
         </div>
       </div>
     </div>

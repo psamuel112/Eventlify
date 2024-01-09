@@ -144,6 +144,11 @@
 
 <script setup>
 import { ref } from "vue";
+
+definePageMeta({
+  layout: "dashboard",
+});
+
 const splineSeries = reactive([
   {
     name: "Property Flex",
