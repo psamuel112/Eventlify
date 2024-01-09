@@ -2,7 +2,7 @@
   <div class="container mt-8">
     <div class="m-auto text-center">
       <p class="header_text">Create An Event</p>
-      <p class="sub_text mt-4 mb-8 px-28">
+      <p class="sub_text mt-4 mb-8 px-8 px-md-28">
         Kindly fill out the details carefully and make sure to fill in required
         fields as you create your event of a lifetime
       </p>

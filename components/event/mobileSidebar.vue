@@ -2,14 +2,14 @@
     <div  :class=" { 'h-100': drawer }" class=" container">
       <v-card>
         <v-layout>
-          <v-app-bar  color="#ffffff" prominent>
+          <v-app-bar flat  color="#ffffff" prominent>
             <v-app-bar-nav-icon
               variant="text"
               @click.stop="drawer = !drawer"
             ></v-app-bar-nav-icon>
           </v-app-bar>
   
-          <v-navigation-drawer v-model="drawer" location="left" temporary>
+          <v-navigation-drawer v-model="drawer" flat location="left" temporary>
             <v-list color="#624CF5" class="container">
               <nuxt-link to="basicinfo">
                 <v-list-item class="list_item" value="1">

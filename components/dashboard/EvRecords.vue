@@ -20,7 +20,7 @@
     <div class="table_wrapper">
       <div class="px-6 py-8">
         <div>
-            <EvRecordSearch  label="Hendrix James"/>
+            <EvRecordSearch />
         </div>
 
         <v-table class="mb-5">

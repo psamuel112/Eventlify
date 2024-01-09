@@ -14,7 +14,7 @@
         <img class="" src="../../assets/images/png/Logo.png" alt="" />
       </div>
     </div>
-    <div class="line mt-4"></div>
+    <div class="line "></div>
   </div>
 </template>
 

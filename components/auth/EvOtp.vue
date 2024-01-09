@@ -25,7 +25,7 @@ import { VOtpInput } from 'vuetify/labs/VOtpInput'
 font-size: 12px;
 font-weight: 400;
 line-height: 20px;
-letter-spacing: 0em;
+letter-spacing: 0nem;
 text-align: left;
 color:#0E0B26;
 }

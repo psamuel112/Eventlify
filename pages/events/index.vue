@@ -85,6 +85,10 @@ import eventcard4 from "../../assets/images/png/eventcard4.png";
 import { ref } from "vue";
 const selectedOption = ref("option1");
 
+definePageMeta({
+  layout: "dashboard",
+});
+
 const cards = ref([
   {
     time: "8, 8:45AMApr (WAT)",
