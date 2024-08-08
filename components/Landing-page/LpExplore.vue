@@ -5,17 +5,17 @@
     
       class="w-100"
     >
-      <p class="primary_text px-md-8">
-        Manage all Events as a<span> Creator</span> or an
-        <span>Attendee</span> all in one platform
+      <p class="primary_text d1_semibold white px-md-8">
+        Manage all Events as a<span class="purple50"> Creator</span> or an
+        <span class="purple50">Attendee</span> all in one platform
       </p>
-      <p class="secondary_text px-md-8 mt-6">
+      <p class="h4_medium secondary_text white1 px-md-8 mt-6">
         Create/ attend events (virtually or live) and sell your tickets right
         from the comfort of your device when you utilize the application
       </p>
     </div>
       <button
-        class="explore_btn ml-md-8 mt-6"
+        class="lp_btn ml-md-8 mt-6"
       >
         Explore now
       </button>
@@ -55,42 +55,29 @@
   }
 }
 .primary_text {
-  color: #ffffff;
-  font-size: 72px;
-  font-weight: 600;
-  line-height: 80px;
+ 
   width: 75%;
 }
 @media screen and (max-width: 1200px) {
   .primary_text {
-    font-size: 72px;
-    line-height: 80px;
+ 
     width: 100%;
   }
 }
 @media screen and (max-width: 768px) {
   .primary_text {
-    font-size: 52px;
-    line-height: 70px;
+  
     width: 100%;
   }
 }
 @media screen and (max-width: 550px) {
   .primary_text {
-    font-size: 32px;
-    line-height: 42px;
+ 
     width: 100%;
   }
 }
-.primary_text span {
-  color: #624cf5;
-}
 
 .secondary_text {
-  color: #efedfe;
-  font-size: 24px;
-  font-weight: 500;
-  line-height: 32px;
   width: 50%;
 }
 @media screen and (max-width: 768px) {
@@ -103,13 +90,5 @@
     font-size: 20px;
   }
 }
-.explore_btn {
-  padding: 16px 40px 16px 40px;
-  border-radius: 12px;
-  background-color: #624cf5;
-  color: #ffffff;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 700;
-}
+
 </style>

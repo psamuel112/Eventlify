@@ -10,12 +10,15 @@ export default defineNuxtConfig({
     define: {
         'process.env.DEBUG': false,
     },
+ 
   },
   css: [
-    "vuetify/lib/styles/main.sass",
+    "vuetify/lib/styles/main.sass", 
+    "@/assets/styles/global.scss",
   ],
   modules: [
     '@nuxtjs/tailwindcss',
-    '@vueuse/motion/nuxt'
+    '@vueuse/motion/nuxt',
+    "@pinia/nuxt",
   ],
 })

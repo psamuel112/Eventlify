@@ -3,8 +3,8 @@
     <div class="d-flex gap-4">
       <img src="../../assets/images/svg/Ellipse.svg" />
       <div>
-        <p class="welcome_text">Hello Hendrix!👋🏽</p>
-        <p class="sub_text">Hope you’re having a good day</p>
+        <p class="h5_semibold purple90">Hello Hendrix!👋🏽</p>
+        <p class="body3_medium dark3">Hope you’re having a good day</p>
       </div>
     </div>
     <div class="d-flex gap-2 my-10">
@@ -37,8 +37,8 @@
       >
     </div>
     <div class="d-flex justify-between align-center">
-      <p class="info_heading">Popular events</p>
-      <p class="see_all" >See all</p>
+      <p class="h5_semibold purple90">Popular events</p>
+      <p class="h6_bold purple90" >See all</p>
     </div>
     <div>
       <div class="card_container gap-4 mb-10 mt-6">
@@ -54,19 +54,19 @@
           </div>
           <div class="px-4 py-4">
             <div class="d-flex mb-4 align-center gap-4">
-              <p class="card_text">{{ card.time }}</p>
+              <p class="body2_medium dark2">{{ card.time }}</p>
             </div>
-            <p class="card_heading mb-4">{{ card.note }}</p>
+            <p class="h4_semibold dark0 mb-4">{{ card.note }}</p>
             <div class="">
-              <p class="card_price">{{ card.price }}</p>
+              <p class="body1_bold purple50">{{ card.price }}</p>
             </div>
           </div>
         </div>
       </div>
       <div class="mb-8">
         <div class="d-flex mb-4 justify-between align-center">
-          <p class="info_heading">Nearby & Organizers</p>
-          <p class="see_all">See all</p>
+          <p class="h5_semibold purple90">Nearby & Organizers</p>
+          <p class="h6_bold purple90">See all</p>
         </div>
         <div class="organizer_container">
           <div>
@@ -80,8 +80,8 @@
             >
               <div class="text-center">
                 <img class="mx-auto mb-2" :src="followCard.img" alt="" />
-                <p class="mb-2 follow_card_header">{{ followCard.name }}</p>
-                <p class="mb-4 follow_text">{{ followCard.followers }}</p>
+                <p class="mb-2 body_semibold purple90">{{ followCard.name }}</p>
+                <p class="mb-4 body_regular dark2">{{ followCard.followers }}</p>
                 <v-btn class="follow_card_btn text-none" flat border>{{
                   followCard.follow_btn
                 }}</v-btn>
@@ -92,8 +92,8 @@
       </div>
       <div class="mb-8">
         <div class="d-flex mb-4 justify-between align-center">
-          <p class="info_heading">More events</p>
-          <p class="see_all">See all</p>
+          <p class="h5_semibold purple90">More events</p>
+          <p class="h6_bold purple90">See all</p>
         </div>
         <div class=" ">
           <div class="more_events_cards">
@@ -108,18 +108,18 @@
                     <img class="" :src="moreEvent.img" alt="" />
                   </div>
                   <div class="">
-                    <p class="mt-n1 more_card_heading">{{ moreEvent.name }}</p>
+                    <p class="mt-n1 h5_semibold purple90">{{ moreEvent.name }}</p>
                     <div class="d-flex mt-5 gap-2">
                       <img
                         src="../../assets/images/svg/calendarevent.svg"
                         alt=""
                       />
-                      <p class="card_text">{{ moreEvent.date }}</p>
+                      <p class="body3_medium dark2">{{ moreEvent.date }}</p>
                     </div>
                   </div>
                 </div>
                 <div class="mt-10">
-                  <p class="more_event_price">{{ moreEvent.price }}</p>
+                  <p class="purple50 body2_bold">{{ moreEvent.price }}</p>
                 </div>
               </div>
             </div>
@@ -241,12 +241,7 @@ const moreEvents = ref([
 <style lang="scss" scoped>
 .container {
 }
-.naira {
-  width: 48px;
-  height: 43px;
-  padding: 12px, 0px, 12px, 0px;
-  background-color: #e2e8f0;
-}
+
 .organizer_container {
   display: grid;
   gap: 1.5rem;
@@ -297,34 +292,8 @@ const moreEvents = ref([
   border: 1px solid #e4e5e7;
   border-radius: 16px;
 }
-.follow_text {
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 20px;
-  color: #717585;
-}
 .editor {
   height: 12rem;
-}
-.secondary_heading {
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 20px;
-  color: #2a282b;
-}
-
-.card_price {
-  color: #624cf5;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 32px;
-}
-
-.more_event_price{
-  color: #624cf5;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 32px;
 }
 .follow_card_btn {
   padding: 10px, 24px, 10px, 24px;
@@ -335,45 +304,7 @@ const moreEvents = ref([
   border: 1.5px solid #624CF5;
   color: #624CF5;
 }
-.input {
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 24px;
-}
-.input1 {
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
-  border-right: none;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 24px;
-}
-.header_text {
-  font-size: 32px;
-  font-weight: 600;
-  line-height: 48px;
-  color: #0e0b26;
-}
-.see_all {
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 24px;
-  color: #624CF5;
-}
-.follow_card_header {
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 23.8px;
-  color: #121933;
-}
-.sub_text {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 24px;
-  color: #6b6478;
-}
+
 .form_container {
   border: 1px solid #e2e8f0;
   border-radius: 12px;
@@ -381,48 +312,6 @@ const moreEvents = ref([
 .tag_wrapper {
   background-color: #f7f7fd;
 }
-.info_heading {
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 32px;
-  color: #0e0b26;
-}
-.more_card_heading {
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 32px;
-  color: #121933;
-}
-.form_label {
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 20px;
-  color: #2a282b;
-}
-.basic_sub {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
-  color: #6b6478;
-}
-.form_sub_text {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
-  color: #a29daf;
-}
-.zoom_text {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-}
-.image_text {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 24px;
-  color: #2a282b;
-}
-
 .card {
   border-radius: 16px;
   border: 1px solid #e2e8f0;
@@ -447,25 +336,10 @@ const moreEvents = ref([
   background-color: #24d164;
   color: #ffffff;
 }
-
 .card_img {
   border-radius: 16px 16px 0 0;
   object-fit: cover;
   width: 100%;
-}
-
-.card_text {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 24px;
-  color: #6b6478;
-}
-
-.card_heading {
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 32px;
-  color: #2a282b;
 }
 .card_container {
   display: grid;

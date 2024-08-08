@@ -2,10 +2,10 @@
     <div class="">
         <v-divider></v-divider>
         <div class="d-flex footer_container justify-space-between align-center">
-            <p class="footer_text">
+            <p class="h6_semibold dark0">
                 ©2023, All Rights reserved
             </p>
-            <p class="footer_text">Eventlify</p>
+            <p class="h6_semibold dark1">Eventlify</p>
         </div>
     </div>
 </template>
@@ -24,17 +24,5 @@
    padding: 40px 80px 40px 80px
   }
 }
-.footer_text{
-font-size: 16px;
-font-weight: 600;
-line-height: 24px;
-letter-spacing: 0em;
-text-align: right;
-color: #3F434A;
-}
-@media screen and (max-width: 550px) {
-  .footer_text {
-   font-size: 12px
-  }
-}
+
 </style>

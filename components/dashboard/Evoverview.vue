@@ -16,7 +16,6 @@
           density="compact"
           label="Compact"
           class="v-btn v-btn--small text-none"
-         
           @change="handleChange"
         >
           Hendrix
@@ -106,228 +105,54 @@
     </div>
     <div>
       <div class="px-14 chart">
-      <img class="w-100" src="../../assets/images/png/frame1.png" />
-      <img class="w-100" src="../../assets/images/png/frame2.png" />
+        <img class="w-100" src="../../assets/images/png/frame1.png" />
+        <img class="w-100" src="../../assets/images/png/frame2.png" />
+      </div>
+      <div class="px-14 mb-16 mt-8 chart2">
+        <img class="w-100" src="../../assets/images/png/frame3.png" />
+        <img class="w-100" src="../../assets/images/png/frame4.png" />
+      </div>
     </div>
-    <div class="px-14 mb-16 mt-8 chart2">
-      <img class="w-100" src="../../assets/images/png/frame3.png" />
-      <img class="w-100" src="../../assets/images/png/frame4.png" />
-    </div>
-    </div>
-   
-    <!-- <div class="d-flex justify-between w-100">
+
+    <div class="d-flex justify-between w-100">
       <div class="w-100">
-  
-        <client-only>
-          <apexchart
-            type="area"
-            :options="splineOptions"
-            :series="splineSeries"
-          ></apexchahgrt>
-        </client-only>
+        <LineChart />
       </div>
       <div class="w-100">
-        <apexchart
-          type="donut"
-          :options="chartOptions"
-          :series="series"
-        ></apexchart>
+        <DonutChart />
       </div>
     </div>
     <div>
-        <div id="chart">
-        <apexchart type="bar" height="350" :options="bars" :series="bar"></apexchart>
-      </div> 
-    </div> -->
+     <BarChart />
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
-
+import BarChart from "~/components/dashboard/BarChart.vue"
+import LineChart from "~/components/dashboard/LineChart.vue";
+import DonutChart from "~/components/dashboard/DonutChart.vue";
 definePageMeta({
   layout: "dashboard",
 });
-
-const splineSeries = reactive([
-  {
-    name: "Property Flex",
-    data: [31, 40, 28, 51, 42, 109, 100],
-  },
-]);
-const splineOptions = reactive({
-  chart: {
-    height: 300,
-    type: "area",
-    toolbar: {
-      show: false,
-    },
-  },
-  colors: ["#624CF5"],
-  dataLabels: {
-    enabled: false,
-  },
-  legend: {
-    show: false,
-  },
-  tooltip: {
-    custom: function ({ series, seriesIndex, dataPointIndex, w }) {
-      return (
-        '<div class="arrow_box">' +
-        "<span>" +
-        series[seriesIndex][dataPointIndex] +
-        "</span>" +
-        "</div>"
-      );
-    },
-  },
-  stroke: {
-    curve: "smooth",
-  },
-  xaxis: {
-    type: "string",
-    categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
-    labels: {
-      style: {
-        // colors: [],
-        fontSize: "12px",
-        fontFamily: '"DM Sans", sans-serif',
-        fontWeight: 500,
-      },
-    },
-  },
-  yaxis: {
-    axisBorder: {
-      show: false,
-    },
-    axisTicks: {
-      show: true,
-      borderType: "dashed",
-      color: "#78909C",
-      width: 0,
-      offsetX: 0,
-      offsetY: 0,
-    },
-    labels: {
-      style: {
-        // colors: [],
-        fontSize: "12px",
-        fontFamily: '"DM Sans", sans-serif',
-        fontWeight: 500,
-      },
-    },
-  },
-});
-
-
-
-const series = [44, 55, 41];
-const chartOptions = {
-  chart: {
-    type: "donut",
-  },
-
-  responsive: [
-    {
-      breakpoint: 480,
-      options: {
-        plotOptions: {
-       
-        },
-        chart: {
-          width: 200,
-       
-        },
-        legend: {
-          position: "bottom",
-          show: false
-        },
-      },
-    },
-  ],
-  legend: {
-    position: 'right'
-  },
-  dataLabels: {
-              enabled: false
-            },
-};
-
-
-
-
-const bar = [
-  {
-    name: 'Net Profit',
-    data: [44, 55, 57, 56, 61, 58, 63, 60, 66],
-  },
-  {
-    name: 'Revenue',
-    data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
-  },
-  
-];
-const bars = {
-  chart: {
-    type: 'bar',
-    height: 350,
-  },
-  plotOptions: {
-    bar: {
-      horizontal: false,
-      columnWidth: '55%',
-      endingShape: 'rounded',
-    },
-  },
-  dataLabels: {
-    enabled: false,
-  },
-  stroke: {
-    show: true,
-    width: 2,
-    colors: ['transparent'],
-  },
-  xaxis: {
-    categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
-  },
-  yaxis: {
-    title: {
-      text: '$ (thousands)',
-    },
-  },
-  fill: {
-    opacity: 1,
-  },
-  tooltip: {
-    y: {
-      formatter: function (val) {
-        return "$ " + val + " thousands";
-      },
-    },
-  },
-};
-
-
-
-
-
 </script>
 
 <style lang="scss" scoped>
-.chart{
+.chart {
   display: grid;
-  grid-template-columns:58% 40%;
-  gap: 1.5rem
+  grid-template-columns: 58% 40%;
+  gap: 1.5rem;
 }
 @media screen and (max-width: 768px) {
   .chart {
     grid-template-columns: 1fr;
   }
 }
-.chart2{
+.chart2 {
   display: grid;
   grid-template-columns: 50% 50%;
-  gap: 1.5rem
+  gap: 1.5rem;
 }
 @media screen and (max-width: 768px) {
   .chart2 {
@@ -338,7 +163,6 @@ const bars = {
   border-radius: 16px;
   border: 1px solid #e2e8f0;
 }
-
 
 .custom-dropdown {
   display: flex;

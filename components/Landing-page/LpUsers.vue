@@ -1,7 +1,7 @@
 <template>
-    <div class="user_container mt-8 px-24 py-20">
+    <div class="bg-shade2 mt-8 px-24 py-20">
         <div>
-            <p class="primary_text mb-16">Trusted by nearly 1000+ users </p>
+            <p class="h4_semibold text-center dark2 mb-16">Trusted by nearly 1000+ users </p>
         </div>
         <div class="w-100 logo_container">
             <div class="top_wrapper d-flex align-center px-8 justify-space-between">
@@ -58,18 +58,7 @@
 </script>
 
 <style scoped>
-.user_container {
- 
-    background: #F7F7FD;
-}
-.primary_text{
-font-size: 24px;
-font-weight: 600;
-line-height: 32px;
-letter-spacing: 0em;
-text-align: center;
-color: #6B6478;
-}
+
 /* .top_wrapper {
     gap: 1.5rem;
     display: grid;

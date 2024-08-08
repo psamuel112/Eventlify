@@ -1,15 +1,15 @@
 <template>
   <div class="container mt-8">
     <div class="m-auto text-center">
-      <p class="header_text">Create An Event</p>
-      <p class="sub_text mt-4 mb-8 px-8 px-md-28">
+      <p class="h3_semibold purple90">Create An Event</p>
+      <p class="h6_medium dark2 mt-4 mb-8 px-8 px-md-28">
         Kindly fill out the details carefully and make sure to fill in required
         fields as you create your event of a lifetime
       </p>
     </div>
     <div>
-      <p class="info_heading mb-1">Go Live</p>
-      <p class="basic_sub pr-32 mb-4">
+      <p class="h4_semibold purple90 mb-1">Go Live</p>
+      <p class="body3_medium dark2 pr-32 mb-4">
         Publish your events with your friends and the individuals you wish to
         invite
       </p>
@@ -27,8 +27,8 @@
           <div class="">
             <div>
               <div>
-                <p class="info_heading mb-3">Go Live</p>
-                <p class="sub_text mb-3">
+                <p class="h5_semibold purple90 mb-3">Go Live</p>
+                <p class="body3_medium dark1 mb-3">
                   Bringing the best show to the limelight in a tech<br> meeting to
                   isnspire the young generation
                 </p>
@@ -36,20 +36,20 @@
               <div class="d-flex align-center mb-3 gap-4">
                 <div class="d-flex align-center gap-2">
                   <img src="../../assets/images/svg/smallticket.svg" alt="" />
-                  <p class="details_text">₦ 5,000</p>
+                  <p class="body4_medium dark2">₦ 5,000</p>
                 </div>
                 <div class="d-flex align-center gap-2">
                   <img src="../../assets/images/svg/Group.svg" alt="" />
-                  <p class="details_text">7 attendes</p>
+                  <p class="body4_medium dark2">7 attendes</p>
                 </div>
                 <div class="d-flex align-center gap-2">
                   <img src="../../assets/images/svg/gps.svg" alt="" />
-                  <p class="details_text">Online</p>
+                  <p class="body4_medium dark2">Online</p>
                 </div>
               </div>
               <div class="d-flex align-center gap-2">
                 <img src="../../assets/images/svg/smallclock.svg" alt="" />
-                <p class="details_text">Thursday 21stMarch, 2023 at 16: WAT</p>
+                <p class="body4_medium dark2">Thursday 21stMarch, 2023 at 16: WAT</p>
               </div>
             </div>
           </div>
@@ -82,20 +82,8 @@ import { defineProps } from "vue";
 .container {
   max-width: 48.1rem;
 }
-.tag_text {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  color: #6b6478;
-}
 .editor {
   height: 12rem;
-}
-.details_text {
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 16px;
-  color: #6b6478;
 }
 .preview_text {
   font-size: 14px;
@@ -126,28 +114,10 @@ import { defineProps } from "vue";
   font-weight: 500;
   line-height: 24px;
 }
-.header_text {
-  font-size: 32px;
-  font-weight: 600;
-  line-height: 48px;
-  color: #0e0b26;
-}
 .event_btn {
   font-size: 16px;
   font-weight: 700;
   line-height: 24px;
-}
-.form_heading {
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 32px;
-  color: #2a282b;
-}
-.sub_text {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
-  color: #3f434a;
 }
 .form_container {
   border: 1px solid #e2e8f0;
@@ -155,40 +125,5 @@ import { defineProps } from "vue";
 }
 .tag_wrapper {
   background-color: #f7f7fd;
-}
-.info_heading {
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 32px;
-  color: #0e0b26;
-}
-.form_label {
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 20px;
-  color: #2a282b;
-}
-.basic_sub {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
-  color: #6b6478;
-}
-.form_sub_text {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
-  color: #a29daf;
-}
-.zoom_text {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-}
-.image_text {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 24px;
-  color: #2a282b;
 }
 </style>
