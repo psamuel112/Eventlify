@@ -114,7 +114,7 @@
       </div>
     </div>
 
-    <div class="d-flex justify-between w-100">
+    <!-- <div class="d-flex justify-between w-100">
       <div class="w-100">
         <LineChart />
       </div>
@@ -124,7 +124,7 @@
     </div>
     <div>
      <BarChart />
-    </div>
+    </div> -->
   </div>
 </template>
 
