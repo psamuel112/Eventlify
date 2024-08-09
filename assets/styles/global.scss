@@ -1,0 +1,272 @@
+@import "_partials/typography.scss";
+
+.lp_btn {
+  padding: 16px 40px 16px 40px;
+  border-radius: 12px;
+  background-color: #624cf5;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
+}
+.lp_wbtn {
+  padding: 16px 40px 16px 40px;
+  border-radius: 12px;
+  border: 1.5px solid #624cf5;
+  font-size: 16px;
+  line-height: 24px;
+  color: #624cf5;
+  font-weight: 700;
+}
+
+// text
+.d1_bold {
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 80px;
+}
+.d1_semibold {
+  font-size: 72px;
+  font-weight: 600;
+  line-height: 80px;
+}
+.d1_medium {
+  font-size: 72px;
+  font-weight: 500;
+  line-height: 80px;
+}
+.d2_bold {
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 72px;
+}
+.d2_semibold {
+  font-size: 60px;
+  font-weight: 600;
+  line-height: 72px;
+}
+.d2_medium {
+  font-size: 60px;
+  font-weight: 500;
+  line-height: 72px;
+}
+
+.h1_bold {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 64px;
+  text-align: left;
+}
+.h1_semibold {
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 64px;
+}
+.h1_medium {
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 64px;
+}
+.h2_bold {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 56px;
+}
+.h2_semibold {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 56px;
+}
+.h2_medium {
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 56px;
+}
+.h3_bold {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 48px;
+}
+.h3_semibold {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 48px;
+}
+.h3_medium {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 48px;
+}
+.h4_bold {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+}
+.h4_semibold {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+}
+.h4_medium {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+}
+.h5_bold {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+}
+.h5_semibold {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 32px;
+}
+.h5_medium {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 32px;
+}
+
+.h6_bold {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 32px;
+}
+.h6_semibold {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 32px;
+}
+.h6_medium {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 32px;
+}
+.body1_bold {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+}
+.body1_medium {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 32px;
+}
+.body1_regular {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 32px;
+}
+.body2_bold {
+   font-size: 16px;
+   font-weight: 700;
+   line-height: 24px;
+ }
+ .body2_medium {
+   font-size: 16px;
+   font-weight: 500;
+   line-height: 24px;
+ }
+ .body2_regular {
+   font-size: 16px;
+   font-weight: 400;
+   line-height: 24px;
+ }
+ .body3_bold {
+   font-size: 14px;
+   font-weight: 700;
+   line-height: 20px;
+ }
+ .body3_medium {
+   font-size: 14px;
+   font-weight: 500;
+   line-height: 20px;
+ }
+ .body3_regular {
+   font-size: 14px;
+   font-weight: 400;
+   line-height: 20px;
+ }
+ .body4_bold {
+   font-size: 12px;
+   font-weight: 700;
+   line-height: 16px;
+ }
+ .body4_medium {
+   font-size: 12px;
+   font-weight: 500;
+   line-height: 16px;
+ }
+ .body4_regular {
+   font-size: 12px;
+   font-weight: 400;
+   line-height: 16px;
+ }
+//colors
+.purple90 {
+  color: #0e0b26;
+}
+.purple80 {
+  color: #211b57;
+}
+.purple50 {
+  color: #624cf5;
+}
+.purple40 {
+  color: #a193f9;
+}
+.purple20 {
+  color: #ccc4fb;
+}
+.success50 {
+  color: #24d164;
+}
+.success10 {
+  color: #eefbf3;
+}
+.error50 {
+  color: #ed4f58;
+}
+.error10 {
+  color: #fdedee;
+}
+.pending50 {
+  color: #db6b2b;
+}
+.pending10 {
+  color: #fbf0ea;
+}
+.white {
+  color: #ffffff;
+}
+.white1 {
+  color: #efedfe;
+}
+.shade2 {
+  color: #f7f7fd;
+}
+.shadebg {
+  color: #f9f9fb;
+}
+.shade3 {
+  color: #e0def7;
+}
+.dark0 {
+  color: #2a282b;
+}
+.dark2 {
+  color: #686478;
+}
+.dark1 {
+  color: #3f434a;
+}
+.dark3 {
+  color: #a29daf;
+}
+.dark4 {
+  color: #e2e8f0;
+}
+.yellow{
+color: #e3b131;
+}

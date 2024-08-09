@@ -2,20 +2,20 @@
     <div class="inform_container  px-10">
         <div class="inform_wrapper d-flex align-center justify-space-between">
                 <div class="d-flex  primary_details">
-                    <p class="primary_text">Want to Be Informed on <br> The Next Event</p>
+                    <p class="primary_text h1_semibold white">Want to Be Informed on <br> The Next Event</p>
                     <img class="primary_image" src="../../assets/images/svg/splash.svg" alt="" />
                 </div>
                 <div class="inform_form  px-12 py-12">
                     <v-form>
                         <v-col cols="16">
                             <div class="">
-                                <label class="inform_label">Name</label>
+                                <label class="inform_label h5_medium white">Name</label>
                                 <input placeholder="" class=" inform_input mt-2 py-4 w-100" />
                             </div>
                         </v-col>
                         <v-col cols="16">
                             <div class="mt-2 ">
-                                <label class="inform_label">Email address</label>
+                                <label class="inform_label h5_medium white">Email address</label>
                                 <input type="text" placeholder="" class="inform_input py-4 mt-2 w-100" />
                             </div>
                         </v-col>
@@ -77,21 +77,6 @@
 .inform_input {
     border: 1px solid #EFEDFE;
     border-radius: 12px;
-    color: #ffffff;
-}
-
-.inform_label {
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 32px;
-    color: #ffffff;
-
-}
-
-.primary_text {
-    font-size: 48px;
-    font-weight: 600;
-    line-height: 64px;
     color: #ffffff;
 }
 

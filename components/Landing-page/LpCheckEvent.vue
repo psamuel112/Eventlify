@@ -1,7 +1,7 @@
 <template>
     <div class="event_container px-12 px-md-16 py-20">
         <div class=" d-flex">
-            <p class="primary_text mt-3">Check out events</p>
+            <p class="h1_semibold dark0 mt-3">Check out events</p>
             <img class="mb-10 primary_img" src="../../assets/images/svg/splash.svg" alt="" />
         </div>
         <div class="btn_wrapper md:px-24 w-100 justify-space-between py-4 d-md-flex align-center ">
@@ -17,14 +17,14 @@
             <div v-for="card in cards" :key="card" class="event_cards w-100">
                 <img class="card_image w-100" :src="card.img" alt="" />
                 <div class="px-6 w-100 py-4">
-                    <p class="card_date">{{ card.date }}</p>
-                    <p class="card_text mt-4">{{ card.text }}</p>
-                    <p class="card_name mt-6">{{ card.name }}</p>
+                    <p class="h6_medium dark2">{{ card.date }}</p>
+                    <p class="body1_medium dark0 mt-4">{{ card.text }}</p>
+                    <p class="text-left h6_medium dark0 mt-6">{{ card.name }}</p>
                 </div>
             </div>
         </div>
         <div class="text-center pt-8">
-            <button class="see_btn">
+            <button class="lp_wbtn">
                 See more
             </button>
         </div>
@@ -91,9 +91,7 @@ const cards = ref([
 </script>
 
 <style scoped>
-.event_container {
 
-}
 .event_btn{
 font-size: 24px;
 font-weight: 500;
@@ -111,13 +109,10 @@ color: #2A282B;
     overflow-x: hidden;
  
 }
-
 .event_cards {
     border-radius: 16px;
     border: 1px solid #EFEDFE;
- 
 }
-
 .card_container {
     gap: 1.5rem;
     display: grid;
@@ -140,20 +135,6 @@ color: #2A282B;
     grid-template-columns: 1fr;
   }
 }
-
-.primary_text {
-    font-size: 48px;
-    font-weight: 600;
-    line-height: 64px;
-    color: #2A282B;
-}
-@media screen and (max-width: 768px) {
-  .primary_text {
-    font-size: 36px;
-    line-height: 48px;
-  }
-  
-}
 @media screen and (max-width: 550px) {
   .primary_text {
     font-size: 24px;
@@ -163,41 +144,8 @@ color: #2A282B;
     width: 24px
   }
 }
-
 .card_image {
     border-radius: 16px 16px 0px 0px;
 }
 
-.card_date {
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 24px;
-    text-align: left;
-    color: #6B6478;
-}
-.see_btn{
-    padding: 16px 40px 16px 40px;
-    border-radius: 12px;
-    border: 1.5px solid #624CF5;
-    font-size: 16px;
-    line-height: 24px;
-    color: #624CF5;
-    font-weight: 700;  
-}
-.card_text {
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 32px;
-    text-align: left;
-    color: #2A282B;
-}
-
-.card_name {
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: #2A282B;
-}
 </style>

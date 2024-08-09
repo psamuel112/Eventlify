@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-text-field
+     <v-text-field
       :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
       :type="visible ? 'text' : 'password'"
       density="compact"
@@ -11,7 +11,6 @@
     ></v-text-field>
     </div>
 </template>
-
 <script setup>
 import { ref } from 'vue'
 const visible = ref(false);
