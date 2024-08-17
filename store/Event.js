@@ -1,10 +1,12 @@
 import { defineStore } from "pinia";
-import { useEventApiService } from '~/composables/eventApiService';
+import { useEventService } from '~/composables/eventApiService';
 export const useEventStore = defineStore("event", {
-  state: () => ({}),
+  state: () => ({
+    tickets: {}
+  }),
   actions: {
-    async createProperty(form) {
-      const EventService = useEventApiService();
+    async createEvent(form) {
+      const EventService = useEventService();
       const auth = useAuthentication().userTokens;
       const config = {
         headers: {
@@ -13,8 +15,6 @@ export const useEventStore = defineStore("event", {
       };
       let { payload, statusCode } =
         await EventService.createEvent(form, config);
-   
-    
       return statusCode;
     },
   },

@@ -4,7 +4,7 @@
       <div class="d-flex gap-4">
         <img src="../../assets/images/svg/Ellipse.svg" />
         <div>
-          <p class="welcome_text">Hello Hendrix!👋🏽</p>
+          <p class="welcome_text">Hello Dami!👋🏽</p>
           <p class="sub_text">Hope you’re having a good day</p>
         </div>
       </div>
@@ -198,28 +198,24 @@ definePageMeta({
   line-height: 20px;
   color: #ed4f59;
 }
-
 .welcome_text {
   font-size: 20px;
   font-weight: 600;
   line-height: 32px;
   color: #0e0b26;
 }
-
 .percent_wrapper p {
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
   color: #24d164;
 }
-
 .sub_text {
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
   color: #a29daf;
 }
-
 .card_heading {
   font-size: 16px;
   font-weight: 600;
@@ -227,14 +223,12 @@ definePageMeta({
   text-align: left;
   color: #2a282b;
 }
-
 .card_date {
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
   color: #a29daf;
 }
-
 .card_date span {
   font-size: 14px;
   font-weight: 700;

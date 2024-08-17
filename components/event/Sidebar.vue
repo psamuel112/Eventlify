@@ -27,7 +27,7 @@
           </div>
         </v-list-item>
       </nuxt-link>
-      <nuxt-link to="go-live">
+      <nuxt-link to="go-live2">
         <v-list-item class="list_item" value="4">
           <div flat class="d-flex gap-4">
             <img src="../../assets/images/svg/live.svg" alt="" />

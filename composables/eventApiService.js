@@ -1,7 +1,7 @@
 import api from "./api";
 import * as ENDPOINTS from "../services/endpoints";
 
-export const useEventApiService = () => {
+export const useEventService = () => {
   return {
     async createEvent(form, config) {
       try {
@@ -13,7 +13,7 @@ export const useEventApiService = () => {
         console.log(data);
         return data;
       } catch (err) {
-        resolveRequestError(err);
+   
       }
     },
   };

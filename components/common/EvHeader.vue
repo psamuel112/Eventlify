@@ -7,7 +7,7 @@
       <div class="mt-2">
         <v-tabs v-model="tab" color="deep-purple-accent-4">
           <nuxt-link to="overview">
-            <v-tab class="text-none" value="1">
+            <v-tab class="text-none pb-8" value="1">
               <img
                 class="pr-1"
                 src="../../assets/images/svg/element-3.svg"

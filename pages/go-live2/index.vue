@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-8">
+  <div v-if="form" class="container mt-8">
     <div class="m-auto text-center">
       <p class="header_text">Create An Event</p>
       <p class="sub_text mt-4 mb-8 px-8 px-md-28">
@@ -14,9 +14,14 @@
         invite
       </p>
     </div>
-    <div class="form_container w-100">
+    <div v-if="form" class="form_container w-100">
       <div class="px-8 py-8">
-        <img class="w-100" src="../../assets/images/png/image.png" alt="" />
+        <img
+          v-if="form.image_url"
+          :src="form.image_url"
+          alt="Event Image"
+          class="w-100"
+        />
         <div class="form_container w-100 mt-8 mx-40 mx-auto text-center">
           <div class="py-4">
             <div class="text-center">
@@ -27,24 +32,29 @@
               </p>
             </div>
             <div
+              v-for="ticket in form.tickets"
+              :key="ticket"
               class="d-flex mt-8 align-center justify-center text-center mb-3 gap-4"
             >
               <div class="d-flex align-center gap-2">
                 <img src="../../assets/images/svg/smallticket.svg" alt="" />
-                <p class="details_text">₦ 5,000 - ₦ 10,000</p>
+                <p class="details_text">{{ ticket.price }}</p>
               </div>
               <div class="d-flex align-center gap-2">
                 <img src="../../assets/images/svg/Group.svg" alt="" />
-                <p class="details_text">7 attendes</p>
+                <p class="details_text">{{ ticket.plan_value }}</p>
               </div>
               <div class="d-flex align-center gap-2">
                 <img src="../../assets/images/svg/gps.svg" alt="" />
-                <p class="details_text">Online</p>
+                <p class="details_text">{{ form.is_online }}</p>
               </div>
             </div>
             <div class="d-flex mb-8 justify-center align-center gap-2">
               <img src="../../assets/images/svg/smallclock.svg" alt="" />
-              <p class="details_text">Thursday 21stMarch, 2023 at 16: WAT</p>
+              <p class="details_text">
+                {{ form.start_date }}, {{ form.start_time }}:
+                {{ form.timezone }}
+              </p>
             </div>
             <div class="text-center">
               <p class="preview_text">Preview Link</p>
@@ -55,23 +65,21 @@
           <div class="w-100">
             <p class="tags_head">Additional Info</p>
             <p class="info_text">
-              Indulge in an unforgettable birthday celebration at a paid event
-              in vibrant Lagos, Nigeria. Experience a lively atmosphere,
-              delicious food, and exciting entertainment tailored to make your
-              special day truly memorable.
+              {{ form.additional_info }}
             </p>
           </div>
           <div class="w-100 mt-8 mt-md-0">
             <p class="tags_head">Tags</p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2"> <v-btn flat class="text-none tag_wrapper">
-              <p class="tag_btn_text">besttime</p>
-              <p class="ml-4">x</p>
-            </v-btn>
-            <v-btn flat class="text-none tag_wrapper">
-              <p class="tag_btn_text">happytime</p>
-              <p class="ml-4">x</p>
-            </v-btn>
-            <v-btn flat class="text-none tag_wrapper">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+              <v-btn
+                v-for="tag in form.tags"
+                :key="tag"
+                flat
+                class="text-none tag_wrapper"
+              >
+                <p class="tag_btn_text">{{ tag }}</p>
+              </v-btn>
+              <!-- <v-btn flat class="text-none tag_wrapper">
               <p class="tag_btn_text">technology</p>
               <p class="ml-4">x</p>
             </v-btn>
@@ -82,25 +90,53 @@
             <v-btn flat class="text-none  tag_wrapper">
               <p class="tag_btn_text">real estate</p>
               <p class="ml-4">x</p>
-            </v-btn></div>
-           
+            </v-btn> -->
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="d-flex justify-end gap-4 mt-8 mb-16">
-      <button class="text-none nxt_btn py-3 px-10">Go Live</button>
+      <button @click="submitForm" class="text-none nxt_btn py-3 px-10">Go Live</button>
     </div>
   </div>
 </template>
 
 <script setup>
+import { ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
+import { useEventStore } from '~/store/Event';
+
 definePageMeta({
   layout: "events",
 });
+const form = ref(null);
+const event = useEventStore();
+onMounted(() => {
+  const savedEvent = JSON.parse(localStorage.getItem("formData"));
+  if (savedEvent) {
+    form.value = savedEvent;
+  }
+});
+const router = useRouter();
+// const submitForm = () => {
+//   localStorage.setItem("formData", JSON.stringify(form));
+//   console.log("details", form);
+//   router.push("/dashboard");
+// };
 
-import { defineProps } from "vue";
+async function submitForm() {
+  try {
+    const response = await event.createEvent(form);
+    if (response) {
+      // Navigate to dashboard
+      router.push('/dashboard');
+    }
+  } catch (error) {
+    console.error('Error logging in:', error);
+  }
+}
 
 </script>
 
@@ -137,7 +173,6 @@ import { defineProps } from "vue";
   line-height: 24px;
 }
 
-
 .header_text {
   font-size: 32px;
   font-weight: 600;
@@ -163,7 +198,6 @@ import { defineProps } from "vue";
 }
 .tag_wrapper {
   background-color: #f7f7fd;
-
 }
 .info_heading {
   font-size: 24px;

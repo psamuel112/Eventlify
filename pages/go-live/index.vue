@@ -69,6 +69,22 @@
 </template>
 
 <script setup>
+import { reactive, onMounted } from 'vue';
+
+const formData = reactive({
+  type: "",
+  plan: "",
+  status: ""
+});
+
+
+
+onMounted(() => {
+  const savedForm = JSON.parse(localStorage.getItem('formData'));
+  if (savedForm) {
+    Object.assign(formData, savedForm);
+  }
+});
 
 definePageMeta({
   layout: "events",
