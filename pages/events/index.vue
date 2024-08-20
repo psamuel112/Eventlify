@@ -42,29 +42,38 @@
           <v-btn class="text-none create_btn">+ Create</v-btn>
         </div>
       </div>
-      <div>
-        <div class="card_container gap-4 mt-8">
-          <div class="card mb-4" v-for="card in cards" :key="card">
+      <div v-if="form">
+        <div class="card_container pointer gap-4 mt-8">
+          <div
+            @click="navigateToCard(form.id)"
+            class="card mb-4 pointer"
+          
+          >
             <div class="image_wrapper">
-              <img class="card_img" :src="card.img" />
+              <img class="card_img"  v-if="form.image_url"
+          :src="form.image_url" />
               <v-btn
                 class="text-none status_btn mr-6 mt-6"
-                :class="`state_color-${card.state_color}`"
+                :class="`state_color-${form.is_online}`"
                 flat
-                >{{ card.state_text }}</v-btn
+                >{{ form.event_type }}</v-btn
               >
             </div>
-            <div class="px-4 py-4">
+            <div
+            v-for="ticket in form.tickets"
+              :key="ticket"
+            class="px-4 py-4">
               <div class="d-flex mb-4 align-center gap-4">
-                <p class="card_text">{{ card.time }}</p>
+                <p class="card_text">{{ form.start_date }} {{ form.start_time }}:
+                ({{ form.timezone }})</p>
                 <img src="../../assets/images/svg/dot.svg" />
                 <img src="../../assets/images/svg/ticket.svg" />
-                <p class="card_text">{{ card.amount }}</p>
+                <p  class="card_text">{{ ticket.price }} left</p>
               </div>
-              <p class="card_heading mb-4">{{ card.note }}</p>
+              <p class="card_heading mb-4">  {{ form.additional_info }}</p>
               <div class="d-flex gap-4">
                 <img src="../../assets/images/svg/spot.svg" />
-                <p class="card_text">{{ card.status }}</p>
+                <p class="card_text">{{ form.is_online }}</p>
               </div>
             </div>
           </div>
@@ -75,6 +84,7 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from "vue";
 import EvHeader from "~/components/common/EvHeader.vue";
 import EvSearchInput from "~/components/common/EvSearchInput.vue";
 import eventcard1 from "../../assets/images/png/eventcard1.png";
@@ -82,15 +92,27 @@ import eventcard2 from "../../assets/images/png/eventcard2.png";
 import eventcard3 from "../../assets/images/png/eventcard3.png";
 import eventcard4 from "../../assets/images/png/eventcard4.png";
 
-import { ref } from "vue";
 const selectedOption = ref("option1");
 
 definePageMeta({
   layout: "dashboard",
 });
+const form = ref(null);
+onMounted(() => {
+  const data = JSON.parse(localStorage.getItem("form")) || {};
+  if (data) {
+     form.value = data;
+   }
+});
+const router = useRouter();
+
+const navigateToCard = (id) => {
+  router.push(`/events/${id}`);
+};
 
 const cards = ref([
   {
+    id: 1,
     time: "8, 8:45AMApr (WAT)",
     amount: "5 Sold",
     note: " Building Wealth Through Real Estate",
@@ -100,6 +122,7 @@ const cards = ref([
     state_text: "Ended",
   },
   {
+    id: 2,
     time: "8, 8:45AMApr (WAT)",
     amount: "5 Sold",
     note: "Celebrating the Co-Founder’s birthday",
@@ -110,6 +133,7 @@ const cards = ref([
     state_color: "green",
   },
   {
+    id: 3,
     time: "8, 8:45AMApr (WAT)",
     amount: "5 Sold",
     note: "How Agriculture would come to play in today’s economy",
@@ -120,6 +144,7 @@ const cards = ref([
     state_color: "green",
   },
   {
+    id: 4,
     time: "8, 8:45AMApr (WAT)",
     amount: "5 Sold",
     note: "How Agriculture would come to play in today’s economy",
@@ -159,11 +184,10 @@ const cards = ref([
 .card {
   border-radius: 16px;
   border: 1px solid #e2e8f0;
- 
 }
 .image_wrapper {
   position: relative;
- object-fit: fill;
+  object-fit: fill;
 }
 .status_btn {
   position: absolute;
@@ -173,11 +197,11 @@ const cards = ref([
   top: 0;
   right: 0;
 }
-.state_color-orange {
+.state_color-offline {
   background-color: #db6b2b;
   color: #ffffff;
 }
-.state_color-green {
+.state_color-online {
   background-color: #24d164;
   color: #ffffff;
 }
@@ -201,9 +225,9 @@ const cards = ref([
   line-height: 32px;
   color: #2a282b;
 }
-.card_container{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr
+.card_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 .card_container {
   display: grid;
@@ -211,7 +235,7 @@ const cards = ref([
 }
 @media screen and (max-width: 1200px) {
   .card_container {
-    grid-template-columns: 1fr 1fr ;
+    grid-template-columns: 1fr 1fr;
   }
 }
 @media screen and (max-width: 768px) {

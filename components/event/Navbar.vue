@@ -9,7 +9,6 @@
           </button>
         </nuxt-link>
       </div>
-
       <div class="nav_logo align-center ">
         <img class="" src="../../assets/images/png/Logo.png" alt="" />
       </div>

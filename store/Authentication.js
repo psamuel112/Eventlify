@@ -13,7 +13,7 @@ export const useAuthentication = defineStore('user', {
       console.log("login data: ", data)
       if (data) {
         try {
-          this.access_token = data.accessToken;
+          this.access_token = data.access_token;
           this.user = data.user;
           console.log('successfully assigned token and user email')
         } catch (error) {
