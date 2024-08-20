@@ -26,7 +26,7 @@
         </div>
         <div>
           <p class="body2_medium dark0 mb-2">Images</p>
-          <p class="body3_medium dark2 mb-1">
+          <p class="body3_medium dark2 mb-4">
             Add images to give your audience a visual of what the event would be
             like
           </p>
@@ -69,10 +69,10 @@
         </div>
       </div>
       <div class="d-flex justify-end gap-4 mt-8 mb-16">
-        <button class="back_btn body2_bold purple90 text-none py-3 px-10">
+        <button @click="backbtn" class="back_btn body2_bold purple90 text-none py-3 px-10">
           Back
         </button>
-        <button @click="submitForm" class="text-none nxt_btn py-3 px-10">
+        <button @click="submitForm(form)" class="text-none nxt_btn py-3 px-10">
           Continue
         </button>
       </div>
@@ -110,12 +110,36 @@ const router = useRouter();
 //     Object.assign(form, savedForm);
 //   }
 // });
+const backbtn = () => {
+  router.push("/basicInfo")
+}
+const loadForm = () => {
+  const data = JSON.parse(localStorage.getItem("form")) || {};
+  if (data) {
+    object.assign(form, data)
+  }
+}
 
-const submitForm = () => {
-  localStorage.setItem("formData", JSON.stringify(form));
-  console.log("details", form);
-  router.push("/tickets"); // Navigate to the next form page
+const savedData = () => {
+  const currentData = JSON.parse(localStorage.getItem("form")) ||
+{};
+const updatedData = {
+  ...currentData,
+  ...form
+}
+localStorage.setItem("form",JSON.stringify(updatedData))
+console.log("info", updatedData)
+}
+const submitForm = (form) => {
+  savedData();
+  router.push("/tickets")
 };
+
+// const submitForm = (form) => {
+//   localStorage.setItem("formData", JSON.stringify(form));
+//   console.log("details", form);
+//   router.push("/tickets"); // Navigate to the next form page
+// };
 </script>
 
 <style lang="scss" scoped>

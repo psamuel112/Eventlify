@@ -27,8 +27,7 @@
             <div class="text-center">
               <p class="info_head">Go Live</p>
               <p class="px-8 sub_text">
-                Bringing the best show to the limelight in a tech meeting to
-                isnspire the young generation
+              {{ form.description}}
               </p>
             </div>
             <div
@@ -114,29 +113,50 @@ definePageMeta({
 const form = ref(null);
 const event = useEventStore();
 onMounted(() => {
-  const savedEvent = JSON.parse(localStorage.getItem("formData"));
-  if (savedEvent) {
-    form.value = savedEvent;
-  }
+  const data = JSON.parse(localStorage.getItem("form")) || {};
+  if (data) {
+     form.value = data;
+   }
 });
 const router = useRouter();
-// const submitForm = () => {
-//   localStorage.setItem("formData", JSON.stringify(form));
-//   console.log("details", form);
-//   router.push("/dashboard");
-// };
 
-async function submitForm() {
-  try {
-    const response = await event.createEvent(form);
-    if (response) {
-      // Navigate to dashboard
-      router.push('/dashboard');
-    }
-  } catch (error) {
-    console.error('Error logging in:', error);
-  }
+const loadForm = () => {
+
 }
+
+// const loadForm = () => {
+//   const data = JSON.parse(localStorage.getItem("form")) || {};
+//   if (data) {
+//     object.assign(form, data)
+//   }
+// }
+
+const savedData = () => {
+  const currentData = JSON.parse(localStorage.getItem("form")) ||
+{};
+const updatedData = {
+  ...currentData,
+  ...form
+}
+localStorage.setItem("form",JSON.stringify(updatedData))
+console.log("info", updatedData)
+}
+const submitForm = (form) => {
+  savedData();
+  router.push("/dashboard")
+};
+
+// async function submitForm() {
+//   try {
+//     const response = await event.createEvent(form);
+//     if (response) {
+//       // Navigate to dashboard
+//       router.push('/dashboard');
+//     }
+//   } catch (error) {
+//     console.error('Error logging in:', error);
+//   }
+// }
 
 </script>
 

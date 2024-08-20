@@ -333,11 +333,26 @@ function removeTag(index) {
 //     Object.assign(form, savedForm);
 //   }
 // });
+const loadForm = () => {
+  const data = JSON.parse(localStorage.getItem("form")) || {};
+  if (data) {
+    object.assign(form, data)
+  }
+}
 
+const savedData = () => {
+  const currentData = JSON.parse(localStorage.getItem("form")) ||
+{};
+const updatedData = {
+  ...currentData,
+  ...form
+}
+localStorage.setItem("form",JSON.stringify(updatedData))
+console.log("info", updatedData)
+}
 const submitForm = (form) => {
-  console.log("info", form);
-  localStorage.setItem("formData", JSON.stringify(form));
-  router.push("/details"); // Navigate to the next form page
+  savedData();
+  router.push("/details")
 };
 </script>
 

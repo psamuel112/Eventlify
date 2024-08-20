@@ -1,12 +1,14 @@
 <template>
   <div>
     <Navbar />
-   
     <div class="px-20">
-        <div>
-      <p class="">Back to event dashboard</p>
-      <p>Winning in Tech</p>
-    </div>
+      <div class="my-10">
+       <div class="d-flex align-center">
+        <img src="../../assets/images/svg/ico4.svg" />
+        <p class="h6_medium dark2 ml-6">Back to event dashboard</p>
+       </div>
+        <p class="h3_semibold purple90">Winning in Tech</p>
+      </div>
       <div class="card_container justify-between d-flex px-6 py-6">
         <div class="d-flex card gap-4 pr-16">
           <div>
@@ -63,28 +65,31 @@
         </div>
       </div>
       <div>
-      <p>Share Ticket</p>
-      <input
-        disabled
-        label="Physical address"
-        placeholder="Enter the physical address here"
-        class="w-100 px-4 body2_medium dark3 input mb-4 py-2"
-      />
-      <input
-        disabled
-        label="Physical address"
-        placeholder="Enter the physical address here"
-        class="w-100 px-4 body2_medium dark3 input mb-4 py-2"
-      />
-      <input
-        disabled
-        label="Physical address"
-        placeholder="Enter the physical address here"
-        class="w-100 px-4 body2_medium dark3 input mb-4 py-2"
-      />
+        <p class="h4_medium purple90 mt-10 mb-4">Share Ticket</p>
+        <div>
+          <label class="body3_medium dark0">Event URL</label>
+          <div class="d-flex align-center">
+            <input
+            disabled
+            label=""
+            placeholder="entlify.com/birthday event"
+            class="w-100 px-4 body2_medium dark3 input mb-4 py-2"
+          />
+              
+          <img class="ml-n10 mt-n4" src="../../assets/images/svg/copy.svg" />
+        </div>
+        </div>
+
+        <p class="body3_medium dark0 mb-4 mt-4">share on social media</p>
+        <div class="d-flex align-center icons">
+          <img src="../../assets/images/svg/Facebook2.svg" />
+          <img src="../../assets/images/svg/Messanger.png" />
+          <img src="../../assets/images/svg/Twitter2.svg" />
+          <img src="../../assets/images/svg/Linkedin2.svg" />
+          <img src="../../assets/images/svg/Instagram2.svg" />
+        </div>
+      </div>
     </div>
-    </div>
-   
   </div>
 </template>
 <script setup>
@@ -110,6 +115,15 @@ import Navbar from "~/components/event/Navbar.vue";
   line-height: 20px;
   color: #a29daf;
 }
+.price {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  color: #0e0b26;
+}
+.icons {
+  gap: 20px;
+}
 .percent_wrapper p {
   font-size: 14px;
   font-weight: 500;
@@ -124,6 +138,14 @@ import Navbar from "~/components/event/Navbar.vue";
 }
 .card_container {
   border-radius: 16px;
+  border: 1px solid #e2e8f0;
+}
+.input {
+  max-width: 468px;
+  height: 48px;
+  padding: 12px 16px 12px 16px;
+  border-radius: 8px 0px 0px 0px;
+  opacity: 0px;
   border: 1px solid #e2e8f0;
 }
 </style>

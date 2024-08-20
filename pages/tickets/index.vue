@@ -329,7 +329,7 @@
       </div>
     </div>
     <div class="d-flex justify-end gap-4 mt-8 mb-16">
-      <button class="back_btn text-none py-3 px-10">Back</button>
+      <button @click="backbtn" class="back_btn text-none py-3 px-10">Back</button>
       <button @click="submitForm" class="text-none nxt_btn py-3 px-10">
         Continue
       </button>
@@ -367,6 +367,9 @@ const form = reactive({
 //     form.tickets[index].plan.push(selectedPlan);
 //   }
 // };
+const backbtn = () => {
+  router.push("/details")
+}
 const selectPlan = (index, selectedPlan) => {
   const ticket = form.tickets[index];
   const planIndex = ticket.plan.indexOf(selectedPlan);
@@ -396,10 +399,26 @@ const router = useRouter();
 //   //  });
 // });
 
-const submitForm = () => {
-  localStorage.setItem("formData", JSON.stringify(form));
-  console.log("tickets", form);
-  router.push("/go-live2"); // Navigate to the next form page
+const loadForm = () => {
+  const data = localStorage.getItem("form");
+  if (data) {
+    object.assign(form, JSON.parse(data).tickets)
+  }
+}
+
+const savedData = () => {
+  const currentData = JSON.parse(localStorage.getItem("form")) ||
+{};
+const updatedData = {
+  ...currentData,
+  ...form
+}
+localStorage.setItem("form",JSON.stringify(updatedData))
+console.log("info", updatedData)
+}
+const submitForm = (form) => {
+  savedData();
+  router.push("/go-live2")
 };
 </script>
 <style lang="scss" scoped>

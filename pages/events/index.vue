@@ -45,10 +45,9 @@
       <div v-if="form">
         <div class="card_container pointer gap-4 mt-8">
           <div
-            @click="navigateToCard(card.id)"
+            @click="navigateToCard(form.id)"
             class="card mb-4 pointer"
-            v-for="ticket in form.tickets"
-              :key="ticket"
+          
           >
             <div class="image_wrapper">
               <img class="card_img"  v-if="form.image_url"
@@ -57,16 +56,19 @@
                 class="text-none status_btn mr-6 mt-6"
                 :class="`state_color-${form.is_online}`"
                 flat
-                >{{ form.is_online }}</v-btn
+                >{{ form.event_type }}</v-btn
               >
             </div>
-            <div class="px-4 py-4">
+            <div
+            v-for="ticket in form.tickets"
+              :key="ticket"
+            class="px-4 py-4">
               <div class="d-flex mb-4 align-center gap-4">
                 <p class="card_text">{{ form.start_date }} {{ form.start_time }}:
                 ({{ form.timezone }})</p>
                 <img src="../../assets/images/svg/dot.svg" />
                 <img src="../../assets/images/svg/ticket.svg" />
-                <p class="card_text">{{ ticket.price }} left</p>
+                <p  class="card_text">{{ ticket.price }} left</p>
               </div>
               <p class="card_heading mb-4">  {{ form.additional_info }}</p>
               <div class="d-flex gap-4">
@@ -97,16 +99,16 @@ definePageMeta({
 });
 const form = ref(null);
 onMounted(() => {
-  const savedEvent = JSON.parse(localStorage.getItem("formData"));
-  if (savedEvent) {
-    form.value = savedEvent;
-  }
+  const data = JSON.parse(localStorage.getItem("form")) || {};
+  if (data) {
+     form.value = data;
+   }
 });
 const router = useRouter();
 
-// const navigateToCard = (id) => {
-//   router.push(`/events/${id}`);
-// };
+const navigateToCard = (id) => {
+  router.push(`/events/${id}`);
+};
 
 const cards = ref([
   {

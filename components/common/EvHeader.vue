@@ -53,7 +53,7 @@
           <div class="">
             <v-menu open-on-click>
               <template v-slot:activator="{ props }">
-                <p v-bind="props">Hendrix</p>
+                <p v-bind="props">Dami</p>
               </template>
 
               <v-list>
