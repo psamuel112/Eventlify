@@ -19,117 +19,133 @@
       :key="index"
       class="form_container px-8 py-8"
     >
-      <div>
+      <!-- <div>
         <p class="h5_semibold dark0 mb-4">Add Ticket</p>
-        <div>
-          <p class="body3_medium dark0">Select ticket type</p>
-          <div>
-            <v-radio-group v-model="ticket.type">
-              <div>
-                <v-btn flat border class="mr-4">
-                  <v-radio
-                    class="text-none event_btn"
-                    label="Paid"
-                    value="Paid"
-                    color="#624cf5"
-                  ></v-radio>
-                </v-btn>
-                <v-btn flat border>
-                  <v-radio
-                    class="text-none event_btn"
-                    label="Free"
-                    value="Free"
-                    color="#624cf5"
-                  ></v-radio>
-                </v-btn>
-              </div>
-            </v-radio-group>
-          </div>
-        </div>
-        <div>
-          <p class="body3_medium dark0">Select ticket status</p>
-          <div>
-            <v-radio-group v-model="ticket.status">
-              <div>
-                <v-btn flat border class="mr-4">
-                  <v-radio
-                    class="text-none event_btn"
-                    label="Public"
-                    value="Public"
-                    color="#624cf5"
-                  ></v-radio>
-                </v-btn>
-                <v-btn class="plan_btn" flat border>
-                  <v-radio
-                    class="text-none event_btn"
-                    label="Invite only"
-                    value="invite_only"
-                    color="#624cf5"
-                  ></v-radio>
-                </v-btn>
-              </div>
-            </v-radio-group>
-          </div>
-        </div>
-        <div v-for="(ticket, index) in form.tickets" :key="index" class="mb-4">
+        <div class="mb-4">
           <p class="body3_medium dark0">Select ticket plans available</p>
           <div class="gap-4">
             <v-btn
-            border
-            flat
-            class="mr-2 plan_btn text-none"
-            :class="{ 'selected-btn': ticket.plan.includes('Regular') }"
-            @click="selectPlan(index, 'Regular')"
-          >
-            Regular
-          </v-btn>
-          <v-btn
-            border
-            flat
-            class="mr-2 plan_btn text-none"
-            :class="{ 'selected-btn': ticket.plan.includes('VIP') }"
-            @click="selectPlan(index, 'VIP')"
-          >
-            VIP
-          </v-btn>
-          <v-btn
-            border
-            flat
-            class="mr-2 plan_btn text-none"
-            :class="{ 'selected-btn': ticket.plan.includes('VVIP') }"
-            @click="selectPlan(index, 'VVIP')"
-          >
-            VVIP
-          </v-btn>
-          <v-btn
-            border
-            flat
-            class="plan_btn text-none"
-            :class="{ 'selected-btn': ticket.plan.includes('Tables') }"
-            @click="selectPlan(index, 'Tables')"
-          >
-            Tables
-          </v-btn>
+              border
+              flat
+              class="mr-2 plan_btn text-none"
+              :class="{ 'selected-btn': option === 'Regular' }"
+              @click="selectPlan(index, 'Regular')"
+            >
+              Regular
+            </v-btn>
+            <v-btn
+              border
+              flat
+              class="mr-2 plan_btn text-none"
+              :class="{ 'selected-btn': option === 'VIP' }"
+              @click="selectPlan(index, 'VIP')"
+            >
+              VIP
+            </v-btn>
+            <v-btn
+              border
+              flat
+              class="mr-2 plan_btn text-none"
+              :class="{ 'selected-btn': option === 'VVIP' }"
+              @click="selectPlan(index, 'VVIP')"
+            >
+              VVIP
+            </v-btn>
+            <v-btn
+              border
+              flat
+              class="plan_btn text-none"
+              :class="{ 'selected-btn': option === 'Tables' }"
+              @click="selectPlan(index, 'Tables')"
+            >
+              Tables
+            </v-btn>
           </div>
         </div>
-        <div class="">
-          <label class="body3_medium dark0">Ticket name</label>
-          <div class="d-flex align-center w-100">
-            <div class="w-100">
-              <input
-                v-model="ticket.name"
-                type="text"
-                placeholder="Name of event"
-                class="w-100 input px-2 py-2"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="mt-4">
-        <v-row v-if="ticket.plan.includes('Regular')">
-          <v-col cols="12" lg="6">
+      </div> -->
+
+      <!-- Regular -->
+
+      <v-row>
+        <v-col cols="12" lg="6">
+          <div class="">
             <div class="">
+              <label class="body3_medium dark0"> Ticket name</label>
+              <div class="d-flex align-center w-100">
+                <div class="mb-8 w-100">
+                  <input
+                    v-model="ticket.name"
+                    type="text"
+                    placeholder="Name of event"
+                    class="w-100 input px-2 py-2"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="">
+              <label class="body3_medium dark0"> Ticket plan</label>
+              <div class="d-flex align-center w-100">
+                <div class="mb-8 w-100">
+                  <input
+                    v-model="ticket.plan"
+                    type="text"
+                    placeholder="Name of event"
+                    class="w-100 input px-2 py-2"
+                  />
+                </div>
+              </div>
+            </div>
+            <div>
+              <p class="body3_medium dark0">Select ticket type</p>
+              <div>
+                <v-radio-group v-model="ticket.type">
+                  <div>
+                    <v-btn flat border class="mr-4">
+                      <v-radio
+                        class="text-none event_btn"
+                        label="Paid"
+                        value="Paid"
+                        color="#624cf5"
+                      ></v-radio>
+                    </v-btn>
+                    <v-btn flat border>
+                      <v-radio
+                        class="text-none event_btn"
+                        label="Free"
+                        value="Free"
+                        color="#624cf5"
+                      ></v-radio>
+                    </v-btn>
+                  </div>
+                </v-radio-group>
+              </div>
+            </div>
+            <div>
+              <p class="body3_medium dark0">Select ticket status</p>
+              <div>
+                <v-radio-group v-model="ticket.status">
+                  <div>
+                    <v-btn flat border class="mr-4">
+                      <v-radio
+                        class="text-none event_btn"
+                        label="Public"
+                        value="Public"
+                        color="#624cf5"
+                      ></v-radio>
+                    </v-btn>
+                    <v-btn class="plan_btn" flat border>
+                      <v-radio
+                        class="text-none event_btn"
+                        label="Invite only"
+                        value="invite_only"
+                        color="#624cf5"
+                      ></v-radio>
+                    </v-btn>
+                  </div>
+                </v-radio-group>
+              </div>
+            </div>
+            <div>
               <label class="body3_medium dark0"
                 >Regular tickets available</label
               >
@@ -144,32 +160,120 @@
                 </div>
               </div>
             </div>
-          </v-col>
-          <v-col cols="12" lg="6">
-            <div class="">
-              <label class="body3_medium dark0">Price per ticket</label>
-              <div class="d-flex align-center w-100">
-                <div class="naira">
-                  <div class="">
-                    <p class="mt-2 ml-4">₦</p>
-                  </div>
+          </div>
+        </v-col>
+        <v-col cols="12" lg="6">
+          <div class="">
+            <label class="body3_medium dark0">Price per ticket</label>
+            <div class="d-flex align-center w-100">
+              <div class="naira">
+                <div class="">
+                  <p class="mt-2 ml-4">₦</p>
                 </div>
+              </div>
+              <div class="w-100">
+                <input
+                  v-model="ticket.price"
+                  type="text"
+                  placeholder="1000"
+                  class="w-100 input px-2 py-2"
+                />
+              </div>
+            </div>
+          </div>
+        </v-col>
+        <v-col cols="12" lg="6">
+          <div class="mt-6">
+            <label class="body3_medium dark0">Ticket Sales end</label>
+            <div class="">
+              <div class="align-center w-100">
                 <div class="w-100">
                   <input
-                    v-model="ticket.price"
-                    type="text"
-                    placeholder="1000"
+                    v-model="ticket.end_timing"
+                    type="date"
+                    placeholder="no. of tickets "
                     class="w-100 input px-2 py-2"
                   />
                 </div>
               </div>
             </div>
-          </v-col>
-        </v-row>
-        <v-row v-if="ticket.plan.includes('VIP')">
-          <v-col cols="12" lg="6">
+          </div>
+        </v-col>
+      </v-row>
+
+      <button type="button" @click="addNewTicket">Add Another Ticket</button>
+      <button v-if="form.tickets.length > 1" type="button" @click="removeTicket(index)">Remove Ticket</button>
+      <!-- Vip -->
+      <!-- <v-row v-if="option === 'VIP'">
+        <v-col cols="12" lg="6">
+          <div class="">
             <div class="">
-              <label class="body3_medium dark0">VIP tickets available</label>
+              <label class="body3_medium dark0">Vip Ticket name</label>
+              <div class="d-flex align-center w-100">
+                <div class="mb-8 w-100">
+                  <input
+                    v-model="ticket.name"
+                    type="text"
+                    placeholder="Name of event"
+                    class="w-100 input px-2 py-2"
+                  />
+                </div>
+              </div>
+            </div>
+            <div>
+              <p class="body3_medium dark0">Select ticket type</p>
+              <div>
+                <v-radio-group v-model="ticket.type">
+                  <div>
+                    <v-btn flat border class="mr-4">
+                      <v-radio
+                        class="text-none event_btn"
+                        label="Paid"
+                        value="Paid"
+                        color="#624cf5"
+                      ></v-radio>
+                    </v-btn>
+                    <v-btn flat border>
+                      <v-radio
+                        class="text-none event_btn"
+                        label="Free"
+                        value="Free"
+                        color="#624cf5"
+                      ></v-radio>
+                    </v-btn>
+                  </div>
+                </v-radio-group>
+              </div>
+            </div>
+            <div>
+              <p class="body3_medium dark0">Select ticket status</p>
+              <div>
+                <v-radio-group v-model="ticket.status">
+                  <div>
+                    <v-btn flat border class="mr-4">
+                      <v-radio
+                        class="text-none event_btn"
+                        label="Public"
+                        value="Public"
+                        color="#624cf5"
+                      ></v-radio>
+                    </v-btn>
+                    <v-btn class="plan_btn" flat border>
+                      <v-radio
+                        class="text-none event_btn"
+                        label="Invite only"
+                        value="invite_only"
+                        color="#624cf5"
+                      ></v-radio>
+                    </v-btn>
+                  </div>
+                </v-radio-group>
+              </div>
+            </div>
+            <div>
+              <label class="body3_medium dark0"
+                >Regular tickets available</label
+              >
               <div class="d-flex align-center w-100">
                 <div class="w-100">
                   <input
@@ -181,32 +285,118 @@
                 </div>
               </div>
             </div>
-          </v-col>
-          <v-col cols="12" lg="6">
-            <div class="">
-              <label class="body3_medium dark0">Price per ticket</label>
-              <div class="d-flex align-center w-100">
-                <div class="naira">
-                  <div class="">
-                    <p class="mt-2 ml-4">₦</p>
-                  </div>
+          </div>
+        </v-col>
+        <v-col cols="12" lg="6">
+          <div class="">
+            <label class="body3_medium dark0">Price per ticket</label>
+            <div class="d-flex align-center w-100">
+              <div class="naira">
+                <div class="">
+                  <p class="mt-2 ml-4">₦</p>
                 </div>
+              </div>
+              <div class="w-100">
+                <input
+                  v-model="ticket.price"
+                  type="text"
+                  placeholder="1000"
+                  class="w-100 input px-2 py-2"
+                />
+              </div>
+            </div>
+          </div>
+        </v-col>
+        <v-col cols="12" lg="6">
+          <div class="mt-6">
+            <label class="body3_medium dark0">Ticket Sales end</label>
+            <div class="">
+              <div class="align-center w-100">
                 <div class="w-100">
                   <input
-                    v-model="ticket.price"
-                    type="text"
-                    placeholder="1000"
+                    v-model="ticket.end_timing"
+                    type="date"
+                    placeholder="no. of tickets "
                     class="w-100 input px-2 py-2"
                   />
                 </div>
               </div>
             </div>
-          </v-col>
-        </v-row>
-        <v-row v-if="ticket.plan.includes('VVIP')">
-          <v-col cols="12" lg="6">
+          </div>
+        </v-col>
+      </v-row> -->
+
+      <!-- VVIP -->
+      <!-- <v-row v-if="option === 'VVIP'">
+        <v-col cols="12" lg="6">
+          <div class="">
             <div class="">
-              <label class="body3_medium dark0">VVIP tickets available</label>
+              <label class="body3_medium dark0">Vvip Ticket name</label>
+              <div class="d-flex align-center w-100">
+                <div class="mb-8 w-100">
+                  <input
+                    v-model="ticket.name"
+                    type="text"
+                    placeholder="Name of event"
+                    class="w-100 input px-2 py-2"
+                  />
+                </div>
+              </div>
+            </div>
+            <div>
+              <p class="body3_medium dark0">Select ticket type</p>
+              <div>
+                <v-radio-group v-model="ticket.type">
+                  <div>
+                    <v-btn flat border class="mr-4">
+                      <v-radio
+                        class="text-none event_btn"
+                        label="Paid"
+                        value="Paid"
+                        color="#624cf5"
+                      ></v-radio>
+                    </v-btn>
+                    <v-btn flat border>
+                      <v-radio
+                        class="text-none event_btn"
+                        label="Free"
+                        value="Free"
+                        color="#624cf5"
+                      ></v-radio>
+                    </v-btn>
+                  </div>
+                </v-radio-group>
+              </div>
+            </div>
+            <div>
+              <p class="body3_medium dark0">Select ticket status</p>
+              <div>
+                <v-radio-group v-model="ticket.status">
+                  <div>
+                    <v-btn flat border class="mr-4">
+                      <v-radio
+                        class="text-none event_btn"
+                        label="Public"
+                        value="Public"
+                        color="#624cf5"
+                      ></v-radio>
+                    </v-btn>
+                    <v-btn class="plan_btn" flat border>
+                      <v-radio
+                        class="text-none event_btn"
+                        label="Invite only"
+                        value="invite_only"
+                        color="#624cf5"
+                      ></v-radio>
+                    </v-btn>
+                  </div>
+                </v-radio-group>
+              </div>
+            </div>
+            <div>
+              <label class="body3_medium dark0"
+                >Regular tickets available</label
+              >
               <div class="d-flex align-center w-100">
                 <div class="w-100">
                   <input
@@ -218,32 +408,119 @@
                 </div>
               </div>
             </div>
-          </v-col>
-          <v-col cols="12" lg="6">
-            <div class="">
-              <label class="body3_medium dark0">Price per ticket</label>
-              <div class="d-flex align-center w-100">
-                <div class="naira">
-                  <div class="">
-                    <p class="mt-2 ml-4">₦</p>
-                  </div>
+          </div>
+        </v-col>
+        <v-col cols="12" lg="6">
+          <div class="">
+            <label class="body3_medium dark0">Price per ticket</label>
+            <div class="d-flex align-center w-100">
+              <div class="naira">
+                <div class="">
+                  <p class="mt-2 ml-4">₦</p>
                 </div>
+              </div>
+              <div class="w-100">
+                <input
+                  v-model="ticket.price"
+                  type="text"
+                  placeholder="1000"
+                  class="w-100 input px-2 py-2"
+                />
+              </div>
+            </div>
+          </div>
+        </v-col>
+        <v-col cols="12" lg="6">
+          <div class="mt-6">
+            <label class="body3_medium dark0">Ticket Sales end</label>
+            <div class="">
+              <div class="align-center w-100">
                 <div class="w-100">
                   <input
-                    v-model="ticket.price"
-                    type="text"
-                    placeholder="1000"
+                    v-model="ticket.end_timing"
+                    type="date"
+                    placeholder="no. of tickets "
                     class="w-100 input px-2 py-2"
                   />
                 </div>
               </div>
             </div>
-          </v-col>
-        </v-row>
-        <v-row v-if="ticket.plan.includes('Tables')">
-          <v-col cols="12" lg="6">
+          </div>
+        </v-col>
+      </v-row> -->
+
+      <!-- Table -->
+
+      <!-- <v-row v-if="option === 'Tables'">
+        <v-col cols="12" lg="6">
+          <div class="">
             <div class="">
-              <label class="body3_medium dark0">Tables Plan tickets available</label>
+              <label class="body3_medium dark0">Tables Ticket name</label>
+              <div class="d-flex align-center w-100">
+                <div class="mb-8 w-100">
+                  <input
+                    v-model="ticket.name"
+                    type="text"
+                    placeholder="Name of event"
+                    class="w-100 input px-2 py-2"
+                  />
+                </div>
+              </div>
+            </div>
+            <div>
+              <p class="body3_medium dark0">Select ticket type</p>
+              <div>
+                <v-radio-group v-model="ticket.type">
+                  <div>
+                    <v-btn flat border class="mr-4">
+                      <v-radio
+                        class="text-none event_btn"
+                        label="Paid"
+                        value="Paid"
+                        color="#624cf5"
+                      ></v-radio>
+                    </v-btn>
+                    <v-btn flat border>
+                      <v-radio
+                        class="text-none event_btn"
+                        label="Free"
+                        value="Free"
+                        color="#624cf5"
+                      ></v-radio>
+                    </v-btn>
+                  </div>
+                </v-radio-group>
+              </div>
+            </div>
+            <div>
+              <p class="body3_medium dark0">Select ticket status</p>
+              <div>
+                <v-radio-group v-model="ticket.status">
+                  <div>
+                    <v-btn flat border class="mr-4">
+                      <v-radio
+                        class="text-none event_btn"
+                        label="Public"
+                        value="Public"
+                        color="#624cf5"
+                      ></v-radio>
+                    </v-btn>
+                    <v-btn class="plan_btn" flat border>
+                      <v-radio
+                        class="text-none event_btn"
+                        label="Invite only"
+                        value="invite_only"
+                        color="#624cf5"
+                      ></v-radio>
+                    </v-btn>
+                  </div>
+                </v-radio-group>
+              </div>
+            </div>
+            <div>
+              <label class="body3_medium dark0"
+                >Regular tickets available</label
+              >
               <div class="d-flex align-center w-100">
                 <div class="w-100">
                   <input
@@ -255,81 +532,51 @@
                 </div>
               </div>
             </div>
-          </v-col>
-          <v-col cols="12" lg="6">
-            <div class="">
-              <label class="body3_medium dark0">Price per ticket</label>
-              <div class="d-flex align-center w-100">
-                <div class="naira">
-                  <div class="">
-                    <p class="mt-2 ml-4">₦</p>
-                  </div>
+          </div>
+        </v-col>
+        <v-col cols="12" lg="6">
+          <div class="">
+            <label class="body3_medium dark0">Price per ticket</label>
+            <div class="d-flex align-center w-100">
+              <div class="naira">
+                <div class="">
+                  <p class="mt-2 ml-4">₦</p>
                 </div>
+              </div>
+              <div class="w-100">
+                <input
+                  v-model="ticket.price"
+                  type="text"
+                  placeholder="1000"
+                  class="w-100 input px-2 py-2"
+                />
+              </div>
+            </div>
+          </div>
+        </v-col>
+        <v-col cols="12" lg="6">
+          <div class="mt-6">
+            <label class="body3_medium dark0">Ticket Sales end</label>
+            <div class="">
+              <div class="align-center w-100">
                 <div class="w-100">
                   <input
-                    v-model="ticket.price"
-                    type="text"
-                    placeholder="1000"
+                    v-model="ticket.end_timing"
+                    type="date"
+                    placeholder="no. of tickets "
                     class="w-100 input px-2 py-2"
                   />
                 </div>
               </div>
             </div>
-          </v-col>
-        </v-row>
-      </div>
-      <div class="mt-6">
-        <label class="body3_medium dark0">Ticket Sales end</label>
-        <div>
-          <v-row>
-            <v-col cols="12" lg="4">
-              <div class="">
-                <div class="align-center w-100">
-                  <div class="w-100">
-                    <input
-                      v-model="ticket.end_timing"
-                      type="date"
-                      placeholder="no. of tickets "
-                      class="w-100 input px-2 py-2"
-                    />
-                  </div>
-                </div>
-              </div>
-            </v-col>
-            <!-- <v-col cols="12" lg="4">
-                <div class="d-flex align-center">
-                  <div class="w-100">
-                    <select name="category" class="px-2 py-2 input w-100">
-                      <option value="" selected>Hour(s)</option>
-                      <option>1</option>
-                      <option>2</option>
-                    </select>
-                  </div>
-                  <div class="ml-n8">
-                    <img src="../../assets/images/svg/arrow.svg" />
-                  </div>
-                </div>
-              </v-col>
-              <v-col cols="12" lg="4">
-                <div class="d-flex align-center">
-                  <div class="w-100">
-                    <select name="category" class="px-2 py-2 input w-100">
-                      <option value="" selected>Before event starts</option>
-                      <option>1</option>
-                      <option>2</option>
-                    </select>
-                  </div>
-                  <div class="ml-n8">
-                    <img src="../../assets/images/svg/arrow.svg" />
-                  </div>
-                </div>
-              </v-col>  -->
-          </v-row>
-        </div>
-      </div>
+          </div>
+        </v-col>
+      </v-row> -->
     </div>
     <div class="d-flex justify-end gap-4 mt-8 mb-16">
-      <button @click="backbtn" class="back_btn text-none py-3 px-10">Back</button>
+      <button @click="backbtn" class="back_btn text-none py-3 px-10">
+        Back
+      </button>
       <button @click="submitForm" class="text-none nxt_btn py-3 px-10">
         Continue
       </button>
@@ -340,13 +587,13 @@
 import { ref, reactive, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { onBeforeUnmount } from "vue";
-
-const form = reactive({
+const option = ref([])
+const form = ref({
   tickets: [
     {
       type: "",
       status: "",
-      plan: [],
+      plan: "",
       start_timing: "",
       end_timing: "",
       plan_value: "",
@@ -355,6 +602,25 @@ const form = reactive({
     },
   ],
 });
+
+const addNewTicket = () => {
+  form.value.tickets.push({
+    name: "",
+    price: "",
+    type: "",
+    status: "",
+    plan: "",
+    plan_value: "",
+    start_timing: "",
+    end_timing: ""
+  });
+};
+
+const removeTicket = (index) => {
+  if (form.value.tickets.length > 1) {
+    form.value.tickets.splice(index, 1);
+  }
+};
 
 // const selectPlan = (index, selectedPlan) => {
 
@@ -368,19 +634,10 @@ const form = reactive({
 //   }
 // };
 const backbtn = () => {
-  router.push("/details")
-}
-const selectPlan = (index, selectedPlan) => {
-  const ticket = form.tickets[index];
-  const planIndex = ticket.plan.indexOf(selectedPlan);
-
-  if (planIndex > -1) {
-    // If the plan is already selected, remove it
-    ticket.plan.splice(planIndex, 1);
-  } else {
-    // If the plan is not selected, add it
-    ticket.plan.push(selectedPlan);
-  }
+  router.push("/details");
+};
+const selectPlan = (index, selectedOption) => {
+  options[index] = selectedOption; // Update the option for the specific ticket
 };
 
 definePageMeta({
@@ -388,37 +645,38 @@ definePageMeta({
 });
 
 const router = useRouter();
-// Load form data from local storage if it exists
-// onMounted(() => {
-//   const savedForm = JSON.parse(localStorage.getItem("formData"));
-//   if (savedForm) {
-//     Object.assign(form, savedForm);
-//   }
-//   //  window.addEventListener("beforeunload", () => {
-//   //    localStorage.removeItem("formData");
-//   //  });
-// });
+ // Load form data from local storage if it exists
+onMounted(() => {
+  const savedForm = JSON.parse(localStorage.getItem("formData"));
+  if (savedForm) {
+    Object.assign(form, savedForm);
+  }
+  //  window.addEventListener("beforeunload", () => {
+  //    localStorage.removeItem("formData");
+  //  });
+});
 
 const loadForm = () => {
   const data = localStorage.getItem("form");
   if (data) {
-    object.assign(form, JSON.parse(data).tickets)
+    object.assign(form, JSON.parse(data).tickets);
   }
-}
+};
 
 const savedData = () => {
-  const currentData = JSON.parse(localStorage.getItem("form")) ||
-{};
-const updatedData = {
-  ...currentData,
-  ...form
-}
-localStorage.setItem("form",JSON.stringify(updatedData))
-console.log("info", updatedData)
-}
-const submitForm = (form) => {
+  const currentData = JSON.parse(localStorage.getItem("form")) || {};
+  const updatedData = {
+    ...currentData,
+    ...form,
+    tickets: form.value.tickets,
+    currentData: form.value.currentData
+  };
+  localStorage.setItem("form", JSON.stringify(updatedData));
+  console.log("info", updatedData);
+};
+const submitForm = () => {
   savedData();
-  router.push("/go-live2")
+  router.push("/go-live2");
 };
 </script>
 <style lang="scss" scoped>

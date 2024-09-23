@@ -141,22 +141,19 @@ const updatedData = {
 localStorage.setItem("form",JSON.stringify(updatedData))
 console.log("info", updatedData)
 }
-const submitForm = (form) => {
-  savedData();
-  router.push("/dashboard")
-};
 
-// async function submitForm() {
-//   try {
-//     const response = await event.createEvent(form);
-//     if (response) {
-//       // Navigate to dashboard
-//       router.push('/dashboard');
-//     }
-//   } catch (error) {
-//     console.error('Error logging in:', error);
-//   }
-// }
+
+async function submitForm() {
+  try {
+    const response = await event.createEvent(form.value);
+    if (response) {
+      // Navigate to dashboard
+      router.push('/dashboard');
+    }
+  } catch (error) {
+    console.error('Error logging in:', error);
+  }
+}
 
 </script>
 

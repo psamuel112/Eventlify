@@ -1,6 +1,6 @@
 //Auth
-export const REGISTER_USER = 'api/v1/auth/register';
-export const LOGIN = 'api/v1/auth/login';
+export const REGISTER_USER = '/auth/register';
+export const LOGIN = '/auth/login';
 export const FORGOT_PASSWORD = '/auth/forgot-password';
 export const RESET_PASSWORD = 'auth/reset-password';
 
@@ -8,3 +8,4 @@ export const RESET_PASSWORD = 'auth/reset-password';
 export const CREATE_EVENT = 'events/create';
 export const EVENT_TYPES = 'events/types';
 export const GET_EVENT = 'events/events';
+export const GET_EVENT_TYPE = 'events/types';

@@ -91,6 +91,23 @@ import eventcard1 from "../../assets/images/png/eventcard1.png";
 import eventcard2 from "../../assets/images/png/eventcard2.png";
 import eventcard3 from "../../assets/images/png/eventcard3.png";
 import eventcard4 from "../../assets/images/png/eventcard4.png";
+import { useEventStore } from '~/store/Event';
+const event = useEventStore()
+const events = ref("");
+onMounted(async () => {
+  loadData();
+});
+
+async function loadData(){
+  try {
+    const data = await event.fetchEvents();
+    form.value = data
+    console.log("events", events)
+  }
+  catch (error) {
+    console.error(error);
+  }
+}
 
 const selectedOption = ref("option1");
 
@@ -98,12 +115,12 @@ definePageMeta({
   layout: "dashboard",
 });
 const form = ref(null);
-onMounted(() => {
-  const data = JSON.parse(localStorage.getItem("form")) || {};
-  if (data) {
-     form.value = data;
-   }
-});
+// onMounted(() => {
+//   const data = JSON.parse(localStorage.getItem("form")) || {};
+//   if (data) {
+//      form.value = data;
+//    }
+// });
 const router = useRouter();
 
 const navigateToCard = (id) => {
@@ -155,6 +172,8 @@ const cards = ref([
     state_color: "orange",
   },
 ]);
+
+
 </script>
 
 <style scoped>

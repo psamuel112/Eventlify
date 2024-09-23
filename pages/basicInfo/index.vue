@@ -48,13 +48,21 @@
           <div class="d-flex align-center w-100">
             <div class="w-100">
               <select
-                v-model="form.event_type"
+              label="Select Event Type"
+                v-model="form.event_type_id"
                 name="category"
-                class="w-100 body2_medium dark3 input mt-2 mb-4 px-4 py-2"
+                class="w-100 body2_medium dark3 input mt-2 mb-4 px-4 py-2"              
+                item-value="id"
+                item-title="name"
               >
-                <option value="" selected>Select type</option>
-                <option>physical</option>
-                <option>online</option>
+              <option value="" selected>Please Select event type</option>
+                  <option
+                    v-for="item in eventTypes"
+                    :key="item.id"
+                    :value="item.id"
+                  >
+                    {{ item.name }}
+                  </option>
               </select>
             </div>
             <div class="ml-n8">
@@ -124,7 +132,7 @@
               <v-radio
                 class="text-none event_btn"
                 label="Online event"
-                value="online"
+                :value="true"
                 color="#624cf5"
               ></v-radio>
             </v-btn>
@@ -132,14 +140,14 @@
               <v-radio
                 class="text-none event_btn"
                 label="Physical event"
-                value="physical"
+                :value="false"
                 color="#624cf5"
               ></v-radio>
             </v-btn>
           </div>
         </v-radio-group>
       </div>
-      <div v-if="form.is_online === 'online'" class="">
+      <div v-if="form.is_online === true" class="">
         <input
           v-model="form.location"
           label="Streaming link (Zoom/Google Meet)"
@@ -147,7 +155,7 @@
           class="w-100 px-4 body2_medium dark3 input mb-4 py-2"
         />
       </div>
-      <div v-if="form.is_online === 'physical'" class="">
+      <div v-if="form.is_online === false" class="">
         <input
         v-model="form.location"
           label="Physical address"
@@ -192,20 +200,20 @@
         <div class="mt-2 w-100">
           <label class="body3_medium dark0">Select time zone</label>
           <div class="d-flex align-center w-100">
-            <div class="w-100">
+            <!-- <div class="w-100">
               <select
                 v-model="form.timezone"
                 name="category"
                 class="px-2 py-2 body2_medium dark3 input w-100"
               >
-                <option value="" selected>
+                <option value="timezone" selected>
                   (UTC+01:00) West Central Africa
                 </option>
-                <option>
+                <option  value="WAT">
                  WAT
                 </option>
               </select>
-            </div>
+            </div> -->
             <div class="ml-n8">
               <img src="../../assets/images/svg/arrow.svg" />
             </div>
@@ -289,6 +297,9 @@
 <script setup>
 import { ref, reactive, onMounted } from "vue";
 import { useRouter } from "vue-router";
+import { useEventStore } from '~/store/Event';
+const event = useEventStore();
+const eventTypes = ref([]);
 definePageMeta({
   layout: "events",
 });
@@ -303,7 +314,7 @@ const form = reactive({
   end_time: "",
   end_date: "",
   tags: [],
-  event_type: "",
+  event_type_id: "",
   location: "",
   timezone: "",
   is_online: "",
@@ -327,18 +338,37 @@ function removeTag(index) {
 }
 
 // Load form data from local storage if it exists
-// onMounted(() => {
-//   const savedForm = JSON.parse(localStorage.getItem("formData"));
-//   if (savedForm) {
-//     Object.assign(form, savedForm);
-//   }
-// });
+onMounted(() => {
+  const savedForm = JSON.parse(localStorage.getItem("formData"));
+  if (savedForm) {
+    Object.assign(form, savedForm);
+  }
+});
+// fetch event types
+onMounted(async () => {
+  loadData();
+});
+
+async function loadData(){
+  try {
+    const data = await event.fetchEventTypes();
+    eventTypes.value = data.data
+    console.log("eventTypes", eventTypes)
+  }
+  catch (error) {
+    console.error(error);
+  }
+}
+
 const loadForm = () => {
   const data = JSON.parse(localStorage.getItem("form")) || {};
   if (data) {
     object.assign(form, data)
   }
 }
+
+
+
 
 const savedData = () => {
   const currentData = JSON.parse(localStorage.getItem("form")) ||

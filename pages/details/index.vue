@@ -43,14 +43,11 @@
           </p>
         </div>
         <div class="editor">
-          <QuillEditor
-            ref="myQuillEditor"
-            v-model:content="form.description"
-            contentType="html"
-            class="editor"
-            theme="snow"
-            toolbar="essential"
-          />
+          <v-textarea
+            v-model="form.description"
+            variant="outlined"
+            label="Write a brief message"
+          ></v-textarea>
         </div>
       </div>
       <div class="form_container mt-8 px-8 py-4 pt-8">
@@ -101,15 +98,14 @@ definePageMeta({
 function handleImageUrl(url) {
   form.image_url = url;
 }
-
 const router = useRouter();
 // Load form data from local storage if it exists
-// onMounted(() => {
-//   const savedForm = JSON.parse(localStorage.getItem("formData"));
-//   if (savedForm) {
-//     Object.assign(form, savedForm);
-//   }
-// });
+onMounted(() => {
+  const savedForm = JSON.parse(localStorage.getItem("formData"));
+  if (savedForm) {
+    Object.assign(form, savedForm);
+  }
+});
 const backbtn = () => {
   router.push("/basicInfo")
 }
@@ -140,6 +136,7 @@ const submitForm = (form) => {
 //   console.log("details", form);
 //   router.push("/tickets"); // Navigate to the next form page
 // };
+
 </script>
 
 <style lang="scss" scoped>
