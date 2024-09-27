@@ -42,38 +42,43 @@
           <v-btn class="text-none create_btn">+ Create</v-btn>
         </div>
       </div>
-      <div v-if="form">
-        <div class="card_container pointer gap-4 mt-8">
+      <div class="event  pointer card_container">
+        <div
+        v-for="(event, index) in events" :key="index"
+        class=" pointer">
           <div
-            @click="navigateToCard(form.id)"
-            class="card mb-4 pointer"
-          
-          >
+          style="cursor: pointer"
+          @click="navigateToCard(event.id)" class="card mb-4 pointer">
             <div class="image_wrapper">
-              <img class="card_img"  v-if="form.image_url"
-          :src="form.image_url" />
+              <img
+                class="card_img"
+                v-if="event.image_url"
+                :src="event.image_url"
+              />
               <v-btn
                 class="text-none status_btn mr-6 mt-6"
-                :class="`state_color-${form.is_online}`"
+                :class="`state_color-${event.is_online}`"
                 flat
-                >{{ form.event_type }}</v-btn
+                >{{ event.event_type }}</v-btn
               >
             </div>
-            <div
-            v-for="ticket in form.tickets"
-              :key="ticket"
-            class="px-4 py-4">
-              <div class="d-flex mb-4 align-center gap-4">
-                <p class="card_text">{{ form.start_date }} {{ form.start_time }}:
-                ({{ form.timezone }})</p>
+            <div class="px-4 py-4">
+              <div class="d-flex mb-4 align-center  gap-4">
+                <p class="card_text">
+                  {{ event.start_date }} {{ event.start_time }} {{
+                    event.timezone
+                  }}
+                </p>
                 <img src="../../assets/images/svg/dot.svg" />
                 <img src="../../assets/images/svg/ticket.svg" />
-                <p  class="card_text">{{ ticket.price }} left</p>
+                <p class="card_text">{{ event.tickets.price }} sold</p>
               </div>
-              <p class="card_heading mb-4">  {{ form.additional_info }}</p>
+              <p class="card_heading mb-4">{{ event.additional_info }}</p>
               <div class="d-flex gap-4">
                 <img src="../../assets/images/svg/spot.svg" />
-                <p class="card_text">{{ form.is_online }}</p>
+                <p v-if="event.is_online = true" class="card_text">Online</p>
+                <p v-if="event.is_online = false" class="card_text">Offline</p>
+
               </div>
             </div>
           </div>
@@ -91,20 +96,20 @@ import eventcard1 from "../../assets/images/png/eventcard1.png";
 import eventcard2 from "../../assets/images/png/eventcard2.png";
 import eventcard3 from "../../assets/images/png/eventcard3.png";
 import eventcard4 from "../../assets/images/png/eventcard4.png";
-import { useEventStore } from '~/store/Event';
-const event = useEventStore()
+import { useEventStore } from "~/store/Event";
+const event = useEventStore();
 const events = ref("");
+const form = ref(null);
 onMounted(async () => {
   loadData();
 });
 
-async function loadData(){
+async function loadData() {
   try {
     const data = await event.fetchEvents();
-    form.value = data
-    console.log("events", events)
-  }
-  catch (error) {
+    events.value = data.data;
+    console.log("events", events);
+  } catch (error) {
     console.error(error);
   }
 }
@@ -114,7 +119,7 @@ const selectedOption = ref("option1");
 definePageMeta({
   layout: "dashboard",
 });
-const form = ref(null);
+
 // onMounted(() => {
 //   const data = JSON.parse(localStorage.getItem("form")) || {};
 //   if (data) {
@@ -172,8 +177,6 @@ const cards = ref([
     state_color: "orange",
   },
 ]);
-
-
 </script>
 
 <style scoped>
@@ -244,20 +247,18 @@ const cards = ref([
   line-height: 32px;
   color: #2a282b;
 }
+
 .card_container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-}
-.card_container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
 }
 @media screen and (max-width: 1200px) {
   .card_container {
     grid-template-columns: 1fr 1fr;
   }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 680px) {
   .card_container {
     grid-template-columns: 1fr;
   }
