@@ -38,11 +38,16 @@
     </div>
     <div class="d-flex justify-between align-center">
       <p class="h5_semibold purple90">Popular events</p>
-      <p class="h6_bold purple90" >See all</p>
+      <p class="h6_bold purple90">See all</p>
     </div>
     <div>
-      <div class="card_container gap-4 mb-10 mt-6">
-        <div class="card mb-4" v-for="card in cards" :key="card">
+      <div class="card_container pointer gap-4 mb-10 mt-6">
+        <div
+          @click="navigateToCard(card.id)"
+          class="card pointer mb-4"
+          v-for="card in cards"
+          :key="card"
+        >
           <div class="image_wrapper">
             <img class="card_img" :src="card.img" />
             <v-btn
@@ -81,7 +86,9 @@
               <div class="text-center">
                 <img class="mx-auto mb-2" :src="followCard.img" alt="" />
                 <p class="mb-2 body_semibold purple90">{{ followCard.name }}</p>
-                <p class="mb-4 body_regular dark2">{{ followCard.followers }}</p>
+                <p class="mb-4 body_regular dark2">
+                  {{ followCard.followers }}
+                </p>
                 <v-btn class="follow_card_btn text-none" flat border>{{
                   followCard.follow_btn
                 }}</v-btn>
@@ -103,12 +110,14 @@
               :key="moreEvent"
             >
               <div class="d-flex px-6 py-6 justify-between">
-                <div class="d-flex  gap-4">
+                <div class="d-flex gap-4">
                   <div>
                     <img class="" :src="moreEvent.img" alt="" />
                   </div>
                   <div class="">
-                    <p class="mt-n1 h5_semibold purple90">{{ moreEvent.name }}</p>
+                    <p class="mt-n1 h5_semibold purple90">
+                      {{ moreEvent.name }}
+                    </p>
                     <div class="d-flex mt-5 gap-2">
                       <img
                         src="../../assets/images/svg/calendarevent.svg"
@@ -152,12 +161,11 @@ definePageMeta({
   layout: "user-event",
 });
 
-
-
 const selectedOption = ref("option1");
 
 const cards = ref([
   {
+    id: 1,
     time: "8:45AMApr (WAT)",
     note: "The Beginning of financial freedom for you",
     img: eventcard1,
@@ -166,6 +174,7 @@ const cards = ref([
     state_text: "Today",
   },
   {
+    id: 2,
     time: "8:45AMApr (WAT)",
     note: "Celebrating the Co-Founder’s birthday",
     img: eventcard2,
@@ -174,6 +183,7 @@ const cards = ref([
     state_color: "red",
   },
   {
+    id: 3,
     time: "8:45AMApr (WAT)",
     note: "The Art of Digital Marketing for better conversion",
     img: eventcard3,
@@ -236,6 +246,10 @@ const moreEvents = ref([
     price: "₦8,000",
   },
 ]);
+const router = useRouter();
+const navigateToCard = (id) => {
+  router.push(`/user-event/${id}`);
+};
 </script>
 
 <style lang="scss" scoped>
@@ -252,7 +266,7 @@ const moreEvents = ref([
     grid-template-columns: 1fr;
   }
 }
-.organizer_cards{
+.organizer_cards {
   display: grid;
   gap: 1.5rem;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -264,18 +278,17 @@ const moreEvents = ref([
 }
 @media screen and (max-width: 500px) {
   .organizer_cards {
-    grid-template-columns: 1fr 1fr ;
+    grid-template-columns: 1fr 1fr;
   }
 }
-.more_events_cards{
+.more_events_cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
 }
 @media screen and (max-width: 768px) {
   .more_events_cards {
-    grid-template-columns: 1fr ;
-   
+    grid-template-columns: 1fr;
   }
 }
 .plan_btn:focus {
@@ -301,8 +314,8 @@ const moreEvents = ref([
   font-size: 14px;
   font-weight: 700;
   line-height: 20px;
-  border: 1.5px solid #624CF5;
-  color: #624CF5;
+  border: 1.5px solid #624cf5;
+  color: #624cf5;
 }
 
 .form_container {
@@ -351,7 +364,7 @@ const moreEvents = ref([
 }
 @media screen and (max-width: 1200px) {
   .card_container {
-    grid-template-columns: 1fr 1fr ;
+    grid-template-columns: 1fr 1fr;
   }
 }
 @media screen and (max-width: 768px) {

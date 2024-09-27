@@ -13,8 +13,25 @@ export const useEventService = () => {
         console.log(data);
         return data;
       } catch (err) {
-   
       }
     },
+    async fetchEvents(config) {
+      try {
+        const { data } = await api.get(ENDPOINTS.GET_EVENT,
+        config);
+        console.log(data);
+        return data;
+      } catch (err) {
+      }
+    },
+    async fetchEventTypes(config) {
+      try {
+        const { data } = await api.get(ENDPOINTS.GET_EVENT_TYPE,
+        config);
+        console.log(data);
+        return data;
+      } catch (err) {
+      }
+    }
   };
 };

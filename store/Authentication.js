@@ -2,10 +2,12 @@ import { defineStore } from 'pinia';
 import { useAuthService } from '~/composables/authApiService';
 export const useAuthentication = defineStore('user', {
   state: () => ({
-    user: '',
-    access_token: '',
+   userTokens: {},
+   isLoggedIn: false,
   }),
- 
+  persist: {
+    storage: persistedState.localStorage,
+  },
   actions: {
     async loginUser(form) {
       const AuthService = useAuthService();
@@ -13,9 +15,9 @@ export const useAuthentication = defineStore('user', {
       console.log("login data: ", data)
       if (data) {
         try {
-          this.access_token = data.access_token;
-          this.user = data.user;
-          console.log('successfully assigned token and user email')
+          this.userTokens = data.data.access_token;  
+          this.isLoggedIn = true;
+          console.log('successfully assigned token and user email', data)
         } catch (error) {
           console.log(error);
         }

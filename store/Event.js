@@ -5,33 +5,50 @@ export const useEventStore = defineStore("event", {
   state: () => ({
     tickets: {}
   }),
+  persist: {
+    storage: persistedState.localStorage,
+  },
   actions: {
     async createEvent(form) {
       const EventService = useEventService();
-      const auth = useAuthentication();
+      const auth = useAuthentication().userTokens;
       console.log("auth", auth)
       const config = {
         headers: {
-          Authorization: "Bearer " + `${auth.access_token}`,
+          'Content-Type': 'application/json',
+           Authorization: "Bearer " + `${auth}`,
+          // Accept: "application/json"
         },
       };
-      let { payload, statusCode } =
+      console.log("config", config)
+      const { data } =
         await EventService.createEvent(form, config);
-      return statusCode;
+        console.log("payload", data)
+        return data;
     },
-    // async fetchEvents(params) {
-    //   const EventService = useEventService();
-    //   const auth = useAuthentication().userTokens;
-    //   const config = {
-    //     headers: {
-    //       Authorization: "Bearer " + `${auth.access_token}`,
-    //     },
-    //   };
-    //   let data = await EventService.fetchLocations(params, config);
-    //   if (data) {
-       
-    //   }
-    //   return data;
-    // },
+    async fetchEvents() {
+      const EventService = useEventService();
+      const auth = useAuthentication().userTokens;
+      const config = {
+        headers: {
+          Authorization: "Bearer " + `${auth}`,
+        },
+      };
+      console.log("config", config)
+      const  data  = await EventService.fetchEvents(config);
+      return data;
+    },
+    async fetchEventTypes() {
+      const EventService = useEventService();
+      const auth = useAuthentication().userTokens;
+      const config = {
+        headers: {
+          Authorization: "Bearer " + `${auth}`,
+        },
+      };
+      console.log("config", config)
+      const  data  = await EventService.fetchEventTypes(config);
+      return data;
+    },
   },
 });
