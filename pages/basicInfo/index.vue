@@ -9,9 +9,9 @@
     </div>
     <div>
       <p class="info_heading h4_semibold purple90 mb-1">Basic Information</p>
-      <p class="basic_sub body3_medium dark2 pr-32 mb-4">
+      <p class="basic_sub body3_medium dark2 pr-0 pr-md-32 mb-4">
         Give your event a name and tell your potential attendees why they should
-        come.<br />
+        come.
         Make sure to point out unique tags of your event
       </p>
     </div>
@@ -27,88 +27,58 @@
       <div>
         <div class="">
           <label class="body3_medium dark0">Event name</label>
-          <input
-            v-model="form.name"
-            type="text"
-            placeholder="Enter event name"
-            class="w-100 body2_medium dark3 mt-2 mb-4 input px-4 py-2"
-          />
+          <input  v-model="form.name" type="text" placeholder="Enter event name"
+           
+          class="w-100 body2_medium dark3 mt-2 mb-1 input px-4 py-2" />
+          <div v-if="nameErrors[0]" class="error-message mb-4">{{ nameErrors[0] }}</div>
         </div>
+
         <div class="w-100">
           <label class="body3_medium dark0">Organiser</label>
-          <input
-            v-model="form.organizer"
-            type="text"
-            placeholder="Organiser's name"
-            class="w-100 px-4 body2_medium dark3 input mt-2 mb-4 py-2"
-          />
+          <input v-model="form.organizer" type="text" placeholder="Organiser's name"
+            class="w-100 px-4 body2_medium dark3 input mt-2 mb-1 py-2" />
+            <div v-if="organizerErrors[0]" class="error-message mb-4">{{ organizerErrors[0] }}</div>
         </div>
         <div class="mt-2 w-100">
           <label class="body3_medium dark0">Types of Event</label>
           <div class="d-flex align-center w-100">
             <div class="w-100">
-              <select
-              label="Select Event Type"
-                v-model="form.event_type_id"
-                name="category"
-                class="w-100 body2_medium dark3 input mt-2 mb-4 px-4 py-2"              
-                item-value="id"
-                item-title="name"
-              >
-              <option value="" selected>Please Select event type</option>
-                  <option
-                    v-for="item in eventTypes"
-                    :key="item.id"
-                    :value="item.id"
-                  >
-                    {{ item.name }}
-                  </option>
+              <select label="Select Event Type" v-model="form.event_type_id"
+                name="category" class="w-100 body2_medium dark3 input mt-2 mb-1 px-4 py-2" item-value="id"
+                item-title="name">
+                <option value="" selected>Please Select event type</option>
+                <option v-for="item in eventTypes" :key="item.id" :value="item.id" :error-messages="emailErrors">
+                  {{ item.name }}
+                </option>
               </select>
+
             </div>
             <div class="ml-n8">
               <img src="../../assets/images/svg/arrow.svg" />
             </div>
           </div>
+          <div v-if="event_type_idErrors[0]" class="error-message mb-4">{{ event_type_idErrors[0] }}</div>
         </div>
         <div class="">
           <label class="body3_medium dark0">Tags</label>
           <div class="">
             <div class="d-flex align-center">
-              <input
-              v-model="tag"
-                @keyup.enter="addTag" 
-                type="text"
-                placeholder="Add tags"
-                class="w-100 body2_medium mr-3 dark3 px-4 py-2 input mb-2 mt-2"
-              />
-              <button
-                @click="addTag"
-                class="py-2 input form_label text-none px-4"
-              >
+              <input :error-messages="tagErrors" v-model="tag" @keyup.enter="addTag" type="text" placeholder="Add tags"
+                class="w-100 body2_medium mr-3 dark3 px-4 py-2 input mb-2 mt-2" />
+              <button @click="addTag" class="py-2 input form_label text-none px-4">
                 Add
               </button>
             </div>
-            <p class="validation-message mb-4" v-if="showValidationMessage">
+            <div v-if="tagErrors[0]" class="error-message mb-4">{{ tagErrors[0] }}</div>
+            <!-- <p class="validation-message mb-4" v-if="showValidationMessage">
               Input field is empty
-            </p>
+            </p> -->
           </div>
           <div class="tags">
-            <div
-              v-for="(tag, index) in form.tags"
-              :key="index"
-              class="d-flex gap-4 align-center"
-            >
-              <input
-                :value="tag"
-                type="text"
-                placeholder="Add tags to improve discoverability of your event"
-                class="w-100 body2_medium dark3 px-4 py-2 input mb-2 mt-2"
-              />
-              <img
-                src="../../assets/images/svg/cancel.svg"
-                class="ml-n10"
-                @click="removeTag(index)"
-              />
+            <div v-for="(tag, index) in form.tags" :key="index" class="d-flex gap-4 align-center">
+              <input :value="tag" type="text" placeholder="Add tags to improve discoverability of your event"
+                class="w-100 body2_medium dark3 px-4 py-2 input mb-2 mt-2" />
+              <img src="../../assets/images/svg/cancel.svg" class="ml-n10" @click="removeTag(index)" />
             </div>
           </div>
         </div>
@@ -126,42 +96,24 @@
         there is) by attaching thr right address
       </p>
       <div>
-        <v-radio-group v-model="form.is_online">
+        <v-radio-group  v-model="form.is_online">
           <div class="">
             <v-btn flat border class="mr-4">
-              <v-radio
-                class="text-none event_btn"
-                label="Online event"
-                :value="true"
-                color="#624cf5"
-              ></v-radio>
+              <v-radio class="text-none event_btn" label="Online event" :value="true" color="#624cf5"></v-radio>
             </v-btn>
             <v-btn flat border>
-              <v-radio
-                class="text-none event_btn"
-                label="Physical event"
-                :value="false"
-                color="#624cf5"
-              ></v-radio>
+              <v-radio class="text-none event_btn" label="Physical event" :value="false" color="#624cf5"></v-radio>
             </v-btn>
           </div>
         </v-radio-group>
       </div>
       <div v-if="form.is_online === true" class="">
-        <input
-          v-model="form.location"
-          label="Streaming link (Zoom/Google Meet)"
-          placeholder="Enter link here"
-          class="w-100 px-4 body2_medium dark3 input mb-4 py-2"
-        />
+        <input v-model="form.location" label="Streaming link (Zoom/Google Meet)"
+          placeholder="Enter link here" class="w-100 px-4 body2_medium dark3 input mb-4 py-2" />
       </div>
-      <div v-if="form.is_online === false" class="">
-        <input
-        v-model="form.location"
-          label="Physical address"
-          placeholder="Enter the physical address here"
-          class="w-100 px-4 body2_medium dark3 input mb-4 py-2"
-        />
+      <div v-if="form.is_online === false" class="">  
+        <input  v-model="form.location" label="Physical address"
+          placeholder="Enter the physical address here" class="w-100 px-4 body2_medium dark3 input mb-4 py-2" />
       </div>
       <p class="body3_regular dark0">
         You would be able to add links to for streaming live or use zoom/google
@@ -175,32 +127,22 @@
         event so they can plan accordingly
       </p>
       <div>
-        <v-radio-group v-model="form.is_single">
+        <v-radio-group :error-messages="is_singleErrors" v-model="form.is_single">
           <div>
             <v-btn flat border class="mr-4">
-              <v-radio
-                class="text-none event_btn"
-                label="Single Event"
-                value="single"
-                color="#624cf5"
-              ></v-radio>
+              <v-radio class="text-none event_btn" label="Single Event" value="single" color="#624cf5"></v-radio>
             </v-btn>
             <v-btn flat border>
-              <v-radio
-                class="text-none event_btn"
-                label="Recurring Event"
-                value="recurring"
-                color="#624cf5"
-              ></v-radio>
+              <v-radio class="text-none event_btn" label="Recurring Event" value="recurring" color="#624cf5"></v-radio>
             </v-btn>
           </div>
         </v-radio-group>
       </div>
       <div>
-        <div class="mt-2 w-100">
+        <!-- <div class="mt-2 w-100">
           <label class="body3_medium dark0">Select time zone</label>
           <div class="d-flex align-center w-100">
-            <!-- <div class="w-100">
+             <div class="w-100">
               <select
                 v-model="form.timezone"
                 name="category"
@@ -213,12 +155,12 @@
                  WAT
                 </option>
               </select>
-            </div> -->
+            </div> 
             <div class="ml-n8">
               <img src="../../assets/images/svg/arrow.svg" />
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="mt-4">
           <v-row>
             <v-col cols="12" lg="6">
@@ -226,12 +168,9 @@
                 <label class="body3_medium dark0">Start Date</label>
                 <div class="d-flex align-center w-100">
                   <div class="w-100">
-                    <input
-                      v-model="form.start_date"
-                      type="date"
-                      placeholder="22/04/2023"
-                      class="w-100 body2_medium dark3 input px-2 py-2"
-                    />
+                    <input  v-model="form.start_date" type="date"
+                      placeholder="22/04/2023" class="w-100 body2_medium mb-1 dark3 input px-2 py-2" />
+                      <div v-if="start_dateErrors[0]" class="error-message ">{{ start_dateErrors[0] }}</div>
                   </div>
                 </div>
               </div>
@@ -241,12 +180,9 @@
                 <label class="body3_medium dark0">Start Time</label>
                 <div class="d-flex align-center w-100">
                   <div class="w-100">
-                    <input
-                      v-model="form.start_time"
-                      type="time"
-                      placeholder="10:00"
-                      class="w-100 body2_medium dark3 input px-2 py-2"
-                    />
+                    <input  v-model="form.start_time" type="time" placeholder="10:00"
+                      class="w-100 body2_medium dark3 input mb-1 px-2 py-2" />
+                      <div v-if="start_timeErrors[0]" class="error-message ">{{ start_timeErrors[0] }}</div>
                   </div>
                 </div>
               </div>
@@ -258,12 +194,9 @@
                 <label class="body3_medium dark0">End Date</label>
                 <div class="d-flex align-center w-100">
                   <div class="w-100">
-                    <input
-                      v-model="form.end_date"
-                      type="date"
-                      placeholder="22/04/2023"
-                      class="w-100 body2_medium dark3 input px-2 py-2"
-                    />
+                    <input  v-model="form.end_date" type="date" placeholder="22/04/2023"
+                      class="w-100 body2_medium dark3 input mb-1 px-2 py-2" />
+                      <div v-if="end_dateErrors[0]" class="error-message ">{{ end_dateErrors[0] }}</div>
                   </div>
                 </div>
               </div>
@@ -273,12 +206,9 @@
                 <label class="form_label">End Time</label>
                 <div class="d-flex align-center w-100">
                   <div class="w-100">
-                    <input
-                      v-model="form.end_time"
-                      type="time"
-                      placeholder="10:00"
-                      class="w-100 body2_medium dark3 input px-2 py-2"
-                    />
+                    <input :error-messages="end_timeErrors" v-model="form.end_time" type="time" placeholder="10:00"
+                      class="w-100 body2_medium dark3 input mb-1 px-2 py-2" />
+                      <div v-if="end_timeErrors[0]" class="error-message ">{{ end_timeErrors[0] }}</div>
                   </div>
                 </div>
               </div>
@@ -320,6 +250,80 @@ const form = reactive({
   is_online: "",
   is_single: ""
 });
+//validation
+const nameErrors = ref([]);
+const organizerErrors = ref([]);
+const start_timeErrors = ref([]);
+const start_dateErrors = ref([]);
+const end_timeErrors = ref([]);
+const end_dateErrors = ref([]);
+const tagErrors = ref([]);
+const event_type_idErrors = ref([]);
+const locationErrors = ref([]);
+const is_onlineErrors = ref([]);
+const is_singleErrors = ref([]);
+
+function validateForm() {
+  nameErrors.value = [];
+  organizerErrors.value = [];
+  start_timeErrors.value = [];
+  start_dateErrors.value = [];
+  end_timeErrors.value = [];
+  end_dateErrors.value = [];
+  tagErrors.value = [];
+  event_type_idErrors.value = [];
+  locationErrors.value = [];
+  is_onlineErrors.value = [];
+  is_singleErrors.value = [];
+  let valid = true;
+
+  if (!form.name) {
+    nameErrors.value.push('name is required');
+    valid = false;
+  }
+  if (!form.organizer) {
+    organizerErrors.value.push('organizer is required');
+    valid = false;
+  }
+  if (!form.start_date) {
+    start_dateErrors.value.push('start date is required');
+    valid = false;
+  }
+  if (!form.start_time) {
+    start_timeErrors.value.push('start time is required');
+    valid = false;
+  }
+  if (!form.end_time) {
+    end_timeErrors.value.push('end time is required');
+    valid = false;
+  }
+  if (!form.end_date) {
+    end_dateErrors.value.push('end date is required');
+    valid = false;
+  }
+  if (!tag) {
+    tagErrors.value.push('tag is required');
+    valid = false;
+  }
+  if (!form.event_type_id) {
+    event_type_idErrors.value.push('event type is required');
+    valid = false;
+  }
+  if (!form.location) {
+    locationErrors.value.push('location is required');
+    valid = false;
+  }
+  if (!form.is_online) {
+    is_onlineErrors.value.push('field is required');
+    valid = false;
+  }
+  if (!form.is_single) {
+    is_singleErrors.value.push('single or recurring is required');
+    valid = false;
+  }
+  return valid;
+}
+
 const tag = ref("");
 const router = useRouter();
 
@@ -349,7 +353,7 @@ onMounted(async () => {
   loadData();
 });
 
-async function loadData(){
+async function loadData() {
   try {
     const data = await event.fetchEventTypes();
     eventTypes.value = data.data
@@ -367,34 +371,37 @@ const loadForm = () => {
   }
 }
 
-
-
-
 const savedData = () => {
   const currentData = JSON.parse(localStorage.getItem("form")) ||
-{};
-const updatedData = {
-  ...currentData,
-  ...form
-}
-localStorage.setItem("form",JSON.stringify(updatedData))
-console.log("info", updatedData)
+    {};
+  const updatedData = {
+    ...currentData,
+    ...form
+  }
+  localStorage.setItem("form", JSON.stringify(updatedData))
+  console.log("info", updatedData)
 }
 const submitForm = (form) => {
-  savedData();
-  router.push("/details")
+  if (!validateForm()) return; {
+    savedData();
+    router.push("/details")
+  }
 };
+
+
 </script>
 
 <style lang="scss" scoped>
 .container {
   max-width: 48.1rem;
 }
+
 .tags {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   gap: 1.5rem;
 }
+
 .input {
   border-radius: 8px;
   border: 1px solid #e2e8f0;
@@ -402,6 +409,7 @@ const submitForm = (form) => {
   font-weight: 500;
   line-height: 24px;
 }
+
 .nxt_btn {
   color: #ffffff;
   border-radius: 12px;
@@ -410,15 +418,24 @@ const submitForm = (form) => {
   font-weight: 700;
   line-height: 24px;
 }
+
 .event_btn {
   font-size: 16px;
   font-weight: 700;
   line-height: 24px;
 }
+.error-message {
+  hyphens: auto;
+  transition-duration: 150ms;
+  color: rgba(176, 0, 32);
+  font-size: 12px
+}
+
 .form_container {
   border: 1px solid #e2e8f0;
   border-radius: 12px;
 }
+
 .tag_wrapper {
   background-color: #f7f7fd;
 }

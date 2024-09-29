@@ -10,9 +10,9 @@
       </div>
       <div>
         <p class="h4_semibold purple90 mb-1">Event Details</p>
-        <p class="body3_medium dark2 pr-32 mb-4">
+        <p class="body3_medium dark2 pr-0 pr-md-32 mb-4">
           Tell your potential attendees more about the event so they know
-          exactly what to<br />
+          exactly what to
           expect when they come
         </p>
       </div>
@@ -32,9 +32,10 @@
           </p>
         <ImageUpload @update:image_url="handleImageUrl" />
         </div>
+        <span class="error-message" v-if="image_urlErrors.length">{{ image_urlErrors[0] }}</span>
       </div>
 
-      <div class="form_container mt-8 pb-32 px-8 md:pb-20 pt-8">
+      <div class="form_container mt-8 px-8  pt-8">
         <div>
           <p class="h5_semibold dark0">Description of Event</p>
           <p class="body3_medium dark3 mb-4">
@@ -44,11 +45,13 @@
         </div>
         <div class="editor">
           <v-textarea
+          :error-messages="descriptionErrors"
             v-model="form.description"
             variant="outlined"
             label="Write a brief message"
           ></v-textarea>
         </div>
+
       </div>
       <div class="form_container mt-8 px-8 py-4 pt-8">
         <div>
@@ -59,11 +62,13 @@
         </div>
         <div class="">
           <v-textarea
+          :error-messages="additional_infoErrors"
             v-model="form.additional_info"
             variant="outlined"
             label="Write a brief message"
           ></v-textarea>
         </div>
+
       </div>
       <div class="d-flex justify-end gap-4 mt-8 mb-16">
         <button @click="backbtn" class="back_btn body2_bold purple90 text-none py-3 px-10">
@@ -88,8 +93,33 @@ const form = reactive({
   additional_info: "",
   description: "",
   image_url: ""
-  
 });
+
+//validation
+const additional_infoErrors = ref([]);
+const descriptionErrors = ref([]);
+const image_urlErrors = ref([]);
+
+function validateForm() {
+ additional_infoErrors.value = [];
+  descriptionErrors.value = [];
+  image_urlErrors.value = [];
+  let valid = true;
+
+  if (!form.additional_info) {
+    additional_infoErrors.value.push('description is required');
+    valid = false;
+  }
+  if (!form.description) {
+    descriptionErrors.value.push('additional info is required');
+    valid = false;
+  }
+  if (!form.image_url ||  form.image_url.length === 0) {
+    image_urlErrors.value.push('image(s) is required');
+    valid = false;
+  }
+  return valid;
+}
 
 definePageMeta({
   layout: "events",
@@ -127,8 +157,10 @@ localStorage.setItem("form",JSON.stringify(updatedData))
 console.log("info", updatedData)
 }
 const submitForm = (form) => {
-  savedData();
-  router.push("/tickets")
+  if (!validateForm()) return; {
+    savedData();
+    router.push("/tickets")
+  }
 };
 
 // const submitForm = (form) => {
@@ -183,5 +215,11 @@ const submitForm = (form) => {
 }
 .tag_wrapper {
   background-color: #f7f7fd;
+}
+.error-message {
+  hyphens: auto;
+  transition-duration: 150ms;
+  color: rgba(176, 0, 32);
+  font-size: 12px
 }
 </style>

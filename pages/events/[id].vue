@@ -1,13 +1,19 @@
 <template>
-  <div>
+  <div v-if="eventId">
     <Navbar />
     <div class="px-20">
       <div class="my-10">
-       <div class="d-flex align-center">
-        <img src="../../assets/images/svg/ico4.svg" />
-        <p class="h6_medium dark2 ml-6">Back to event dashboard</p>
-       </div>
-        <p class="h3_semibold purple90">Winning in Tech</p>
+      
+    
+        <NuxtLink to="/dashboard">
+          <div class="d-flex align-center">
+          <img src="../../assets/images/svg/ico4.svg" />
+          <p class="h6_medium dark2 ml-6">Back to event dashboard</p>
+        </div>
+        </NuxtLink>
+
+      
+        <p class="h3_semibold purple90">{{ eventId.name }}</p>
       </div>
       <div class="card_container justify-between d-flex px-6 py-6">
         <div class="d-flex card gap-4 pr-16">
@@ -74,12 +80,10 @@
             label=""
             placeholder="entlify.com/birthday event"
             class="w-100 px-4 body2_medium dark3 input mb-4 py-2"
-          />
-              
+          />             
           <img class="ml-n10 mt-n4" src="../../assets/images/svg/copy.svg" />
         </div>
         </div>
-
         <p class="body3_medium dark0 mb-4 mt-4">share on social media</p>
         <div class="d-flex align-center icons">
           <img src="../../assets/images/svg/Facebook2.svg" />
@@ -94,6 +98,25 @@
 </template>
 <script setup>
 import Navbar from "~/components/event/Navbar.vue";
+import { useEventStore } from "~/store/Event";
+import { useRoute } from "nuxt/app";
+const route = useRoute();
+const ID = route.params.id;
+const event = useEventStore();
+const eventId = ref("")
+
+onMounted(async () => {
+  try {
+    const data = await event.fetchEventsById(ID);
+    eventId.value = data;
+    console.log("event", event);
+  } catch (error) {
+    console.log(error); 
+  } finally {
+
+  }
+});
+
 </script>
 <style>
 .card_heading {

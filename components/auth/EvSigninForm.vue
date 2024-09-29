@@ -2,28 +2,12 @@
   <div class="mr-md-n10 ml-md-n10">
     <v-form>
       <v-col>
-        <v-text-field
-          v-model="form.email"
-          label="Email address"
-          density="compact"
-          placeholder="Email address"
-          prepend-inner-icon="mdi-email-outline"
-          variant="outlined"
-          :error-messages="emailErrors"
-        ></v-text-field>
-        <v-text-field
-        class="mt-4"
-          v-model="form.password"
-          label="Password"
-          :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
-          :type="visible ? 'text' : 'password'"
-          density="compact"
-          placeholder="Enter your password"
-          prepend-inner-icon="mdi-lock-outline"
-          variant="outlined"
-          @click:append-inner="visible = !visible"
-          :error-messages="passwordErrors"
-        ></v-text-field>
+        <v-text-field v-model="form.email" label="Email address" density="compact" placeholder="Email address"
+          prepend-inner-icon="mdi-email-outline" variant="outlined" :error-messages="emailErrors"></v-text-field>
+        <v-text-field class="mt-4" v-model="form.password" label="Password"
+          :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'" :type="visible ? 'text' : 'password'"
+          density="compact" placeholder="Enter your password" prepend-inner-icon="mdi-lock-outline" variant="outlined"
+          @click:append-inner="visible = !visible" :error-messages="passwordErrors"></v-text-field>
         <div class="d-flex align-center  ml-n2 justify-between">
           <v-checkbox class="checkbox">
             <template v-slot:label>
@@ -37,13 +21,9 @@
           </NuxtLink>
         </div>
 
-        <v-btn
-          block
-          class="text-none text-white signin_btn"
-          color="#624CF5"
-          size="large"
-          @click="login"
-        >
+        <v-btn 
+        :loading="loading"
+        block class="text-none text-white signin_btn" color="#624CF5" size="large" @click="login">
           Sign In
         </v-btn>
       </v-col>
@@ -52,10 +32,12 @@
 </template>
 
 <script setup>
+import { useToast } from 'vue-toastification';
+const toast = useToast();
 import { ref, reactive } from 'vue';
 import { useRouter } from 'nuxt/app';
 import { useAuthentication } from '~/store/Authentication';
-
+const loading = ref(false)
 const visible = ref(false);
 const router = useRouter();
 const auth = useAuthentication();
@@ -90,19 +72,30 @@ function validateForm() {
   return valid;
 }
 
-async function login() {
+async function login(form) {
   if (!validateForm()) return;
-
+loading.value = true
   try {
     const response = await auth.loginUser(form);
     if (response) {
+      toast.success(
+        'login successful'
+      );
       // Navigate to dashboard
       router.push('/dashboard');
+
+    } else {
+      loading.value = false;
+      toast.error('Invalid credentials');
+
     }
   } catch (error) {
-    console.error('Error logging in:', error);
+      loading.value = false;
+    toast.error('invalid credentials')
   }
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>

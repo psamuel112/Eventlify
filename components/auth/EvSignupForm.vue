@@ -3,6 +3,8 @@
     <v-form>
       <v-col class="">
         <v-text-field
+        classs=""
+        :error-messages="nameErrors"
           v-model="form.name"
           label="Full name"
           density="compact"
@@ -11,6 +13,8 @@
           variant="outlined"
         ></v-text-field>
         <v-text-field
+        class="mt-4"
+        :error-messages="emailErrors"
           v-model="form.email"
           label="Email address"
           density="compact"
@@ -19,6 +23,8 @@
           variant="outlined"
         ></v-text-field>
         <v-text-field
+        class="mt-4 mb-4"
+        :error-messages="passwordErrors"
           v-model="form.password"
           label="Password"
           :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
@@ -39,6 +45,7 @@
           </p>
         </div>
         <v-btn
+        :loading="loading"
           @click="submit"
           :disabled="!isenable"
           block
@@ -54,6 +61,9 @@
 </template>
 <script setup>
 import { ref } from "vue";
+import { useToast } from 'vue-toastification';
+const toast = useToast();
+const loading = ref(false)
 const visible = ref(false);
 const isenable = ref(true);
 
@@ -64,19 +74,67 @@ const form = reactive({
   name: "",
   password: "",
 });
+const nameErrors= ref([]);
+const emailErrors = ref([]);
+const passwordErrors = ref([]);
+
+function validateForm() {
+  emailErrors.value = [];
+  passwordErrors.value = [];
+  nameErrors.value = []
+  let valid = true;
+
+
+  if (!form.name) {
+    nameErrors.value.push('Name is required');
+    valid = false;
+  }
+  if (!form.email) {
+    emailErrors.value.push('Email is required');
+    valid = false;
+  } else if (!/.+@.+\..+/.test(form.email)) {
+    emailErrors.value.push('Email must be valid');
+    valid = false;
+  }
+
+  if (!form.password) {
+    passwordErrors.value.push('Password is required');
+    valid = false;
+  } else if (form.password.length < 8) {
+    passwordErrors.value.push('Password must be at least 8 characters long');
+    valid = false;
+  }
+
+  return valid;
+}
+
 
 async function submit() {
+  if (!validateForm()) return;
+  loading.value = true;
   try {
+
     const response = await auth.register(form);
     console.log("response", response);
-    if (response) {
+    if (response && response.status) {
+      toast.success(
+        'Registration successful'
+      );
       // route to dashboard
       router.push("/dashboard");
     }
-  } catch (error) {
-    console.log("error");
+    else {
+      loading.value = false;
+      toast.error('Email already exists');
+
+    }
+  }
+   catch (error) {
+    console.log("error", error);
+    toast.error('Something went wrong. Please try again.');
+    
   } finally {
-    console.log("error");
+    loading.value = false;
   }
 }
 </script>

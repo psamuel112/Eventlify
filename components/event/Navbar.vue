@@ -1,13 +1,7 @@
 <template>
   <div class="">
-    <div class="nav_wrapper d-flex pt-8 pb-4 align-center">
+    <div class="nav_wrapper mb-4 d-flex pt-8 pb-4 align-center">
       <div>
-        <nuxt-link to="/dashboard">
-          <button class="d-flex pl-16 gap-4 align-center">
-            <img src="../../assets/images/svg/arrowback.svg" alt="" />
-            <p class="back_text">Back to Events dashboard</p>
-          </button>
-        </nuxt-link>
       </div>
       <div class="nav_logo align-center ">
         <img class="" src="../../assets/images/png/Logo.png" alt="" />

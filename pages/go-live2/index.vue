@@ -131,16 +131,16 @@ const loadForm = () => {
 //   }
 // }
 
-const savedData = () => {
-  const currentData = JSON.parse(localStorage.getItem("form")) ||
-{};
-const updatedData = {
-  ...currentData,
-  ...form
-}
-localStorage.setItem("form",JSON.stringify(updatedData))
-console.log("info", updatedData)
-}
+// const savedData = () => {
+//   const currentData = JSON.parse(localStorage.getItem("form")) ||
+// {};
+// const updatedData = {
+//   ...currentData,
+//   ...form
+// }
+// localStorage.setItem("form",JSON.stringify(updatedData))
+// console.log("info", updatedData)
+// }
 
 
 async function submitForm() {
