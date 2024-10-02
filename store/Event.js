@@ -74,6 +74,18 @@ export const useEventStore = defineStore("event", {
       const { data } = await EventService.fetchEventsById(id, config);
       return data;
     },
+    async fetchEventsByType(event_type_id) {
+      const EventService = useEventService();
+      const auth = useAuthentication().userTokens;
+      const config = {
+        headers: {
+          Authorization: "Bearer " + `${auth}`,
+        },
+      };
+      console.log("config", config)
+      const { data } = await EventService.fetchEventsByType(event_type_id, config);
+      return data;
+    },
     
   },
 });
