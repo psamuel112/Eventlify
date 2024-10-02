@@ -7,7 +7,7 @@
     
         <NuxtLink to="/dashboard">
           <div class="d-flex align-center">
-          <img src="../../assets/images/svg/ico4.svg" />
+          <img src="../../assets/images/svg/Ico4.svg" />
           <p class="h6_medium dark2 ml-6">Back to event dashboard</p>
         </div>
         </NuxtLink>
