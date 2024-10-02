@@ -72,7 +72,7 @@ function validateForm() {
   return valid;
 }
 
-async function login(form) {
+async function login() {
   if (!validateForm()) return;
 loading.value = true
   try {

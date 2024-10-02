@@ -8,19 +8,19 @@
       </div>
     </div>
     <div class="d-flex gap-2 my-10">
-      <v-btn class="text-none" flat border>
+      <v-btn class="text-none" flat border @click="filterEvents(0)" >
         <img src="../../assets/images/svg/allevent.svg" /> All Events</v-btn
       >
-      <v-btn class="text-none" flat border>
+      <v-btn class="text-none" flat border @click="filterEvents(1)"  >
         <img src="../../assets/images/svg/sports.svg" /> Sports</v-btn
       >
-      <v-btn class="text-none" flat border>
-        <img src="../../assets/images/svg/music.svg" />Music</v-btn
+      <v-btn class="text-none" flat border  @click="filterEvents(2)">
+        <img src="../../assets/images/svg/music.svg"m />Music</v-btn
       >
-      <v-btn class="text-none" flat border>
+      <v-btn class="text-none" flat border @click="filterEvents(3)" >
         <img src="../../assets/images/svg/realestate.svg" />All Events</v-btn
       >
-      <v-btn class="text-none" flat border>
+      <v-btn class="text-none" flat border @click="filterEvents(4)">
         <img src="../../assets/images/svg/businesses.svg" />Businesses</v-btn
       >
       <v-btn class="text-none" flat border>
@@ -45,26 +45,26 @@
         <div
           @click="navigateToCard(card.id)"
           class="card pointer mb-4"
-          v-for="card in cards"
+          v-for="card in allEvents.slice(0, 3)"
           :key="card"
         >
           <div class="image_wrapper">
-            <img class="card_img" :src="card.img" />
-            <v-btn
+            <img class="card_img" :src="card.imgage_url" />
+            <!-- <v-btn
               class="text-none status_btn ml-6 mt-6"
               :class="`state_color-${card.state_color}`"
               flat
               >{{ card.state_text }}</v-btn
-            >
+            > -->
           </div>
           <div class="px-4 py-4">
             <div class="d-flex mb-4 align-center gap-4">
-              <p class="body2_medium dark2">{{ card.time }}</p>
+              <p class="body2_medium dark2">{{ card.start_time }}</p>
             </div>
-            <p class="h4_semibold dark0 mb-4">{{ card.note }}</p>
-            <div class="">
+            <p class="h4_semibold dark0 mb-4">{{ card.description }}</p>
+            <!-- <div class="">
               <p class="body1_bold purple50">{{ card.price }}</p>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -155,6 +155,35 @@ import event2 from "../../assets/images/png/p2.png";
 import event3 from "../../assets/images/png/p3.png";
 import event4 from "../../assets/images/png/p4.png";
 import { defineProps } from "vue";
+import { useEventStore } from "~/store/Event";
+const event = useEventStore();
+const allEvents = ref("");
+const typeEvent = ref("");
+onMounted(async () => {
+  loadData();
+});
+
+async function loadData(event_type_id) {
+  try {
+    const data = await event.fetchAllEvents();
+    allEvents.value = data.data.data;
+    console.log("events", allEvents);
+    if (event_type_id) {
+      // Filter events by event_type_id
+      const filteredEvents = allEvents.value.filter(event => event.event_type_id === event_type_id);
+      allEvents.value = filteredEvents;
+      console.log("Filtered events", allEvents);
+    } else {
+      allEvents.value = allEvents.value;
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+function filterEvents(event_type_id) {
+  loadData(event_type_id);
+}
+
 
 import { ref } from "vue";
 definePageMeta({

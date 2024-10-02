@@ -341,20 +341,22 @@ const savedData = () => {
   const currentData = JSON.parse(localStorage.getItem("form")) || {};
   const updatedData = {
     ...currentData,
-    ...form,
+    ...form.value,
     tickets: form.value.tickets,
     currentData: form.value.currentData
   };
   localStorage.setItem("form", JSON.stringify(updatedData));
   console.log("info", updatedData);
 };
-const submitForm = () => {
-  if(!validateForm()) return; {
+const submitForm = (form) => {
+
     savedData();
     router.push("/go-live2");
-  }
+
 };
 </script>
+
+
 <style lang="scss" scoped>
 .container {
   max-width: 48.1rem;

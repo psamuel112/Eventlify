@@ -24,6 +24,15 @@ export const useEventService = () => {
       } catch (err) {
       }
     },
+    async fetchAllEvents(config) {
+      try {
+        const { data } = await api.get(ENDPOINTS.GET_ALL_EVENTS,
+        config);
+        console.log(data);
+        return data;
+      } catch (err) {
+      }
+    },
     async fetchEventTypes(config) {
       try {
         const { data } = await api.get(ENDPOINTS.GET_EVENT_TYPE,
@@ -36,6 +45,15 @@ export const useEventService = () => {
     async fetchEventsById(id, config) {
       try {
         const { data } = await api.get(ENDPOINTS.GET_EVENT_BY_ID(id),
+       config);
+       console.log(data);
+        return data;
+      } catch (err) {
+      }
+    },
+    async fetchEventsByType(event_type_id, config) {
+      try {
+        const { data } = await api.get(ENDPOINTS.GET_EVENT_BY_ID(event_type_id),
        config);
        console.log(data);
         return data;

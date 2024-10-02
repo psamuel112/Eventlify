@@ -38,6 +38,18 @@ export const useEventStore = defineStore("event", {
       const  data  = await EventService.fetchEvents(config);
       return data;
     },
+    async fetchAllEvents() {
+      const EventService = useEventService();
+      const auth = useAuthentication().userTokens;
+      const config = {
+        headers: {
+          Authorization: "Bearer " + `${auth}`,
+        },
+      };
+      console.log("config", config)
+      const  data  = await EventService.fetchAllEvents(config);
+      return data;
+    },
     async fetchEventTypes() {
       const EventService = useEventService();
       const auth = useAuthentication().userTokens;

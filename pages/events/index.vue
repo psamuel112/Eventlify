@@ -19,7 +19,6 @@
               <p>Grid</p>
             </v-btn>
           </div>
-
           <div class="custom-dropdown px-2 py-2">
             <select
               density="compact"
@@ -51,8 +50,7 @@
           @click="navigateToCard(event.id)" class="card mb-4 pointer">
             <div class="image_wrapper">
               <img
-                class="card_img"
-                v-if="event.image_url"
+                class="card_img"             
                 :src="event.image_url"
               />
               <v-btn
@@ -73,12 +71,11 @@
                 <img src="../../assets/images/svg/ticket.svg" />
                 <p class="card_text">{{ event.tickets.price }} sold</p>
               </div>
-              <p class="card_heading mb-4">{{ event.additional_info }}</p>
+              <p class="card_heading mb-4">{{ event.description }}</p>
               <div class="d-flex gap-4">
                 <img src="../../assets/images/svg/spot.svg" />
                 <p v-if="event.is_online = true" class="card_text">Online</p>
                 <p v-if="event.is_online = false" class="card_text">Offline</p>
-
               </div>
             </div>
           </div>
@@ -107,7 +104,7 @@ onMounted(async () => {
 async function loadData() {
   try {
     const data = await event.fetchEvents();
-    events.value = data.data;
+    events.value = data.data.data;
     console.log("events", events);
   } catch (error) {
     console.error(error);
