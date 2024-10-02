@@ -7,7 +7,7 @@
             <div class="mx-auto justify-center  py-32 px-sm-16 px-8 align-center form_container">
                 <p class="primary_text ml-2 ml-md-n7">Verify your Email</p>
                 <p class="secondary_text ml-2 ml-md-n7 mt-4">Kindly input the<span> 6 digit code</span> that was sent to the email address, <span>hendrix.j***@mail.com</span></p>
-                <EvOtp />
+             
                 <div class="">
                     <p class="signup_text">Didn’t recieve code? <span class="signup">Resend</span></p>
                 </div>
@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import EvOtp from "~/components/auth/EvOtp.vue";
+
 </script>
 <style lang="scss" scoped>
 .primary_text {
