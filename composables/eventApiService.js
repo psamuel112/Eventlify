@@ -51,6 +51,24 @@ export const useEventService = () => {
       } catch (err) {
       }
     },
+    async fetchAllEventsById(id, config) {
+      try {
+        const { data } = await api.get(ENDPOINTS.GET_ALL_EVENTS_BY_ID(id),
+       config);
+       console.log(data);
+        return data;
+      } catch (err) {
+      }
+    },
+    async fetchTicketsById(id, config) {
+      try {
+        const { data } = await api.get(ENDPOINTS.GET_TICKETS_BY_ID(id),
+       config);
+       console.log(data);
+        return data;
+      } catch (err) {
+      }
+    },
     async fetchEventsByType(event_type_id, config) {
       try {
         const { data } = await api.get(ENDPOINTS.GET_EVENT_BY_ID(event_type_id),

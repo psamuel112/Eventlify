@@ -4,10 +4,9 @@
             <div class="d-none  d-md-block">
                 <img class="" src="../../assets/images/png/Cover.png" />
             </div>
-            <div class="mx-auto justify-center  py-32 px-sm-16 px-8 align-center form_container">
+            <div class="mx-auto justify-center my-auto py-32 px-sm-16 px-8 align-center form_container">
                 <p class="primary_text ml-2 ml-md-n7">Reset your Password</p>
-                <p class="secondary_text ml-2 ml-md-n7 mt-4 mb-4">Enter the email address associated with your account to
-                    get the OTP (One Time Password) to reset your password</p>
+                <p class="secondary_text ml-2 ml-md-n7 mt-4 mb-4">                <p class="secondary_text ml-2 ml-md-n7 mt-4">Kindly input the<span> 6 digit code</span> that was sent to the email address, <span>hendrix.j***@mail.com</span></p></p>
                 <EvResetPassword />
                 <div class="">
                     <NuxtLink to="/signin">

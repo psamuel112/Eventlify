@@ -9,7 +9,6 @@
 <script setup>
 import EvRecords from "~/components/dashboard/EvRecords.vue";
 import EvHeader from "~/components/common/EvHeader.vue";
-
 definePageMeta({
   layout: "dashboard",
 });

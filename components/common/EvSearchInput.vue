@@ -1,49 +1,89 @@
 <template>
-    <v-responsive class="search" max-width="384">
-      <v-card-text>
-        <v-text-field
-          :loading="loading"
-          density="compact"
+  <v-responsive class="search" style="max-width:100%">
+    <v-card-text>
+      <div class="input-wrapper">
+        <input
+          type="text"
+          :placeholder="label"
           class="search-bar"
-          variant="plain"
-          flat
-          :label="label"
-          prepend-inner-icon="mdi-magnify"
-         
-          single-line
-        hide-details
-          @click:append-inner="onClick"
-        ></v-text-field>
-      </v-card-text>
-    </v-responsive>
-  </template>
-  <script setup>
-  defineProps({
-    label: {
-      type: String,
-      required: false,
-    },
-  });
-  import { ref } from "vue";
-  const loading = ref(false);
-  const loaded = ref(false);
-  function onClick() {
-    this.loading.value = true;
-    setTimeout(() => {
-      loading.value = false;
-      loaded.value = true;
-    }, 2000);
+          @click="onClick"
+        />
+        <span v-if="loading" class="loader"></span>
+        <span class="icon mdi mdi-magnify"></span>
+      </div>
+    </v-card-text>
+  </v-responsive>
+</template>
+
+<script setup>
+import { ref } from "vue";
+
+// Define props
+defineProps({
+  label: {
+    type: String,
+    required: false,
+  },
+});
+
+const loading = ref(false);
+
+// Simulate search action on click
+function onClick() {
+  loading.value = true;
+  setTimeout(() => {
+    loading.value = false;
+  }, 2000);
+}
+</script>
+
+<style lang="scss" scoped>
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-bar {
+  width: 100%;
+  padding: 0.75rem 3rem 0.75rem 2.5rem;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  height: 56px;
+  background-color: #f7f7fd;
+  font-size: 1rem;
+}
+
+.icon {
+  position: absolute;
+  left: 10px;
+  font-size: 1.25rem;
+  color: #666;
+}
+
+// .loader {
+//   position: absolute;
+//   right: 10px;
+//   width: 1rem;
+//   height: 1rem;
+//   border: 2px solid #624cf5;
+//   border-radius: 50%;
+//   border-top-color: transparent;
+//   animation: spin 1s linear infinite;
+// }
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
-  </script>
-  
-  <style lang="scss" scoped>
-  .search-bar {
-    border: 1.5px solid #E2E8F0;
-    border-radius: 16px;
-    height: 56px;
-    background-color: #F7F7FD;
+}
+
+.search {  
+  max-width: 5.75rem;
+}
+@media (max-width: 768px) {
+  .search {
+    width: 100%;
   }
-  .search{
-    width: 25.75rem;
-  }
-  </style>
+}
+</style>

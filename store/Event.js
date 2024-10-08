@@ -74,6 +74,30 @@ export const useEventStore = defineStore("event", {
       const { data } = await EventService.fetchEventsById(id, config);
       return data;
     },
+    async fetchTicketsById(id) {
+      const EventService = useEventService();
+      const auth = useAuthentication().userTokens;
+      const config = {
+        headers: {
+          Authorization: "Bearer " + `${auth}`,
+        },
+      };
+      console.log("config", config)
+      const { data } = await EventService.fetchTicketsById(id, config);
+      return data;
+    },
+    async fetchAllEventsById(id) {
+      const EventService = useEventService();
+      const auth = useAuthentication().userTokens;
+      const config = {
+        headers: {
+          Authorization: "Bearer " + `${auth}`,
+        },
+      };
+      console.log("config", config)
+      const { data } = await EventService.fetchAllEventsById(id, config);
+      return data;
+    },
     async fetchEventsByType(event_type_id) {
       const EventService = useEventService();
       const auth = useAuthentication().userTokens;

@@ -16,7 +16,7 @@
               </div>
             </template>
           </v-checkbox>
-          <NuxtLink to="/resetpassword">
+          <NuxtLink to="/verifyemail">
             <p class="bold3_bold purple50 mt-n5">Forgot Password</p>
           </NuxtLink>
         </div>

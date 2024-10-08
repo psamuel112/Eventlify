@@ -24,5 +24,33 @@ export const useAuthentication = defineStore('user', {
         return data;
       }
     },
+    async resetPassword(form) {
+      const AuthService = useAuthService();
+      const config = {
+        headers:   {
+          Authorization: "Bearer " + `${this.userTokens}`,
+        },
+      };
+      const  data  = await AuthService.resetPassword
+      (config, form);
+      console.log("data", data)
+      if (data) {
+        return data;
+      }
+    },
+    async forgotPassword(form) {
+      const AuthService = useAuthService();
+      const config = {
+        headers:   {
+          Authorization: "Bearer " + `${this.userTokens}`,
+        },
+      };
+      const  data  = await AuthService.forgotPassword
+      (config, form);
+      console.log("data", data)
+      if (data) {
+        return data;
+      }
+    },
   },
 });

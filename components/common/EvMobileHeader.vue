@@ -17,7 +17,7 @@
           temporary
         >
           <v-list color="#624CF5" class="container">
-            <nuxt-link to="overview">
+            <nuxt-link to="dashboard">
               <v-list-item class="list_item" value="1">
                 <div value="1" flat class="d-flex gap-4">
                   <img src="../../assets/images/svg/info.svg" alt="" />

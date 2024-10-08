@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="d-flex justify-between px-14 py-6">
+    <div class="d-flex justify-between px-6 px-md-14 py-6">
       <div class="d-flex gap-4">
         <img src="../../assets/images/svg/Ellipse.svg" />
         <div>
@@ -28,7 +28,7 @@
         </div>
       </div>
     </div>
-    <div class="px-14 py-6">
+    <div class="px-14 py-6 d-none d-md-block">
       <div class="card_container justify-between d-flex px-6 py-6">
         <div class="d-flex card gap-4 pr-16">
           <div>
@@ -103,12 +103,90 @@
         </div>
       </div>
     </div>
+
+
+    <div class="px-6 d-md-none py-6">
+      <div style="gap:12px;" class="mobile-cards ">
+        <div class="card_container justify-between px-6 mb-8 py-6 d-flex card gap-4 ">
+          <div>
+            <img src="../../assets/images/svg/card1.svg" />
+          </div>
+          <div>
+            <p class="card_heading mb-4">Total Sales</p>
+            <div class="d-flex mb-4 align-center gap-2">
+              <div class="">
+                <p class="price">N 120K</p>
+              </div>
+              <div class="percent_wrapper px-2 py-1">
+                <p>&#8593; 28%</p>
+              </div>
+            </div>
+            <p class="card_date">Last week <span>₦ 104,000</span></p>
+          </div>
+        </div>
+        
+        <div class="card_container justify-between px-6 py-6 mb-8 d-flex card gap-4">
+          <div>
+            <img src="../../assets/images/svg/card1.svg" />
+          </div>
+          <div>
+            <p class="card_heading mb-4">Total Events</p>
+            <div class="d-flex mb-4 align-center gap-2">
+              <div class="">
+                <p class="price">53</p>
+              </div>
+              <div class="percent_wrapper px-2 py-1">
+                <p>&#8593; 3%</p>
+              </div>
+            </div>
+            <p class="card_date">Last week <span>₦ 104,000</span></p>
+          </div>
+        </div>
+        
+        <div class="card_container justify-between px-6 py-6 mb-8 d-flex card gap-4">
+          <div>
+            <img src="../../assets/images/svg/card1.svg" />
+          </div>
+          <div>
+            <p class="card_heading mb-4">Total Audience</p>
+            <div class="d-flex mb-4 align-center gap-2">
+              <div class="">
+                <p class="price">354</p>
+              </div>
+              <div class="percent_wrapper_red px-2 py-1">
+                <p>&darr; 5%</p>
+              </div>
+            </div>
+            <p class="card_date">Last week <span>₦ 104,000</span></p>
+          </div>
+        </div>
+       
+        <div class="card_container justify-between px-6 py-6 mb-8 d-flex card gap-4">
+          <div>
+            <img src="../../assets/images/svg/card1.svg" />
+          </div>
+          <div>
+            <p class="card_heading mb-4">Audience Interactions</p>
+            <div class="d-flex mb-4 align-center gap-2">
+              <div class="">
+                <p class="price">3,400</p>
+              </div>
+              <div class="percent_wrapper px-2 py-1">
+                <p>&#8593; 28%</p>
+              </div>
+            </div>
+            <p class="card_date">Last week <span>₦ 104,000</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div>
-      <div class="px-14 chart">
+      <div class="px-6 px-md-14 chart">
         <img class="w-100" src="../../assets/images/png/frame1.png" />
         <img class="w-100" src="../../assets/images/png/frame2.png" />
       </div>
-      <div class="px-14 mb-16 mt-8 chart2">
+      <div class="px-6 px-md-14 mb-16 mt-8 chart2">
         <img class="w-100" src="../../assets/images/png/frame3.png" />
         <img class="w-100" src="../../assets/images/png/frame4.png" />
       </div>
@@ -133,9 +211,7 @@ import { ref } from "vue";
 import BarChart from "~/components/dashboard/BarChart.vue"
 import LineChart from "~/components/dashboard/LineChart.vue";
 import DonutChart from "~/components/dashboard/DonutChart.vue";
-definePageMeta({
-  layout: "dashboard",
-});
+
 </script>
 
 <style lang="scss" scoped>
@@ -234,5 +310,8 @@ definePageMeta({
   font-weight: 700;
   line-height: 20px;
   color: #a29daf;
+}
+.mobile-cards {
+  gap: 8px;
 }
 </style>

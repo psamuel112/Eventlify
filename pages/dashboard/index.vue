@@ -3,9 +3,7 @@
     <div class="d-md-none mt-16">
     <Evoverview />
     </div> 
-    <div class="d-none d-md-block">
-      <EvHeader />
-    </div>
+   
   </div>
 </template>
 

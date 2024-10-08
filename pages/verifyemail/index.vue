@@ -6,8 +6,9 @@
             </div>
             <div class="mx-auto justify-center  py-32 px-sm-16 px-8 align-center form_container">
                 <p class="primary_text ml-2 ml-md-n7">Verify your Email</p>
-                <p class="secondary_text ml-2 ml-md-n7 mt-4">Kindly input the<span> 6 digit code</span> that was sent to the email address, <span>hendrix.j***@mail.com</span></p>
-             
+                <p class="secondary_text ml-2 ml-md-n7 mt-4">Enter the email address associated with your account to
+                    get the OTP (One Time Password) to reset your password</p>
+             <EvForgotPAssword />
                 <div class="">
                     <p class="signup_text">Didn’t recieve code? <span class="signup">Resend</span></p>
                 </div>
@@ -22,7 +23,7 @@
 </template>
 
 <script setup>
-
+import EvForgotPAssword from "~/components/auth/EvForgotPassword.vue";
 </script>
 <style lang="scss" scoped>
 .primary_text {

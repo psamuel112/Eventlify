@@ -188,6 +188,7 @@ import { onBeforeUnmount } from "vue";
 const option = ref([]);
 
 const form = ref({
+  is_online: true,
   tickets: [
     {
       name: "",

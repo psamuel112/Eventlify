@@ -7,7 +7,7 @@
         <p class="body3_medium dark3">Hope you’re having a good day</p>
       </div>
     </div>
-    <div class="d-flex gap-2 my-10">
+    <div class="d-flex buttons-container gap-2 my-10 overflow-x-scroll">
       <v-btn class="text-none" flat border @click="filterEvents(0)" >
         <img src="../../assets/images/svg/allevent.svg" /> All Events</v-btn
       >
@@ -49,22 +49,15 @@
           :key="card"
         >
           <div class="image_wrapper">
-            <img class="card_img" :src="card.imgage_url" />
-            <!-- <v-btn
-              class="text-none status_btn ml-6 mt-6"
-              :class="`state_color-${card.state_color}`"
-              flat
-              >{{ card.state_text }}</v-btn
-            > -->
+            <img class="card_img" v-if="card.images && card.images.length > 0" :src="card.images[0].url" />
+      
           </div>
           <div class="px-4 py-4">
             <div class="d-flex mb-4 align-center gap-4">
               <p class="body2_medium dark2">{{ card.start_time }}</p>
             </div>
             <p class="h4_semibold dark0 mb-4">{{ card.description }}</p>
-            <!-- <div class="">
-              <p class="body1_bold purple50">{{ card.price }}</p>
-            </div> -->
+          
           </div>
         </div>
       </div>
@@ -159,6 +152,7 @@ import { useEventStore } from "~/store/Event";
 const event = useEventStore();
 const allEvents = ref("");
 const typeEvent = ref("");
+const ticket = ref("")
 onMounted(async () => {
   loadData();
 });
@@ -169,7 +163,6 @@ async function loadData(event_type_id) {
     allEvents.value = data.data.data;
     console.log("events", allEvents);
     if (event_type_id) {
-      // Filter events by event_type_id
       const filteredEvents = allEvents.value.filter(event => event.event_type_id === event_type_id);
       allEvents.value = filteredEvents;
       console.log("Filtered events", allEvents);
@@ -183,7 +176,6 @@ async function loadData(event_type_id) {
 function filterEvents(event_type_id) {
   loadData(event_type_id);
 }
-
 
 import { ref } from "vue";
 definePageMeta({
@@ -345,6 +337,13 @@ const navigateToCard = (id) => {
   line-height: 20px;
   border: 1.5px solid #624cf5;
   color: #624cf5;
+}
+.button-container {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  white-space: nowrap; /* Prevent wrapping of buttons */
+  padding-bottom: 10px;
 }
 
 .form_container {
