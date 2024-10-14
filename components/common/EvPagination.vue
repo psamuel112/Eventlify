@@ -19,7 +19,6 @@
             <img src="@/assets/images/svg/caret-left-black.svg" alt="" />
           </div>
         </a>
-
         <div class="pagination-button-container">
           <span v-for="(n, i) in pages?.items" :key="i">
             <a
@@ -71,8 +70,7 @@ export default {
   watch: {
     currentPage(val) {
       this.current = val;
-      this.maxPages = Math.ceil(val / this.perPage);
-      this.setPage();
+      this.setPage(); // No need to recalculate maxPages here
     },
     totalRecords(val) {
       this.maxPages = Math.ceil(val / this.perPage);
@@ -110,19 +108,33 @@ export default {
 
       let prev = current === 1 ? null : current - 1;
       let next = current === max ? null : current + 1;
-      let items = [1];
+      let items = [];
 
-      if (current === 1 && max === 1) return { current, prev, next, items };
-      if (current > 4) items.push('…');
+      // Always show the first page
+      items.push(1);
 
-      let r = 2,
-        r1 = current - r,
-        r2 = current + r;
+      // If current page is greater than 4, show ellipsis after the first page
+      if (current > 4) {
+        items.push('…');
+      }
 
-      for (let i = r1 > 2 ? r1 : 2; i <= Math.min(max, r2); i++) items.push(i);
+      // Add pages around the current page, showing up to 2 pages before and after
+      let rangeStart = Math.max(2, current - 2);
+      let rangeEnd = Math.min(max - 1, current + 2);
 
-      if (r2 + 1 < max) items.push('…');
-      if (r2 < max) items.push(max);
+      for (let i = rangeStart; i <= rangeEnd; i++) {
+        items.push(i);
+      }
+
+      // If there's a gap between the last range and the max page, add ellipsis
+      if (rangeEnd < max - 1) {
+        items.push('…');
+      }
+
+      // Always show the last page if there's more than one page
+      if (max > 1) {
+        items.push(max);
+      }
 
       return { current, prev, next, items };
     },

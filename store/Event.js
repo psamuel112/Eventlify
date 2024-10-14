@@ -1,9 +1,9 @@
-import { defineStore } from "pinia";
-import { useAuthentication } from "./Authentication";
+import { defineStore } from 'pinia';
+import { useAuthentication } from './Authentication';
 import { useEventService } from '~/composables/eventApiService';
-export const useEventStore = defineStore("event", {
+export const useEventStore = defineStore('event', {
   state: () => ({
-    tickets: {}
+    tickets: {},
   }),
   persist: {
     storage: persistedState.localStorage,
@@ -12,30 +12,25 @@ export const useEventStore = defineStore("event", {
     async createEvent(form) {
       const EventService = useEventService();
       const auth = useAuthentication().userTokens;
-      console.log("auth", auth)
+      console.log('auth', auth);
       const config = {
         headers: {
           'Content-Type': 'application/json',
-           Authorization: "Bearer " + `${auth}`,
+          Authorization: 'Bearer ' + `${auth}`,
           // Accept: "application/json"
         },
       };
-      console.log("config", config)
-      const { data } =
-        await EventService.createEvent(form, config);
-        console.log("payload", data)
-        return data;
+      console.log('config', config);
+      const { data } = await EventService.createEvent(form, config);
+      console.log('payload', data);
+      return data;
     },
-    async fetchEvents() {
+    async fetchEvents(params) {
+      console.log(params);
+      console.log('did we get here tooo?');
       const EventService = useEventService();
-      const auth = useAuthentication().userTokens;
-      const config = {
-        headers: {
-          Authorization: "Bearer " + `${auth}`,
-        },
-      };
-      console.log("config", config)
-      const  data  = await EventService.fetchEvents(config);
+
+      const data = await EventService.fetchEvents(params);
       return data;
     },
     async fetchAllEvents() {
@@ -43,11 +38,11 @@ export const useEventStore = defineStore("event", {
       const auth = useAuthentication().userTokens;
       const config = {
         headers: {
-          Authorization: "Bearer " + `${auth}`,
+          Authorization: 'Bearer ' + `${auth}`,
         },
       };
-      console.log("config", config)
-      const  data  = await EventService.fetchAllEvents(config);
+      console.log('config', config);
+      const data = await EventService.fetchAllEvents(config);
       return data;
     },
     async fetchEventTypes() {
@@ -55,11 +50,11 @@ export const useEventStore = defineStore("event", {
       const auth = useAuthentication().userTokens;
       const config = {
         headers: {
-          Authorization: "Bearer " + `${auth}`,
+          Authorization: 'Bearer ' + `${auth}`,
         },
       };
-      console.log("config", config)
-      const  data  = await EventService.fetchEventTypes(config);
+      console.log('config', config);
+      const data = await EventService.fetchEventTypes(config);
       return data;
     },
     async fetchEventsById(id) {
@@ -67,10 +62,10 @@ export const useEventStore = defineStore("event", {
       const auth = useAuthentication().userTokens;
       const config = {
         headers: {
-          Authorization: "Bearer " + `${auth}`,
+          Authorization: 'Bearer ' + `${auth}`,
         },
       };
-      console.log("config", config)
+      console.log('config', config);
       const { data } = await EventService.fetchEventsById(id, config);
       return data;
     },
@@ -79,10 +74,10 @@ export const useEventStore = defineStore("event", {
       const auth = useAuthentication().userTokens;
       const config = {
         headers: {
-          Authorization: "Bearer " + `${auth}`,
+          Authorization: 'Bearer ' + `${auth}`,
         },
       };
-      console.log("config", config)
+      console.log('config', config);
       const { data } = await EventService.fetchTicketsById(id, config);
       return data;
     },
@@ -91,10 +86,10 @@ export const useEventStore = defineStore("event", {
       const auth = useAuthentication().userTokens;
       const config = {
         headers: {
-          Authorization: "Bearer " + `${auth}`,
+          Authorization: 'Bearer ' + `${auth}`,
         },
       };
-      console.log("config", config)
+      console.log('config', config);
       const { data } = await EventService.fetchAllEventsById(id, config);
       return data;
     },
@@ -103,13 +98,15 @@ export const useEventStore = defineStore("event", {
       const auth = useAuthentication().userTokens;
       const config = {
         headers: {
-          Authorization: "Bearer " + `${auth}`,
+          Authorization: 'Bearer ' + `${auth}`,
         },
       };
-      console.log("config", config)
-      const { data } = await EventService.fetchEventsByType(event_type_id, config);
+      console.log('config', config);
+      const { data } = await EventService.fetchEventsByType(
+        event_type_id,
+        config
+      );
       return data;
     },
-    
   },
 });

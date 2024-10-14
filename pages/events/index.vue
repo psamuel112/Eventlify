@@ -89,7 +89,12 @@
           </div>
         </div>
       </div>
-      <ev-pagination :currentPage="1" :totalRecords="10" :perPage="1" />
+      <ev-pagination
+        :currentPage="currentPage"
+        :totalRecords="total"
+        :perPage="1"
+        @onchange="handlePaginateEvent"
+      />
     </div>
   </div>
 </template>
@@ -107,20 +112,34 @@ import { useEventStore } from '~/store/Event';
 const event = useEventStore();
 const events = ref('');
 const form = ref(null);
+const total = ref();
+const perPage = ref(1);
+const currentPage = ref(1);
+
 onMounted(async () => {
-  loadData();
+  loadData({ page: 1, perPage: 1 });
 });
 definePageMeta({
   layout: 'dashboard',
 });
-async function loadData() {
+async function loadData(e) {
   try {
-    const data = await event.fetchEvents();
+    const data = await event.fetchEvents(e);
     events.value = data.data.data;
-    console.log('events', events);
+
+    // console.log(data.data.total);
+    // console.log('events', events);
+    currentPage.value = data.data.current_page;
+    total.value = data.data.total;
+    console.log(total.value);
   } catch (error) {
     console.error(error);
   }
+}
+
+async function handlePaginateEvent(e) {
+  console.log(e);
+  loadData({ page: e, perPage: 1 });
 }
 
 const selectedOption = ref('option1');
