@@ -16,25 +16,17 @@
     </div>
     <div v-if="form" class="form_container w-100">
       <div class="px-8 py-8">
-        <img
-          v-if="form.image_url"
-          :src="form.image_url"
-          alt="Event Image"
-          class="w-100"
-        />
-        <div class="form_container w-100 mt-8 mx-40 mx-auto text-center">
+        <img v-if="form.images && form.images.length > 0" :src="form.images[0].url" alt="Event Image" class="w-100" />
+        <div class=" w-100 mt-8 mx-40 mx-auto text-center">
           <div class="py-4">
             <div class="text-center">
               <p class="info_head">Go Live</p>
               <p class="px-8 sub_text">
-              {{ form.description}}
+                {{ form.description }}
               </p>
             </div>
-            <div
-              v-for="ticket in form.tickets"
-              :key="ticket"
-              class="d-flex mt-8 align-center justify-center text-center mb-3 gap-4"
-            >
+            <div v-for="ticket in form.tickets" :key="ticket"
+              class="d-flex mt-8 align-center justify-center text-center mb-3 gap-4">
               <div class="d-flex align-center gap-2">
                 <img src="../../assets/images/svg/smallticket.svg" alt="" />
                 <p class="details_text">{{ ticket.price }}</p>
@@ -70,14 +62,19 @@
           <div class="w-100 mt-8 mt-md-0">
             <p class="tags_head">Tags</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-              <v-btn
+              <!-- <v-btn
                 v-for="tag in form.tags"
                 :key="tag"
                 flat
                 class="text-none tag_wrapper"
               >
                 <p class="tag_btn_text">{{ tag }}</p>
-              </v-btn>
+              </v-btn> -->
+              <div class="d-flex gap-4 flex-wrap">
+                <div v-for="tag in form.tags" :key="tag" cålass="tags_wrapper d-flex">
+                  <p class="body3_medium dark1">{{ tag }}</p>
+                </div>
+              </div>
               <!-- <v-btn flat class="text-none tag_wrapper">
               <p class="tag_btn_text">technology</p>
               <p class="ml-4">x</p>
@@ -95,7 +92,6 @@
         </div>
       </div>
     </div>
-
     <div class="d-flex justify-end gap-4 mt-8 mb-16">
       <button @click="submitForm" class="text-none nxt_btn py-3 px-10">Go Live</button>
     </div>
@@ -115,32 +111,14 @@ const event = useEventStore();
 onMounted(() => {
   const data = JSON.parse(localStorage.getItem("form")) || {};
   if (data) {
-     form.value = data;
-   }
+    form.value = data;
+  }
 });
 const router = useRouter();
 
 const loadForm = () => {
 
 }
-
-// const loadForm = () => {
-//   const data = JSON.parse(localStorage.getItem("form")) || {};
-//   if (data) {
-//     object.assign(form, data)
-//   }
-// }
-
-// const savedData = () => {
-//   const currentData = JSON.parse(localStorage.getItem("form")) ||
-// {};
-// const updatedData = {
-//   ...currentData,
-//   ...form
-// }
-// localStorage.setItem("form",JSON.stringify(updatedData))
-// console.log("info", updatedData)
-// }
 
 
 async function submitForm() {
@@ -161,6 +139,7 @@ async function submitForm() {
 .container {
   max-width: 48.1rem;
 }
+
 .info_text {
   font-size: 14px;
   font-weight: 400;
@@ -174,6 +153,7 @@ async function submitForm() {
   line-height: 16px;
   color: #6b6478;
 }
+
 .preview_text {
   font-size: 14px;
   font-weight: 500;
@@ -181,6 +161,7 @@ async function submitForm() {
   color: #624cf5;
   text-decoration: underline;
 }
+
 .nxt_btn {
   color: #ffffff;
   border-radius: 12px;
@@ -203,31 +184,44 @@ async function submitForm() {
   line-height: 32px;
   color: #2a282b;
 }
+
 .sub_text {
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
   color: #3f434a;
 }
+
+.tags_wrapper {
+  background-color: #f7f7fd;
+  border-radius: 16px;
+  width: fit-content;
+  padding: 10px 16px 10px 16px;
+}
+
 .form_container {
   border: 1px solid #e2e8f0;
   border-radius: 12px;
 }
+
 .tag_wrapper {
   background-color: #f7f7fd;
 }
+
 .info_heading {
   font-size: 24px;
   font-weight: 600;
   line-height: 32px;
   color: #0e0b26;
 }
+
 .info_head {
   font-size: 20px;
   font-weight: 600;
   line-height: 32px;
   color: #0e0b26;
 }
+
 .tags_head {
   font-size: 20px;
   font-weight: 500;
@@ -241,12 +235,14 @@ async function submitForm() {
   line-height: 20px;
   color: #6b6478;
 }
+
 .form_sub_text {
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
   color: #a29daf;
 }
+
 .tag_btn_text {
   font-size: 12px;
   font-weight: 500;

@@ -2,7 +2,7 @@
   <div>
     <p class="mt-8 header">Event Booking</p>
     <div>
-      <div class="d-flex align-center justify-between">
+      <div class="d-block d-md-flex align-center justify-between">
         <div>
           <p class="sub_header">Below is the summary of your booking</p>
         </div>
@@ -332,7 +332,17 @@ const tags = ref([
   grid-template-columns: 34% 66%;
   gap: 1.5rem;
 }
-
+@media (max-width: 1023px) and (min-width: 768px) {
+  .container {
+    grid-template-columns: 50% 50%; /* Adjust to equal halves for medium screens */
+  }
+}
+/* For screens smaller than 768px (mobile devices) */
+@media (max-width: 767px) {
+  .container {
+    grid-template-columns: 100%; /* Stack columns on top of each other for small screens */
+  }
+}
 .minus_btn {
   width: 40px;
   height: 40px;

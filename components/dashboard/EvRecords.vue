@@ -1,5 +1,5 @@
 <template>
-  <div class="px-16">
+  <div class="px-6 px-md-14">
     <div class="d-flex mb-8 align-center mt-8 justify-between">
       <p class="heading_text">Records</p>
       <v-btn flat border class="text-none px-6">

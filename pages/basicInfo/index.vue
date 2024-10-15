@@ -95,7 +95,7 @@
         Kindly let potential attendees know the location of an event (if<br />
         there is) by attaching thr right address
       </p>
-      <div>
+      <!-- <div>
         <v-radio-group  v-model="form.is_online">
           <div class="">
             <v-btn flat border class="mr-4">
@@ -106,19 +106,19 @@
             </v-btn>
           </div>
         </v-radio-group>
-      </div>
-      <div v-if="form.is_online === true" class="">
-        <input v-model="form.location" label="Streaming link (Zoom/Google Meet)"
+      </div> -->
+      <div class="">
+        <input v-model="form.online_location" label="Streaming link (Zoom/Google Meet)"
           placeholder="Enter link here" class="w-100 px-4 body2_medium dark3 input mb-4 py-2" />
       </div>
-      <div v-if="form.is_online === false" class="">  
+      <div class="">  
         <input  v-model="form.location" label="Physical address"
           placeholder="Enter the physical address here" class="w-100 px-4 body2_medium dark3 input mb-4 py-2" />
       </div>
-      <p class="body3_regular dark0">
+      <!-- <p class="body3_regular dark0">
         You would be able to add links to for streaming live or use zoom/google
         meet link
-      </p>
+      </p> -->
     </div>
     <div class="date_wrapper px-8 py-8 mt-8 form_container">
       <p class="h5_semibold dark0">Date and Time</p>
@@ -247,7 +247,7 @@ const form = reactive({
   event_type_id: "",
   location: "",
   timezone: "",
-  is_online: "",
+  is_online: false,
   is_single: ""
 });
 //validation
@@ -382,10 +382,10 @@ const savedData = () => {
   console.log("info", updatedData)
 }
 const submitForm = (form) => {
-  if (!validateForm()) return; {
+  //  if (!validateForm()) return; {
     savedData();
     router.push("/details")
-  }
+  //  }
 };
 
 
