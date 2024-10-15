@@ -15,3 +15,9 @@ export const GET_EVENT_BY_TYPE = (event_type_id) =>
   `/events/type/${event_type_id}`;
 export const GET_ALL_EVENTS_BY_ID = (id) => `/public-event/${id}`;
 export const GET_TICKETS_BY_ID = (id) => `events/tickets/${id}`;
+<<<<<<< HEAD
+
+//Account 
+export const GET_PROFILE = 'user/profile'
+=======
+>>>>>>> 0b0fc50a5923443cef75882c110fb25aac7ab6ac

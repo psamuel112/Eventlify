@@ -136,21 +136,22 @@
           <label class="body3_medium dark0">Event URL</label>
           <div class="d-flex align-center">
             <input
+            v-model="link"
             disabled
             label=""
             placeholder="entlify.com/birthday event"
             class="w-100 px-4 body2_medium dark3 input mb-4 py-2"
           />             
-          <img class="ml-n10 mt-n4" src="../../assets/images/svg/copy.svg" />
+          <img @click="copyLink" class="ml-n10 mt-n4" src="../../assets/images/svg/copy.svg" />
         </div>
         </div>
         <p class="body3_medium dark0 mb-4 mt-4">share on social media</p>
         <div class="d-flex align-center icons">
-          <img src="../../assets/images/svg/Facebook2.svg" />
-          <img src="../../assets/images/svg/Messanger.png" />
-          <img src="../../assets/images/svg/Twitter2.svg" />
-          <img src="../../assets/images/svg/Linkedin2.svg" />
-          <img src="../../assets/images/svg/Instagram2.svg" />
+          <img @click="shareOnFacebook" class="pointer" src="../../assets/images/svg/Facebook2.svg" />
+          <img class="pointer" src="../../assets/images/svg/Messanger.png" />
+          <img class="pointer" src="../../assets/images/svg/Twitter2.svg" />
+          <img class="pointer" src="../../assets/images/svg/Linkedin2.svg" />
+          <img class="pointer" src="../../assets/images/svg/Instagram2.svg" />
         </div>
       </div>
     </div>
@@ -166,6 +167,7 @@ const event = useEventStore();
 const eventId = ref("")
 
 onMounted(async () => {
+  generateLink()
   try {
     const data = await event.fetchEventsById(ID);
     eventId.value = data;
@@ -178,6 +180,27 @@ onMounted(async () => {
 const toggleEvent = () => {
   eventId.value.is_online = !eventId.value.is_online; // Toggle the online status of the event
 };
+
+const link = ref('')
+
+const generateLink = () => {
+  link.value = `localhost:3000/user-event/${ID}`
+}
+
+// Function to copy the link to clipboard
+const copyLink = () => {
+  navigator.clipboard.writeText(link.value).then(() => {
+    alert('Link copied to clipboard!')
+  }).catch(err => {
+    console.error('Failed to copy: ', err)
+  })
+}
+
+const shareOnFacebook = () => {
+  const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link.value)}`
+  window.open(facebookShareUrl, '_blank')
+}
+
 </script>
 
 <style>

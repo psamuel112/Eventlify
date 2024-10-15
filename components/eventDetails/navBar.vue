@@ -37,7 +37,7 @@
                 <div class="profile-dropdown" v-bind="props">
                   <img class="profile-pic" src="../../assets/images/svg/profilepic.svg" alt="Profile Picture" />
                   <div class="profile-name d-flex align-center">
-                    <p>Dami</p>
+                    <p>{{ account?.name || 'Guest' }}</p>
                     <v-icon class="ml-1">mdi-chevron-down</v-icon>
                   </div>
                 </div>
@@ -68,7 +68,12 @@ import { ref } from 'vue';
 import Evoverview from '~/components/dashboard/Evoverview.vue';
 import IndexVue from '~/pages/events/index.vue';
 import EvRecords from '~/components/dashboard/EvRecords.vue';
-
+defineProps({
+  account: {
+    type: Object,
+    default: null,
+  }
+});
 const tab = ref('records');
 
 const items = ref([
