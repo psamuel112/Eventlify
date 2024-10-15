@@ -8,16 +8,16 @@
       </div>
     </div>
     <div class="d-flex buttons-container gap-2 my-10 overflow-x-scroll">
-      <v-btn class="text-none" flat border @click="filterEvents(0)" >
+      <v-btn class="text-none" flat border @click="filterEvents(0)">
         <img src="../../assets/images/svg/allevent.svg" /> All Events</v-btn
       >
-      <v-btn class="text-none" flat border @click="filterEvents(1)"  >
+      <v-btn class="text-none" flat border @click="filterEvents(1)">
         <img src="../../assets/images/svg/sports.svg" /> Sports</v-btn
       >
-      <v-btn class="text-none" flat border  @click="filterEvents(2)">
-        <img src="../../assets/images/svg/music.svg"m />Music</v-btn
+      <v-btn class="text-none" flat border @click="filterEvents(2)">
+        <img src="../../assets/images/svg/music.svg" />Music</v-btn
       >
-      <v-btn class="text-none" flat border @click="filterEvents(3)" >
+      <v-btn class="text-none" flat border @click="filterEvents(3)">
         <img src="../../assets/images/svg/realestate.svg" />All Events</v-btn
       >
       <v-btn class="text-none" flat border @click="filterEvents(4)">
@@ -49,15 +49,17 @@
           :key="card"
         >
           <div class="image_wrapper">
-            <img class="card_img" v-if="card.images && card.images.length > 0" :src="card.images[0].url" />
-      
+            <img
+              class="card_img"
+              v-if="card.images && card.images.length > 0"
+              :src="card.images[0].url"
+            />
           </div>
           <div class="px-4 py-4">
             <div class="d-flex mb-4 align-center gap-4">
               <p class="body2_medium dark2">{{ card.start_time }}</p>
             </div>
             <p class="h4_semibold dark0 mb-4">{{ card.description }}</p>
-          
           </div>
         </div>
       </div>
@@ -133,26 +135,26 @@
 </template>
 
 <script setup>
-import EvHeader from "~/components/common/EvHeader.vue";
-import EvSearchInput from "~/components/common/EvSearchInput.vue";
-import eventcard1 from "../../assets/images/png/eventcard1.png";
-import eventcard2 from "../../assets/images/png/eventcard2.png";
-import eventcard3 from "../../assets/images/png/eventcard3.png";
-import eventcard4 from "../../assets/images/png/eventcard4.png";
-import frame15 from "../../assets/images/png/Frame15.png";
-import frame16 from "../../assets/images/png/Frame16.png";
-import frame17 from "../../assets/images/png/Frame17.png";
-import frame18 from "../../assets/images/png/Frame18.png";
-import event1 from "../../assets/images/png/p1.png";
-import event2 from "../../assets/images/png/p2.png";
-import event3 from "../../assets/images/png/p3.png";
-import event4 from "../../assets/images/png/p4.png";
-import { defineProps } from "vue";
-import { useEventStore } from "~/store/Event";
+import EvHeader from '~/components/common/EvHeader.vue';
+import EvSearchInput from '~/components/common/EvSearchInput.vue';
+import eventcard1 from '../../assets/images/png/eventcard1.png';
+import eventcard2 from '../../assets/images/png/eventcard2.png';
+import eventcard3 from '../../assets/images/png/eventcard3.png';
+import eventcard4 from '../../assets/images/png/eventcard4.png';
+import frame15 from '../../assets/images/png/Frame15.png';
+import frame16 from '../../assets/images/png/Frame16.png';
+import frame17 from '../../assets/images/png/Frame17.png';
+import frame18 from '../../assets/images/png/Frame18.png';
+import event1 from '../../assets/images/png/p1.png';
+import event2 from '../../assets/images/png/p2.png';
+import event3 from '../../assets/images/png/p3.png';
+import event4 from '../../assets/images/png/p4.png';
+import { defineProps } from 'vue';
+import { useEventStore } from '~/store/Event';
 const event = useEventStore();
-const allEvents = ref("");
-const typeEvent = ref("");
-const ticket = ref("")
+const allEvents = ref('');
+const typeEvent = ref('');
+const ticket = ref('');
 onMounted(async () => {
   loadData();
 });
@@ -161,11 +163,13 @@ async function loadData(event_type_id) {
   try {
     const data = await event.fetchAllEvents();
     allEvents.value = data.data.data;
-    console.log("events", allEvents);
+    console.log('events', allEvents);
     if (event_type_id) {
-      const filteredEvents = allEvents.value.filter(event => event.event_type_id === event_type_id);
+      const filteredEvents = allEvents.value.filter(
+        (event) => event.event_type_id === event_type_id
+      );
       allEvents.value = filteredEvents;
-      console.log("Filtered events", allEvents);
+      console.log('Filtered events', allEvents);
     } else {
       allEvents.value = allEvents.value;
     }
@@ -177,94 +181,94 @@ function filterEvents(event_type_id) {
   loadData(event_type_id);
 }
 
-import { ref } from "vue";
+import { ref } from 'vue';
 definePageMeta({
-  layout: "user-event",
+  layout: 'user-event',
 });
 
-const selectedOption = ref("option1");
+const selectedOption = ref('option1');
 
 const cards = ref([
   {
     id: 1,
-    time: "8:45AMApr (WAT)",
-    note: "The Beginning of financial freedom for you",
+    time: '8:45AMApr (WAT)',
+    note: 'The Beginning of financial freedom for you',
     img: eventcard1,
-    price: "N8,000",
-    state_color: "green",
-    state_text: "Today",
+    price: 'N8,000',
+    state_color: 'green',
+    state_text: 'Today',
   },
   {
     id: 2,
-    time: "8:45AMApr (WAT)",
-    note: "Celebrating the Co-Founder’s birthday",
+    time: '8:45AMApr (WAT)',
+    note: 'Celebrating the Co-Founder’s birthday',
     img: eventcard2,
-    price: "N8,000",
-    state_text: "Trending",
-    state_color: "red",
+    price: 'N8,000',
+    state_text: 'Trending',
+    state_color: 'red',
   },
   {
     id: 3,
-    time: "8:45AMApr (WAT)",
-    note: "The Art of Digital Marketing for better conversion",
+    time: '8:45AMApr (WAT)',
+    note: 'The Art of Digital Marketing for better conversion',
     img: eventcard3,
-    price: "N8,000",
-    state_text: "Trending",
-    state_color: "red",
+    price: 'N8,000',
+    state_text: 'Trending',
+    state_color: 'red',
   },
 ]);
 
 const followCards = ref([
   {
     img: frame15,
-    name: "Realvest",
-    followers: "25k Followers",
-    follow_btn: "Follow",
+    name: 'Realvest',
+    followers: '25k Followers',
+    follow_btn: 'Follow',
   },
   {
     img: frame16,
-    name: "Rewin Studio",
-    followers: "25k Followers",
-    follow_btn: "Follow",
+    name: 'Rewin Studio',
+    followers: '25k Followers',
+    follow_btn: 'Follow',
   },
   {
     img: frame17,
-    name: "DC&Marvel",
-    followers: "25k Followers",
-    follow_btn: "Follow",
+    name: 'DC&Marvel',
+    followers: '25k Followers',
+    follow_btn: 'Follow',
   },
   {
     img: frame15,
-    name: "Arc Villa",
-    followers: "25k Followers",
-    follow_btn: "Follow",
+    name: 'Arc Villa',
+    followers: '25k Followers',
+    follow_btn: 'Follow',
   },
 ]);
 
 const moreEvents = ref([
   {
     img: event1,
-    name: "Gyutaro Reign: Holiday Special",
-    date: "Dec 31, 10:00 PM (WAT)",
-    price: "₦8,000",
+    name: 'Gyutaro Reign: Holiday Special',
+    date: 'Dec 31, 10:00 PM (WAT)',
+    price: '₦8,000',
   },
   {
     img: event2,
-    name: "Gyutaro Reign: Holiday Special",
-    date: "Dec 31, 10:00 PM (WAT)",
-    price: "₦8,000",
+    name: 'Gyutaro Reign: Holiday Special',
+    date: 'Dec 31, 10:00 PM (WAT)',
+    price: '₦8,000',
   },
   {
     img: event3,
-    name: "Gyutaro Reign: Holiday Special",
-    date: "Dec 31, 10:00 PM (WAT)",
-    price: "₦8,000",
+    name: 'Gyutaro Reign: Holiday Special',
+    date: 'Dec 31, 10:00 PM (WAT)',
+    price: '₦8,000',
   },
   {
     img: event4,
-    name: "Gyutaro Reign: Holiday Special",
-    date: "Dec 31, 10:00 PM (WAT)",
-    price: "₦8,000",
+    name: 'Gyutaro Reign: Holiday Special',
+    date: 'Dec 31, 10:00 PM (WAT)',
+    price: '₦8,000',
   },
 ]);
 const router = useRouter();
