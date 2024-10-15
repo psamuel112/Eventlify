@@ -49,14 +49,14 @@
             {{ singleEvent.additional_info }}
           </p>
         </div>
-        <!-- <div>
+        <div>
           <p class="h5_semibold dark0  my-6">Tags</p>
           <div class="d-flex gap-4 flex-wrap">
             <div v-for="(tag, index) in singleEvent.tags" :key="index" class="tags_wrapper d-flex">
-              <p class="body3_medium dark1">{{ tag }}</p>
+              <p class="body3_medium dark1">#{{ tag }}</p>
             </div>
           </div>
-        </div> -->
+        </div>
         <div>
           <p class="h5_semibold dark0 my-6">Organizer</p>
           <div class="more_event justify-between py-4 px-4 align-center d-flex">
@@ -82,7 +82,7 @@
         </div>
         <div class="ticket_wrapper mt-12 px-6 py-6">
           <p class="body3_medium dark3">Ticket base price</p>
-          <p class="h4_bold purple50 mb-6">₦8,000</p>
+          <p v-for="(ticket, index) in ticket" :key="index" class="h4_bold purple50 mb-6">₦{{  ticket.price }}</p>
           <div class="d-flex gap-2 px-6 py-6 ticket_note_container">
             <img src="../../assets/images/svg/ticketnote.svg" alt="" />
             <p class="body3_medium yellow">
@@ -93,10 +93,7 @@
           <div class="py-6">
             <v-divider border-opacity-100></v-divider>
           </div>
-          <nuxt-link to="/event-booking-tickets">
-            <v-btn border flat class="w-100  follow_btn text-none"> Buy Ticket </v-btn>
-          </nuxt-link>
-
+            <v-btn @click="eventBooking(singleEvent.id)" border flat class="w-100  follow_btn text-none"> Buy Ticket </v-btn>
         </div>
       </div>
     </div>
@@ -133,7 +130,7 @@ import eventcard2 from "../../assets/images/png/eventcard2.png";
 import eventcard3 from "../../assets/images/png/eventcard3.png";
 import eventcard4 from "../../assets/images/png/eventcard4.png";
 definePageMeta({
-  layout: "event-details",
+  layout: "user-event",
 });
 
 import { useEventStore } from "~/store/Event";
@@ -154,7 +151,6 @@ onMounted(async () => {
   } catch (error) {
     console.log(error);
   } finally {
-
   }
 });
 
@@ -220,6 +216,9 @@ const cards = ref([
 const router = useRouter();
 const navigateToCard = (id) => {
   router.push(`/user-event/${id}`);
+}
+const eventBooking = (id) => {
+  router.push(`/user-event/event-booking/${id}`)
 };
 
 </script>
