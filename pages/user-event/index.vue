@@ -8,25 +8,25 @@
       </div>
     </div>
     <div class="d-flex buttons-container gap-2 my-10 overflow-x-scroll">
-      <v-btn class="text-none" flat border @click="filterEvents(0)">
+      <v-btn class="text-none" flat border @click="filterEvents(null)">
         <img src="../../assets/images/svg/allevent.svg" /> All Events</v-btn
       >
+      <v-btn class="text-none" flat border @click="filterEvents(0)">
+        <img src="../../assets/images/svg/sports.svg" />Conference</v-btn
+      >
       <v-btn class="text-none" flat border @click="filterEvents(1)">
-        <img src="../../assets/images/svg/sports.svg" /> Sports</v-btn
+        <img src="../../assets/images/svg/music.svg" />Meetup</v-btn
       >
       <v-btn class="text-none" flat border @click="filterEvents(2)">
-        <img src="../../assets/images/svg/music.svg" />Music</v-btn
+        <img src="../../assets/images/svg/realestate.svg" />Workshop</v-btn
       >
       <v-btn class="text-none" flat border @click="filterEvents(3)">
-        <img src="../../assets/images/svg/realestate.svg" />All Events</v-btn
+        <img src="../../assets/images/svg/businesses.svg" />Webinars</v-btn
       >
       <v-btn class="text-none" flat border @click="filterEvents(4)">
-        <img src="../../assets/images/svg/businesses.svg" />Businesses</v-btn
+        <img src="../../assets/images/svg/finance.svg" />Concert</v-btn
       >
-      <v-btn class="text-none" flat border>
-        <img src="../../assets/images/svg/finance.svg" />Finance</v-btn
-      >
-      <v-btn class="text-none" flat border>
+      <!-- <v-btn class="text-none" flat border>
         <img src="../../assets/images/svg/art.svg" />Art</v-btn
       >
       <v-btn class="text-none" flat border>
@@ -34,7 +34,7 @@
       >
       <v-btn class="text-none" flat border>
         <img src="../../assets/images/svg/academics.svg" />Academics</v-btn
-      >
+      > -->
     </div>
     <div class="d-flex justify-between align-center">
       <p class="h5_semibold purple90">Popular events</p>

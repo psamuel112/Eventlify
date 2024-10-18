@@ -92,7 +92,6 @@
       <ev-pagination
         :currentPage="currentPage"
         :totalRecords="total"
-        :perPage="1"
         @onchange="handlePaginateEvent"
       />
     </div>
@@ -117,7 +116,7 @@ const perPage = ref(1);
 const currentPage = ref(1);
 
 onMounted(async () => {
-  loadData({ page: 1, perPage: 1 });
+  loadData({ page: 1, perPage: 6 });
 });
 definePageMeta({
   layout: 'dashboard',
@@ -139,7 +138,7 @@ async function loadData(e) {
 
 async function handlePaginateEvent(e) {
   console.log(e);
-  loadData({ page: e, perPage: 1 });
+  loadData({ page: e, perPage: 6 });
 }
 
 const selectedOption = ref('option1');

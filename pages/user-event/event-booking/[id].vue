@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="ticket">
     <p class="mt-8 header">Event Booking</p>
     <div>
       <div class="d-block d-md-flex align-center justify-between">
@@ -63,7 +63,7 @@
               <div>
                 <p class="date_card_text">{{ formatDate(singleEvent.start_date) }}</p>
                 <p v-if="singleEvent.start_time && singleEvent.end_time" class="about_text">{{
-                  convertTo12Hour(singleEvent.start_time) }}- {{
+                  convertTo12Hour(singleEvent.start_time) }} - {{
                     convertTo12Hour(singleEvent.end_time) }}</p>
               </div>
               <div>
@@ -86,11 +86,12 @@
           <p class="header my-4">Personal Data</p>
           <div>
             <div class="d-md-flex gap-4">
-              <input placeholder="First name" type="text" class="w-100 mt-2 input px-2 py-2" />
-              <input placeholder="Last name" type="text" class="w-100 mt-2 input px-2 py-2" />
+              <input v-model="form.first_name" placeholder="First name" type="text"
+                class="w-100 mt-2 input px-2 py-2" />
+              <input v-model="form.last_name" placeholder="Last name" type="text" class="w-100 mt-2 input px-2 py-2" />
             </div>
-            <input placeholder="Email address" type="text" class="w-100 mt-2 input px-2 py-2" />
-            <input placeholder="Phone number" type="text" class="w-100 mt-2 input px-2 py-2" />
+            <input v-model="form.email" placeholder="Email address" type="text" class="w-100 mt-2 input px-2 py-2" />
+            <input v-model="form.phone" placeholder="Phone number" type="text" class="w-100 mt-2 input px-2 py-2" />
           </div>
           <div>
             <div class="">
@@ -126,101 +127,162 @@
                   </div>
                 </template></v-checkbox>
             </div>
-            <v-btn @click="state = 'ticket'" :disabled="!isenable" block flat border class="text-none" size="large"
+            <v-btn @click="handleContinue" :disabled="!isenable" block flat border class="text-none" size="large"
               color="#624cf5">
               Continue
             </v-btn>
           </div>
         </div>
 
-        <div v-if="state == 'ticket'" class="wrapper px-6 py-6">
+        <div v-if="state == 'ticket'" class="wrapper  px-6 py-6">
           <p class="my-4 header">Select Tickets</p>
-         
-         <div class="d-flex">
-          <div @click="addTicket('Regular')" class="d-flex gap-4 pointer">
-              <div class="ticket relative">
-                <div class="px-6 py-6 absolute">
-                  <img class="" :src="purpleticket" />
-                  <p class="ticket_title mt-3">lllk</p>
-                  <p class="ticket_note mb-3 mt-1">kkk</p>
-                  <div class="dashed-line"></div>
-                  <p class="ticket_price mt-3">
-                    kkk<span>/person</span>
-                  </p>
+          <div v-for="(ticket, index) in tickets" :key="index">
+            <div class="d-flex">
+              <div @click="addTicket(ticket.name)" class="gap-4 pointer">
+                <div class="ticket relative">
+                  <div class="px-6 py-6 absolute">
+                    <img class="" :src="purpleticket" />
+                    <p class="ticket_title mt-3">{{ ticket.name }}</p>
+                    <p class="ticket_note mb-3 mt-1">{{ ticket.plan }}</p>
+                    <div class="dashed-line"></div>
+                    <p class="ticket_price mt-3">
+                      {{ ticket.price }}<span>/person</span>
+                    </p>
+                  </div>
+                  <img class="" :src="purpleframe" />
                 </div>
-                <img class="" :src="purpleframe" />
               </div>
             </div>
-
-            <div @click="addTicket('Vip')" class="d-flex gap-4">
-              <div class="ticket relative">
-                <div class="px-6 py-6 absolute">
-                  <img class="" :src="purpleticket" />
-                  <p class="ticket_title mt-3">kkko</p>
-                  <p class="ticket_note mb-3 mt-1">knmkl</p>
-                  <div class="dashed-line"></div>
-                  <p class="ticket_price mt-3">
-                    pomlkm<span>/person</span>
-                  </p>
-                </div>
-                <img class="" :src="purpleframe" />
-              </div>
-            </div>
-
-            <div @click="addTicket('Student')" class="d-flex gap-4">
-              <div class="ticket relative">
-                <div class="px-6 py-6 absolute">
-                  <img class="" :src="purpleticket" />
-                  <p class="ticket_title mt-3">jknj</p>
-                  <p class="ticket_note mb-3 mt-1">jkij</p>
-                  <div class="dashed-line"></div>
-                  <p class="ticket_price mt-3">
-                    jmkk<span>/person</span>
-                  </p>
-                </div>
-                <img class="" :src="purpleframe" />
-              </div>
-            </div>
-
-            <div @click="addTicket('Senior')" class="d-flex gap-4">
-              <div class="ticket relative">
-                <div class="px-6 py-6 absolute">
-                  <img class="" :src="purpleticket" />
-                  <p class="ticket_title mt-3">mhjm</p>
-                  <p class="ticket_note mb-3 mt-1">yvuj</p>
-                  <div class="dashed-line"></div>
-                  <p class="ticket_price mt-3">
-                    lkjn<span>/person</span>
-                  </p>
-                </div>
-                <img class="" :src="purpleframe" />
-              </div>
-            </div>
-            
-         </div>
-          <div> 
-            <!-- Display ticket count for each selected ticket type -->
-            <div v-for="(ticket, index) in selectedTickets" :key="index"
-              class="ticket-section mt-4 d-flex align-center justify-between">
-              <p>{{ ticket.type }} Tickets</p>
-              <div class="d-flex mx-auto align-center">
-                <button @click="decreaseCount(ticket.type)" class="minus_btn">-</button>
-                <div class="counter">
-                  <p class="mt-2 text-center">{{ getTicketCount(ticket.type) }}</p>
-                </div>
-                <button @click="increaseCount(ticket.type)" class="plus_btn">+</button>
-                <img @click="removeTicket(ticket.type)" class="ml-2 delete-icon"
-                  src="../../../assets/images/svg/delete.svg" alt="Remove ticket" />
-              </div>
-              <p class="price_text text-right">₦{{ getTicketPrice(ticket.type) }}</p>
+            <div class="d-flex mb-4 justify-space-between align-center">
+              <p>{{ ticket.plan }} Tickets</p>
+              <input class="ticket-input" v-model="form.tickets[index].quantity" type="number" />
             </div>
           </div>
+          <!-- <div class="d-flex ticket-container" v-for="(tickets, index) in ticket" :key="index">
+            <div class="">
+              <div class="" v-if="tickets.plan === 'regular'">
+                <div @click="addTicket('Regular')" class=" gap-4 pointer">
+                  <div class="ticket relative">
+                    <div class="px-6 py-6 absolute">
+                      <img class="" :src="purpleticket" />
+                      <p class="ticket_title mt-3">{{ tickets.name }}</p>
+                      <p class="ticket_note mb-3 mt-1">{{ tickets.plan }}</p>
+                      <div class="dashed-line"></div>
+                      <p class="ticket_price mt-3">
+                        {{ tickets.price }}<span>/person</span>
+                      </p>
+                    </div>
+                    <img class="" :src="purpleframe" />
+                  </div>
+                </div>
+              
+
+              <div v-if="tickets.plan === 'vip'">
+                <div @click="addTicket('Vip')" class="">
+                  <div class="ticket relative">
+                    <div class="px-6 py-6 absolute">
+                      <img class="" :src="purpleticket" />
+                      <p class="ticket_title mt-3">{{ tickets.name }}</p>
+                      <p class="ticket_note mb-3 mt-1">{{ tickets.plan }}</p>
+                      <div class="dashed-line"></div>
+                      <p class="ticket_price mt-3">
+                        {{ tickets.price }}<span>/person</span>
+                      </p>
+                    </div>
+                    <img class="" :src="purpleframe" />
+                  </div>
+                </div>
+              </div>
+
+              <div v-if="ticket.plan === 'vvip'">
+                <div @click="addTicket('Student')" class="">
+                  <div class="ticket relative">
+                    <div class="px-6 py-6 absolute">
+                      <img class="" :src="purpleticket" />
+                      <p class="ticket_title mt-3">{{ tickets.name }}</p>
+                      <p class="ticket_note mb-3 mt-1">{{ tickets.plan }}</p>
+                      <div class="dashed-line"></div>
+                      <p class="ticket_price mt-3">
+                        {{ tickets.price }}<span>/person</span>
+                      </p>
+                    </div>
+                    <img class="" :src="purpleframe" />
+                  </div>
+                </div>
+              </div>
+
+              <div v-if="tickets.plan === 'tables'">
+                <div @click="addTicket('Senior')" class="">
+                  <div class="ticket relative">
+                    <div class="px-6 py-6 absolute">
+                      <img class="" :src="purpleticket" />
+                      <p class="ticket_title mt-3">{{ tickets.name }}</p>
+                      <p class="ticket_note mb-3 mt-1">{{ tickets.plan }}</p>
+                      <div class="dashed-line"></div>
+                      <p class="ticket_price mt-3">
+                        {{ tickets.price }}<span>/person</span>
+                      </p>
+                    </div>
+                    <img class="" :src="purpleframe" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div> -->
+
+          <!-- Display ticket count for each selected ticket type -->
+          <!-- <div class="d-flex mb-4 justify-space-between align-ccenter" v-if="tickets.plan === 'regular'">
+              <p>{{ tickets.plan }} Tickets</p>
+              <input
+              class="ticket-input"
+              v-model="form.tickets.quantity"
+              type="number" />
+              <p v-if="form.tickets.quantity > 0" class="price_text text-right">Price:  ₦{{ multipliedResult(tickets.price, form.tickets.quantity) }}</p>
+            </div> -->
+
+          <!-- <div class="d-flex mb-4 justify-space-between align-center" v-if="tickets.plan === 'vip'">
+              <p>{{ tickets.plan }} Tickets</p>
+              <input class="ticket-input" v-model="form.tickets.quantity" type="number" />
+              <p v-if="form.tickets.quantity > 0" class="price_text text-right">Price: ₦{{
+                multipliedResult(tickets.price,
+                form.tickets.quantity) }}</p>
+            </div>
+
+            <div class="d-flex mb-4 justify-space-between align-center" v-if="tickets.plan === 'vvip'">
+              <p>{{ tickets.plan }} Tickets</p>
+              <input class="ticket-input" v-model="form.tickets.quantity" type="number" />
+            </div>
+
+
+            <div class="d-flex justify-space-between align-center" v-if="ticket.plan === 'tables'">
+              <p>{{ tickets.plan }} Tickets</p>
+              <input class="ticket-input" v-model="form.tickets.quantity" type="number" />
+            </div> -->
+
+          <!-- <div 
+              class="ticket-section mt-4 d-flex align-center justify-between">
+              <p>{{ ticketss.plan }} Tickets</p>
+              <div class="d-flex mx-auto align-center">
+                <button class="minus_btn">-</button>
+                <div class="counter">
+                  <input
+                  type="number" />
+                </div>
+                <button class="plus_btn">+</button>
+                <img class="ml-2 delete-icon"
+                  src="../../../assets/images/svg/delete.svg" alt="Remove ticket" />
+              </div>
+              <p class="price_text text-right">₦{{ getTicketPrice(ticketss.price) }}</p>
+            </div> -->
+
+
           <div class="line mt-8 mb-8"></div>
           <div class="d-flex justify-between align-center">
             <p class="section_title">Total Amount</p>
             <p class="ticket_price">₦16,000</p>
           </div>
-          <v-btn block @click="state = 'summary'" flat border class="text-none mt-8" size="large" color="#624cf5">
+          <v-btn block @click="submitTicket" flat border class="text-none mt-8" size="large" color="#624cf5">
             Continue
           </v-btn>
         </div>
@@ -239,10 +301,11 @@
                   <p class="mb-4">Time</p>
                 </div>
                 <div class="text-right">
-                  <p class="mb-4">The CEO’s birthday</p>
-                  <p class="mb-4">Pertinence Place, Egbeda, Lagos</p>
-                  <p class="mb-4">Saturday, 31 July 2023</p>
-                  <p class="mb-4">7:00PM (WAT)</p>
+                  <p class="mb-4">{{ singleEvent.name }}</p>
+                  <p class="mb-4"> {{ singleEvent.location }}</p>
+                  <p class="mb-4">{{ formatDate(singleEvent.start_date) }}</p>
+                  <p class="mb-4">{{
+                    convertTo12Hour(singleEvent.start_time) }}</p>
                 </div>
               </div>
             </div>
@@ -284,15 +347,36 @@ import darkticket from "../../assets/images/svg/darkticket.svg";
 import paystack from "vue3-paystack";
 import { nanoid } from "nanoid"; // if using nanoid
 import { useEventStore } from "~/store/Event";
+import { useEventBookingStore } from '~/store/EventBooking';
+import { useRoute } from "nuxt/app";
+
+const booking = useEventBookingStore();
 definePageMeta({
   layout: "user-event",
 });
-import { useRoute } from "nuxt/app";
-const ticket = ref("")
+
+const ticket = ref({})
 const route = useRoute();
 const ID = route.params.id;
 const singleEvent = ref("");
 const event = useEventStore();
+
+const form = ref(
+  {
+    email: "",
+    phone: "",
+    last_name: "",
+    first_name: "",
+    event_id: "",
+    tickets: [
+      {
+        ticket_id: "",
+        quantity: 0
+      }
+    ],
+    payment_method: ""
+  })
+
 onMounted(async () => {
   try {
     const data = await event.fetchAllEventsById(ID);
@@ -306,6 +390,26 @@ onMounted(async () => {
   } finally {
   }
 });
+
+// calculate ticket  price
+const multipliedResult = (price, quantity) => {
+  return quantity * price;
+};
+//Submit booking details
+async function submitForm() {
+  try {
+    const response = await booking.eventBooking(form.value);
+    if (response) {
+      // Navigate to dashboard
+      // route.push('/dashboard');
+    }
+  } catch (error) {
+    console.error('Error logging in:', error);
+  }
+}
+function submitTicket() {
+  console.log('site')
+}
 
 const formatMonth = (fullDateString) => {
   const date = new Date(fullDateString);
@@ -364,58 +468,43 @@ function onCancelledPayment() {
 const state = ref("personalData");
 const model = ref(null);
 const isenable = ref(true);
-const ticketss = ref([
-  {
-    title: "Regular",
-    note: "Admission to the in-person drink & draw.",
-    price: "₦8,000",
-    img: purpleticket,
-    frame: purpleframe,
-  },
-  {
-    title: "Regular",
-    note: "Admission to the in-person drink & draw.",
-    price: "₦8,000",
-    img: purpleticket,
-    frame: purpleframe,
-  },
-  {
-    title: "Regular",
-    note: "Admission to the in-person drink & draw.",
-    price: "₦8,000",
-    img: darkticket,
-    frame: darkframe,
-  },
-]);
 
+const handleContinue = () => {
+  // You can add any validation or actions here before transitioning to 'ticket'
+  if (isenable.value) {
+    state.value = 'ticket'; // Change the state
+    saveForm()
+    // Additional actions can be performed here, like logging or analytics
+  }
+};
 
 const tickets = ref([
-  { type: 'Regular', count: 0, price: 6000 },
-  { type: 'Vip', count: 0, price: 10000 },
-  { type: 'Student', count: 0, price: 3000 },
+  { type: 'Regular', count: 0, price: 0 },
+  { type: 'Vip', count: 0, price: 0 },
+  { type: 'Student', count: 0, price: 0 },
   { type: 'Senior', count: 0, price: 2000 }
 ])
 
-const removeTicket = (type) => {
-  selectedTickets.value = selectedTickets.value.filter(t => t.type !== type)
-}
-// State to hold the currently selected tickets
-const selectedTickets = ref([])
+// const removeTicket = (type) => {
+//   selectedTickets.value = selectedTickets.value.filter(t => t.type !== type)
+// }
+// // State to hold the currently selected tickets
+// const selectedTickets = ref([])
 
-// Methods to increase and decrease ticket counts
-const increaseCount = (type) => {
-  const ticket = tickets.value.find(t => t.type === type)
-  if (ticket) {
-    ticket.count++
-  }
-}
+// // Methods to increase and decrease ticket counts
+// const increaseCount = (type) => {
+//   const ticket = tickets.value.find(t => t.type === type)
+//   if (ticket) {
+//     ticket.count++
+//   }
+// }
 
-const decreaseCount = (type) => {
-  const ticket = tickets.value.find(t => t.type === type)
-  if (ticket && ticket.count > 0) {
-    ticket.count--
-  }
-}
+// const decreaseCount = (type) => {
+//   const ticket = tickets.value.find(t => t.type === type)
+//   if (ticket && ticket.count > 0) {
+//     ticket.count--
+//   }
+// }
 
 // Add a ticket type to the selectedTickets array if it hasn't been selected yet
 const addTicket = (type) => {
@@ -426,15 +515,57 @@ const addTicket = (type) => {
 }
 
 // Getters to retrieve ticket count and price dynamically
-const getTicketCount = (type) => {
-  const ticket = tickets.value.find(t => t.type === type)
-  return ticket ? ticket.count : 0
-}
+// const getTicketCount = (type) => {
+//   const ticket = tickets.value.find(t => t.type === type)
+//   return ticket ? ticket.count : 0
+// }
+// const getTicketPrice = function (type) {
+//   // Check if ticket.value has been populated by the backend
+//   if (!ticket.value || !ticket.value.price) {
+//     console.log("Ticket data is not available yet.");
+//     return 0;
+//   }
 
-const getTicketPrice = (type) => {
-  const ticket = tickets.value.find(t => t.type === type)
-  return ticket ? ticket.price * ticket.count : 0
+//   // Assuming selectedTickets has a type and quantity
+//   var selectedTicket = selectedTickets.value.find(function (ticket) {
+//     return ticket.type === type;
+//   });
+
+//   // Check if the selected ticket exists
+//   if (selectedTicket) {
+//     var totalPrice = ticket.value.price * selectedTicket.count;
+//     console.log("Ticket Type: " + type + ", Price: " + ticket.value.price + ", Quantity: " + selectedTicket.count + ", Total Price: " + totalPrice);
+//     return totalPrice;
+//   }
+
+//   console.log("Ticket Type: " + type + " is either not selected or has no quantity.");
+//   return 0;
+// };
+
+onMounted(() => {
+  const savedForm = JSON.parse(localStorage.getItem("formData"));
+  if (savedForm) {
+    Object.assign(form, savedForm);
+  }
+});
+
+
+const savedData = () => {
+  const currentData = JSON.parse(localStorage.getItem("form")) ||
+    {};
+  const updatedData = {
+    ...currentData,
+    ...form
+  }
+  localStorage.setItem("form", JSON.stringify(updatedData))
+  console.log("info", updatedData)
 }
+const saveForm = (form) => {
+  //  if (!validateForm()) return; {
+  savedData();
+  //  }
+};
+
 </script>
 
 <style lang="scss" scoped>
@@ -483,6 +614,14 @@ const getTicketPrice = (type) => {
   width: 144px;
 }
 
+.ticket-input {
+  border: 1px solid #D7DFEA;
+  width: 56px;
+  height: 40px;
+
+
+}
+
 .plus_btn {
   width: 40px;
   height: 40px;
@@ -501,6 +640,10 @@ const getTicketPrice = (type) => {
 
 .ticket {
   max-width: 164px;
+}
+
+.flex {
+  display: flex;
 }
 
 .dashed-line {

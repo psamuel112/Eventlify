@@ -2,13 +2,13 @@
   <div class="pagination-container">
     <div class="pagination-md">
       <a href="#" class="pagination-arrow" @click="newPage(pages.prev)">
-        <img src="@/assets/svg/caret-left-black.svg" alt="" />
+        <img src="../../assets/svg/caret-left-black.svg" alt="" />
       </a>
 
       <p class="pagination-text">Page {{ currentPage }} of {{ maxPages }}</p>
 
       <a href="#" class="pagination-arrow" @click="newPage(pages.next)">
-        <img src="@/assets/images/svg/caret-right-black.svg" alt="" />
+        <img src="../../assets/images/svg/caret-right-black.svg" alt="" />
       </a>
     </div>
 
@@ -16,7 +16,7 @@
       <nav aria-label="Pagination" class="pagination">
         <a href="#" class="pagination-arrow" @click="newPage(pages.prev)">
           <div class="pagination-gap">
-            <img src="@/assets/images/svg/caret-left-black.svg" alt="" />
+            <img src="../../assets/images/svg/caret-left-black.svg" alt="" />
           </div>
         </a>
         <div class="pagination-button-container">
@@ -34,7 +34,7 @@
 
         <a href="#" class="pagination-arrow" @click="newPage(pages.next)">
           <div class="pagination-gap">
-            <img src="@/assets/images/svg/caret-right-black.svg" alt="" />
+            <img src="../../assets/images/svg/caret-right-black.svg" alt="" />
           </div>
         </a>
       </nav>

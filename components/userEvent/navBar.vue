@@ -5,7 +5,7 @@
         <img src="../../assets/images/png/Logo.png" alt="" />
       </div>
       <div class="nav-links mt-2 d-flex gap-8">
-        <NuxtLink to="overview" class="nav-item" @click="tab = 'overview'">
+        <NuxtLink to="/dashboard" class="nav-item" @click="tab = 'overview'">
           <img
               class="pr-1"
               src="../../assets/images/svg/home.svg"
@@ -64,6 +64,7 @@
       </div>
     </div>
     <div class="divider-line"></div>
+    
   </div>
 </template>
 

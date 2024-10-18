@@ -82,7 +82,10 @@
         </div>
         <div class="ticket_wrapper mt-12 px-6 py-6">
           <p class="body3_medium dark3">Ticket base price</p>
-          <p v-for="(ticket, index) in ticket" :key="index" class="h4_bold purple50 mb-6">₦{{  ticket.price }}</p>
+          
+          <div  v-for="(ticket, index) in ticket" :key="index" >
+            <p v-if="ticket.plan === 'regular'" class="h4_bold purple50 mb-6">₦{{  ticket.price || ticket.price }}</p>
+          </div>
           <div class="d-flex gap-2 px-6 py-6 ticket_note_container">
             <img src="../../assets/images/svg/ticketnote.svg" alt="" />
             <p class="body3_medium yellow">
@@ -134,7 +137,9 @@ definePageMeta({
 });
 
 import { useEventStore } from "~/store/Event";
+import { useEventBookingStore } from '~/store/EventBooking';
 import { useRoute } from "nuxt/app";
+const booking = useEventBookingStore();
 const ticket = ref("")
 const route = useRoute();
 const ID = route.params.id;
@@ -167,26 +172,22 @@ function convertTo12Hour(timeString) {
   return `${hour12}:${minutes} ${period}`;
 }
 
-const tags = ref([
-  {
-    name: "#birthday2023",
-  },
-  {
-    name: "#theCEO",
-  },
-  {
-    name: "#Realvestevents",
-  },
-  {
-    name: "#Onecommunity",
-  },
-  {
-    name: "#billionCEO",
-  },
-  {
-    name: "##Wiseze23",
-  },
-]);
+
+async function submitForm() {
+  try {
+    const response = await booking.eventBooking(form.value);
+    if (response) {
+      // Navigate to dashboard
+      router.push('/dashboard');
+    }
+  } catch (error) {
+    console.error('Error logging in:', error);
+  }
+}
+
+
+
+
 const cards = ref([
   {
     time: "8:45AMApr (WAT)",
