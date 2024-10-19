@@ -342,8 +342,6 @@
 import Paystack from "~/components/payment/paystack.vue";
 import purpleframe from "../../../assets/images/png/Subtract.png";
 import purpleticket from "../../../assets/images/svg/buyticket.svg";
-import darkframe from "/../../../assets/images/png/darkframe.png";
-import darkticket from "../../../assets/images/svg/darkticket.svg";
 import paystack from "vue3-paystack";
 import { nanoid } from "nanoid"; // if using nanoid
 import { useEventStore } from "~/store/Event";
