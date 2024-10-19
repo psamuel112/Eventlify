@@ -2,13 +2,13 @@
   <div class="pagination-container">
     <div class="pagination-md">
       <a href="#" class="pagination-arrow" @click="newPage(pages.prev)">
-        <img src="../../assets/svg/caret-left-black.svg" alt="" />
+        &#60;
       </a>
 
       <p class="pagination-text">Page {{ currentPage }} of {{ maxPages }}</p>
 
       <a href="#" class="pagination-arrow" @click="newPage(pages.next)">
-        <img src="../../assets/images/svg/caret-right-black.svg" alt="" />
+        &#62;
       </a>
     </div>
 
@@ -16,17 +16,12 @@
       <nav aria-label="Pagination" class="pagination">
         <a href="#" class="pagination-arrow" @click="newPage(pages.prev)">
           <div class="pagination-gap">
-            <img src="../../assets/images/svg/caret-left-black.svg" alt="" />
+            &#60;
           </div>
         </a>
         <div class="pagination-button-container">
           <span v-for="(n, i) in pages?.items" :key="i">
-            <a
-              href="#"
-              class="pagination-page"
-              :class="{ 'pagination-active': current === n }"
-              @click="newPage(n)"
-            >
+            <a href="#" class="pagination-page" :class="{ 'pagination-active': current === n }" @click="newPage(n)">
               {{ n }}
             </a>
           </span>
@@ -34,7 +29,7 @@
 
         <a href="#" class="pagination-arrow" @click="newPage(pages.next)">
           <div class="pagination-gap">
-            <img src="../../assets/images/svg/caret-right-black.svg" alt="" />
+            &#62;
           </div>
         </a>
       </nav>
@@ -146,6 +141,7 @@ export default {
 .pagination {
   display: flex;
 }
+
 .pagination-container {
   display: flex;
   justify-content: flex-end;
