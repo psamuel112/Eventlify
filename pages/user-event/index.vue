@@ -41,6 +41,17 @@
       <p class="h6_bold purple90">See all</p>
     </div>
     <div>
+      <div>
+        <div class="event pl-4 ga-4 pl-md-4 card_img pointer card_container" v-if="loading">
+          <skeletonLoader 
+            class="card_img ga-8" 
+            v-for="index in 3" 
+            :key="index" 
+            :loaderWidth="imageWidth" 
+            :loaderHeight="imageHeight"
+          />
+        </div>
+      </div>
       <div class="card_container pointer gap-4 mb-10 mt-6">
         <div
           @click="navigateToCard(card.id)"
@@ -131,11 +142,13 @@
         </div>
       </div>
     </div>
+    <Loader v-if="isLoading" />
   </div>
 </template>
 
 <script setup>
 import EvHeader from '~/components/common/EvHeader.vue';
+import Loader from "~/components/common/loader.vue";
 import EvSearchInput from '~/components/common/EvSearchInput.vue';
 import eventcard1 from '../../assets/images/png/eventcard1.png';
 import eventcard2 from '../../assets/images/png/eventcard2.png';
@@ -150,9 +163,12 @@ import event2 from '../../assets/images/png/p2.png';
 import event3 from '../../assets/images/png/p3.png';
 import event4 from '../../assets/images/png/p4.png';
 import { defineProps } from 'vue';
+import skeletonLoader from '~/components/common/skeletonLoader.vue';
 import { useEventStore } from '~/store/Event';
 const event = useEventStore();
 const allEvents = ref('');
+const loading = ref(true);
+const isLoading = ref(false)
 const typeEvent = ref('');
 const ticket = ref('');
 onMounted(async () => {
@@ -161,14 +177,19 @@ onMounted(async () => {
 
 async function loadData(event_type_id) {
   try {
+    await new Promise(resolve => setTimeout(resolve, 2000));
     const data = await event.fetchAllEvents();
     allEvents.value = data.data.data;
+    loading.value = false;
     console.log('events', allEvents);
     if (event_type_id) {
+      isLoading.value = true
+      await new Promise(resolve => setTimeout(resolve, 900));
       const filteredEvents = allEvents.value.filter(
         (event) => event.event_type_id === event_type_id
       );
       allEvents.value = filteredEvents;
+      isLoading.value = false;
       console.log('Filtered events', allEvents);
     } else {
       allEvents.value = allEvents.value;

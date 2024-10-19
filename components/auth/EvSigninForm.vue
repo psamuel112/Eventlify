@@ -28,16 +28,20 @@
         </v-btn>
       </v-col>
     </v-form>
+    <Loader v-if="isLoading" />
+    
   </div>
 </template>
 
 <script setup>
 import { useToast } from 'vue-toastification';
-const toast = useToast();
+import Loader from "~/components/common/loader.vue";
 import { ref, reactive } from 'vue';
 import { useRouter } from 'nuxt/app';
 import { useAuthentication } from '~/store/Authentication';
 const loading = ref(false)
+const toast = useToast();
+const isLoading = ref(false)
 const visible = ref(false);
 const router = useRouter();
 const auth = useAuthentication();
@@ -74,18 +78,18 @@ function validateForm() {
 
 async function login() {
   if (!validateForm()) return;
-loading.value = true
+  isLoading.value = true
   try {
     const response = await auth.loginUser(form);
     if (response) {
       toast.success(
         'login successful'
-      );
+      )
       // Navigate to dashboard
       router.push('/dashboard');
 
     } else {
-      loading.value = false;
+      isLoading.value = false;
       toast.error('Invalid credentials');
 
     }

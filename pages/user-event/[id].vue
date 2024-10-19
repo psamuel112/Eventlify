@@ -5,7 +5,7 @@
         <img class="backward" src="../../assets/images/png/back.png" alt="" />
         <img class="forward" src="../../assets/images/png/forward.png" alt="" />
       </div>
-      <img class="card_img" v-if="singleEvent.images && singleEvent.images.length > 0"
+      <img class="main-image" v-if="singleEvent.images && singleEvent.images.length > 0"
         :src="singleEvent.images[0].url" />
     </div>
     <div class="secondary_wrapper px-8 px-md-16 py-8">
@@ -295,7 +295,13 @@ const eventBooking = (id) => {
   object-fit: cover;
   width: 100%;
 }
-
+.main-image {
+  border-radius: 16px 16px 0 0;
+  object-fit: cover;
+  width: 100%;
+  height: 600px;
+  object-fit: cover ;
+}
 .card_container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

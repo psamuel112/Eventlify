@@ -95,6 +95,7 @@
     <div class="d-flex justify-end gap-4 mt-8 mb-16">
       <button @click="submitForm" class="text-none nxt_btn py-3 px-10">Go Live</button>
     </div>
+    <Loader v-if="isLoading" />
   </div>
 </template>
 
@@ -102,7 +103,10 @@
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useEventStore } from '~/store/Event';
-
+import Loader from "~/components/common/loader.vue";
+import { useToast } from 'vue-toastification';
+const toast = useToast();
+const isLoading = ref(false)
 definePageMeta({
   layout: "events",
 });
@@ -123,13 +127,24 @@ const loadForm = () => {
 
 async function submitForm() {
   try {
+    isLoading.value = true;
     const response = await event.createEvent(form.value);
     if (response) {
+      toast.success(
+        'Event created successfully'
+      )
       // Navigate to dashboard
-      router.push('/dashboard');
+      router.push('/events');
     }
-  } catch (error) {
-    console.error('Error logging in:', error);
+    } catch (error) {
+      isLoading.value = false;
+    if (error.response && error.response.data && error.response.data.message) {
+const errors = error.response.data.errors
+      toast.error(response.errors.names);
+    } else {
+      isLoading.value = false;
+      toast.error('Validation Errors');
+    }
   }
 }
 
