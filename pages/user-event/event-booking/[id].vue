@@ -12,21 +12,21 @@
             <v-btn :icon="`mdi-numeric-${n}`" border height="28" variant="text" width="28" @click="toggle"
               color="#624cf5">1</v-btn>
             <p class="data_text">Personal Data</p>
-            <img src="../../assets/images/svg/next.svg" alt="" />
+            <img src="../../../assets/images/svg/next.svg" alt="" />
           </div>
           <div :class="state == 'ticket' ? 'tab__active' : 'white'" @click="state = 'ticket'"
             class="d-flex gap-4 align-center">
             <v-btn :icon="`mdi-numeric-${n}`" border height="28" variant="text" width="28" @click="toggle"
               color="#624cf5">2</v-btn>
             <p class="data_text">Select Tickets</p>
-            <img src="../../assets/images/svg/next.svg" alt="" />
+            <img src="../../../assets/images/svg/next.svg" alt="" />
           </div>
           <div :class="state == 'summary' ? 'tab__active' : 'white'" @click="state = 'summary'"
             class="d-flex gap-4 align-center">
             <v-btn :icon="`mdi-numeric-${n}`" border height="28" variant="text" width="28" @click="toggle"
               color="#624cf5">3</v-btn>
             <p class="data_text">Summary</p>
-            <img src="../../assets/images/svg/next.svg" alt="" />
+            <img src="../../../assets/images/svg/next.svg" alt="" />
           </div>
         </div>
       </div>
