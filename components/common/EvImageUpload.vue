@@ -23,7 +23,7 @@
       <div v-for="(item, i) in fileArray" :key="i">
         <div class="image_holder">
           <img
-            src="../../assets/images/png/cancel.svg"
+            src="../../assets/images/svg/cancel.svg"
             class="cancel"
             @click="removeFile(i)"
           />

@@ -33,6 +33,19 @@ export const useEventStore = defineStore('event', {
       const data = await EventService.fetchEvents(params);
       return data;
     },
+    
+    async searchEvents(keyword) {  
+      const EventService = useEventService();
+      const auth = useAuthentication().userTokens;
+      const config = {
+        headers: {
+          Authorization: 'Bearer ' + `${auth}`,
+        },
+      };
+      const data = await EventService.searchEvent(keyword, config);
+      return data;
+    },
+    
     async fetchAllEvents() {
       const EventService = useEventService();
       const auth = useAuthentication().userTokens;
