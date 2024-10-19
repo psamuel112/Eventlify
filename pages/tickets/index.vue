@@ -14,12 +14,8 @@
         on.
       </p>
     </div>
-    <div
-      v-for="(ticket, index) in form.tickets"
-      :key="index"
-      class="form_container px-8 py-8"
-    >
-    
+    <div v-for="(ticket, index) in form.tickets" :key="index" class="form_container px-8 py-8">
+
       <v-row>
         <v-col cols="12" lg="6">
           <div class="">
@@ -27,12 +23,7 @@
               <label class="body3_medium dark0"> Ticket name</label>
               <div class="d-flex align-center w-100">
                 <div class="mb-8 w-100">
-                  <input
-                    v-model="ticket.name"
-                    type="text"
-                    placeholder="Name of event"
-                    class="w-100 input px-2 py-2"
-                  />
+                  <input v-model="ticket.name" type="text" placeholder="Name of event" class="w-100 input px-2 py-2" />
                   <div v-if="nameErrors[0]" class="error-message ">{{ nameErrors[0] }}</div>
                 </div>
               </div>
@@ -41,12 +32,22 @@
               <label class="body3_medium dark0"> Ticket plan</label>
               <div class="d-flex align-center w-100">
                 <div class="mb-8 w-100">
-                  <input
-                    v-model="ticket.plan"
-                    type="text"
-                    placeholder="Name of event"
-                    class="w-100 input px-2 py-2"
-                  />
+                  <select label="Select Event Type" v-model="ticket.plan" name="category"
+                    class="w-100 body2_medium dark3 input mt-2 mb-1 px-4 py-2" item-value="id" item-title="name">
+                    <option value="" selected>Please Select ticket plan</option>
+                    <option>
+                      Regular
+                    </option>
+                    <option>
+                     Vip
+                    </option>
+                    <option>
+                      Vvip
+                    </option>
+                    <option>
+                      Tables
+                    </option>
+                  </select>
                   <div v-if="planErrors[0]" class="error-message ">{{ planErrors[0] }}</div>
                 </div>
               </div>
@@ -54,25 +55,13 @@
             <div>
               <p class="body3_medium dark0">Select ticket type</p>
               <div>
-                <v-radio-group
-                :error-messages="typeErrors"
-                v-model="ticket.type">
+                <v-radio-group :error-messages="typeErrors" v-model="ticket.type">
                   <div>
                     <v-btn flat border class="mr-4">
-                      <v-radio
-                        class="text-none event_btn"
-                        label="Paid"
-                        value="Paid"
-                        color="#624cf5"
-                      ></v-radio>
+                      <v-radio class="text-none event_btn" label="Paid" value="Paid" color="#624cf5"></v-radio>
                     </v-btn>
                     <v-btn flat border>
-                      <v-radio
-                        class="text-none event_btn"
-                        label="Free"
-                        value="Free"
-                        color="#624cf5"
-                      ></v-radio>
+                      <v-radio class="text-none event_btn" label="Free" value="Free" color="#624cf5"></v-radio>
                     </v-btn>
                   </div>
                 </v-radio-group>
@@ -81,42 +70,25 @@
             <div>
               <p class="body3_medium dark0">Select ticket status</p>
               <div>
-                <v-radio-group 
-                :error-messages="statusErrors"
-                v-model="ticket.status">
+                <v-radio-group :error-messages="statusErrors" v-model="ticket.status">
                   <div>
                     <v-btn flat border class="mr-4">
-                      <v-radio
-                        class="text-none event_btn"
-                        label="Public"
-                        value="Public"
-                        color="#624cf5"
-                      ></v-radio>
+                      <v-radio class="text-none event_btn" label="Public" value="Public" color="#624cf5"></v-radio>
                     </v-btn>
                     <v-btn class="plan_btn" flat border>
-                      <v-radio
-                        class="text-none event_btn"
-                        label="Invite only"
-                        value="invite_only"
-                        color="#624cf5"
-                      ></v-radio>
+                      <v-radio class="text-none event_btn" label="Invite only" value="invite_only"
+                        color="#624cf5"></v-radio>
                     </v-btn>
                   </div>
                 </v-radio-group>
               </div>
             </div>
             <div>
-              <label class="body3_medium dark0"
-                >Regular tickets available</label
-              >
+              <label class="body3_medium dark0">Regular tickets available</label>
               <div class="d-flex align-center w-100">
                 <div class="w-100">
-                  <input
-                    v-model="ticket.plan_value"
-                    type="text"
-                    placeholder="no. of tickets "
-                    class="w-100 input px-2 py-2"
-                  />
+                  <input v-model="ticket.plan_value" type="text" placeholder="no. of tickets "
+                    class="w-100 input px-2 py-2" />
                   <div v-if="plan_valueErrors[0]" class="error-message ">{{ plan_valueErrors[0] }}</div>
                 </div>
               </div>
@@ -133,14 +105,9 @@
                 </div>
               </div>
               <div class="w-100">
-                <input
-                  v-model="ticket.price"
-                  type="text"
-                  placeholder="1000"
-                  class="w-100 input px-2 py-2"
-                />
+                <input v-model="ticket.price" type="text" placeholder="1000" class="w-100 input px-2 py-2" />
               </div>
-             
+
             </div>
             <div v-if="priceErrors[0]" class="error-message ">{{ priceErrors[0] }}</div>
           </div>
@@ -151,13 +118,8 @@
             <div class="">
               <div class="align-center w-100">
                 <div class="w-100">
-                  <input
-                    v-model="ticket.end_timing"
-                    type="date"
-                    placeholder="no. of tickets "
-                    class="w-100 input px-2 py-2"
-
-                  />
+                  <input v-model="ticket.end_timing" type="date" placeholder="no. of tickets "
+                    class="w-100 input px-2 py-2" />
                   <div v-if="end_timingErrors[0]" class="error-message ">{{ end_timingErrors[0] }}</div>
                 </div>
               </div>
@@ -165,10 +127,9 @@
           </div>
         </v-col>
       </v-row>
-
       <button class="nxt_btn px-2 mt-4" type="button" @click="addNewTicket">Add Another Ticket +</button>
-      <button class="px-2 ml-4" style="background-color: red; color:white; border-radius:12px; font-weight:700;" v-if="form.tickets.length > 1" type="button" @click="removeTicket(index)">Remove Ticket -</button>
- 
+      <button class="px-2 ml-4" style="background-color: red; color:white; border-radius:12px; font-weight:700;"
+        v-if="form.tickets.length > 1" type="button" @click="removeTicket(index)">Remove Ticket -</button>
     </div>
     <div class="d-flex justify-end gap-4 mt-8 mb-16">
       <button @click="backbtn" class="back_btn text-none py-3 px-10">
@@ -320,7 +281,7 @@ definePageMeta({
 });
 
 const router = useRouter();
- // Load form data from local storage if it exists
+// Load form data from local storage if it exists
 onMounted(() => {
   const savedForm = JSON.parse(localStorage.getItem("formData"));
   if (savedForm) {
@@ -351,8 +312,8 @@ const savedData = () => {
 };
 const submitForm = (form) => {
 
-    savedData();
-    router.push("/go-live2");
+  savedData();
+  router.push("/go-live2");
 
 };
 </script>
@@ -362,20 +323,24 @@ const submitForm = (form) => {
 .container {
   max-width: 48.1rem;
 }
+
 .naira {
   width: 48px;
   height: 43px;
   padding: 12px, 0px, 12px, 0px;
   background-color: #e2e8f0;
 }
+
 .plan_btn:focus {
   color: #624cf5;
   border: 1.5px solid #a193f9;
   background-color: #f2f1fe;
 }
+
 .editor {
   height: 12rem;
 }
+
 .nxt_btn {
   color: #ffffff;
   border-radius: 12px;
@@ -384,13 +349,16 @@ const submitForm = (form) => {
   font-weight: 700;
   line-height: 24px;
 }
+
 .selected-btn {
   background-color: #624cf5;
   color: white;
 }
+
 .plan_btn {
   transition: background-color 0.3s, color 0.3s;
 }
+
 .back_btn {
   border-radius: 12px;
   font-size: 16px;
@@ -398,6 +366,7 @@ const submitForm = (form) => {
   line-height: 24px;
   border: 1.5px solid #e2e8f0;
 }
+
 .input {
   border-radius: 8px;
   border: 1px solid #e2e8f0;
@@ -405,6 +374,7 @@ const submitForm = (form) => {
   font-weight: 500;
   line-height: 24px;
 }
+
 .input1 {
   border-radius: 8px;
   border: 1px solid #e2e8f0;
@@ -425,6 +395,7 @@ const submitForm = (form) => {
   border: 1px solid #e2e8f0;
   border-radius: 12px;
 }
+
 .tag_wrapper {
   background-color: #f7f7fd;
 }

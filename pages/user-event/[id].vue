@@ -5,7 +5,7 @@
         <img class="backward" src="../../assets/images/png/back.png" alt="" />
         <img class="forward" src="../../assets/images/png/forward.png" alt="" />
       </div>
-      <img class="card_img" v-if="singleEvent.images && singleEvent.images.length > 0"
+      <img class="main-image" v-if="singleEvent.images && singleEvent.images.length > 0"
         :src="singleEvent.images[0].url" />
     </div>
     <div class="secondary_wrapper px-8 px-md-16 py-8">
@@ -49,14 +49,14 @@
             {{ singleEvent.additional_info }}
           </p>
         </div>
-        <!-- <div>
+        <div>
           <p class="h5_semibold dark0  my-6">Tags</p>
           <div class="d-flex gap-4 flex-wrap">
             <div v-for="(tag, index) in singleEvent.tags" :key="index" class="tags_wrapper d-flex">
-              <p class="body3_medium dark1">{{ tag }}</p>
+              <p class="body3_medium dark1">#{{ tag }}</p>
             </div>
           </div>
-        </div> -->
+        </div>
         <div>
           <p class="h5_semibold dark0 my-6">Organizer</p>
           <div class="more_event justify-between py-4 px-4 align-center d-flex">
@@ -82,7 +82,10 @@
         </div>
         <div class="ticket_wrapper mt-12 px-6 py-6">
           <p class="body3_medium dark3">Ticket base price</p>
-          <p class="h4_bold purple50 mb-6">₦8,000</p>
+          
+          <div  v-for="(ticket, index) in ticket" :key="index" >
+            <p v-if="ticket.plan === 'regular'" class="h4_bold purple50 mb-6">₦{{  ticket.price || ticket.price }}</p>
+          </div>
           <div class="d-flex gap-2 px-6 py-6 ticket_note_container">
             <img src="../../assets/images/svg/ticketnote.svg" alt="" />
             <p class="body3_medium yellow">
@@ -93,10 +96,7 @@
           <div class="py-6">
             <v-divider border-opacity-100></v-divider>
           </div>
-          <nuxt-link to="/event-booking-tickets">
-            <v-btn border flat class="w-100  follow_btn text-none"> Buy Ticket </v-btn>
-          </nuxt-link>
-
+            <v-btn @click="eventBooking(singleEvent.id)" border flat class="w-100  follow_btn text-none"> Buy Ticket </v-btn>
         </div>
       </div>
     </div>
@@ -133,11 +133,13 @@ import eventcard2 from "../../assets/images/png/eventcard2.png";
 import eventcard3 from "../../assets/images/png/eventcard3.png";
 import eventcard4 from "../../assets/images/png/eventcard4.png";
 definePageMeta({
-  layout: "event-details",
+  layout: "user-event",
 });
 
 import { useEventStore } from "~/store/Event";
+import { useEventBookingStore } from '~/store/EventBooking';
 import { useRoute } from "nuxt/app";
+const booking = useEventBookingStore();
 const ticket = ref("")
 const route = useRoute();
 const ID = route.params.id;
@@ -154,7 +156,6 @@ onMounted(async () => {
   } catch (error) {
     console.log(error);
   } finally {
-
   }
 });
 
@@ -171,26 +172,22 @@ function convertTo12Hour(timeString) {
   return `${hour12}:${minutes} ${period}`;
 }
 
-const tags = ref([
-  {
-    name: "#birthday2023",
-  },
-  {
-    name: "#theCEO",
-  },
-  {
-    name: "#Realvestevents",
-  },
-  {
-    name: "#Onecommunity",
-  },
-  {
-    name: "#billionCEO",
-  },
-  {
-    name: "##Wiseze23",
-  },
-]);
+
+async function submitForm() {
+  try {
+    const response = await booking.eventBooking(form.value);
+    if (response) {
+      // Navigate to dashboard
+      router.push('/dashboard');
+    }
+  } catch (error) {
+    console.error('Error logging in:', error);
+  }
+}
+
+
+
+
 const cards = ref([
   {
     time: "8:45AMApr (WAT)",
@@ -220,6 +217,9 @@ const cards = ref([
 const router = useRouter();
 const navigateToCard = (id) => {
   router.push(`/user-event/${id}`);
+}
+const eventBooking = (id) => {
+  router.push(`/user-event/event-booking/${id}`)
 };
 
 </script>
@@ -295,7 +295,13 @@ const navigateToCard = (id) => {
   object-fit: cover;
   width: 100%;
 }
-
+.main-image {
+  border-radius: 16px 16px 0 0;
+  object-fit: cover;
+  width: 100%;
+  height: 600px;
+  object-fit: cover ;
+}
 .card_container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

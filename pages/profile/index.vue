@@ -1,158 +1,128 @@
 <template>
-    <v-container>
-      <!-- Profile Header: Upload Section -->
-      <v-row>
-        <v-col cols="12" md="6">
-          <h2>Upload Profile Picture</h2>
-          <input type="file" @change="onFileChange" id="uploadProfilePic" />
-          <label for="uploadProfilePic">
-            <div class="upload-box">
-              <span>Upload profile image</span>
-            </div>
-          </label>
-          <p>NOTE: Minimum size should be 850x550 pixels. Maximum file size is 900KB.</p>
-        </v-col>
-      </v-row>
-  
-      <!-- Profile Information Section -->
-      <v-row>
-        <v-col cols="12" md="6">
-          <h3>Your Basic Information</h3>
-          <form>
-            <v-row>
-              <!-- First Name -->
-              <v-col cols="12" md="6">
-                <label for="firstName">First Name</label>
-                <input type="text" v-model="user.firstName" id="firstName" placeholder="Enter First Name" class="input-field" />
-              </v-col>
-  
-              <!-- Last Name -->
-              <v-col cols="12" md="6">
-                <label for="lastName">Last Name</label>
-                <input type="text" v-model="user.lastName" id="lastName" placeholder="Enter Last Name" class="input-field" />
-              </v-col>
-            </v-row>
-  
-            <v-row>
-              <!-- Email -->
-              <v-col cols="12" md="6">
-                <label for="email">Email</label>
-                <input type="email" v-model="user.email" id="email" placeholder="Enter Email" class="input-field" />
-              </v-col>
-  
-              <!-- Contact Number -->
-              <v-col cols="12" md="6">
-                <label for="contact">Contact Number</label>
-                <input type="text" v-model="user.contact" id="contact" placeholder="Enter Contact Number" class="input-field" />
-              </v-col>
-            </v-row>
-  
-            <v-row>
-              <!-- Gender -->
-              <v-col cols="12" md="6">
-                <label>Gender</label>
-                <div class="gender-options">
-                  <input type="radio" v-model="user.gender" value="male" id="male" />
-                  <label for="male">Male</label>
-                  <input type="radio" v-model="user.gender" value="female" id="female" />
-                  <label for="female">Female</label>
-                </div>
-              </v-col>
-  
-              <!-- Time Zone -->
-              <v-col cols="12" md="6">
-                <label for="timezone">Time Zone</label>
-                <select v-model="user.timeZone" id="timezone" class="input-field">
-                  <option disabled value="">Select Time Zone</option>
-                  <option v-for="zone in timeZones" :key="zone">{{ zone }}</option>
-                </select>
-              </v-col>
-            </v-row>
-  
-            <!-- Update Button -->
-            <v-row>
-              <v-col cols="12">
-                <button type="button" @click="updateProfile" class="btn-update">Update</button>
-              </v-col>
-            </v-row>
-          </form>
-        </v-col>
-      </v-row>
-    </v-container>
-  </template>
-  
-  <script setup>
-  import { ref } from 'vue'
-  definePageMeta({
+  <div>
+    <h3 class="h3_semibold purple90">Profile</h3>
+
+    <div>
+      <h4 class="h4_semibold purple90">Profile details</h4>
+      <div>
+        <div class="d-flex justify-between align-center">
+          <div>
+            <p class="body2_semiold purple90">Full name</p>
+          </div>
+          <p @click="toggleEdit('name')" class="h6_bold purple50">{{ editFields.name ? 'Cancel' : 'Edit' }}</p>
+        </div>
+        <p v-if="!editFields.name" class="body2_medium dark2">Hendrix James</p>
+        <div v-if="editFields.name">
+          <div class="d-flex">
+            <v-text-field label="First name" density="compact" placeholder="First name"
+              prepend-inner-icon="mdi-account-outline" variant="outlined"></v-text-field>
+            <v-text-field label="Last name" density="compact" placeholder="Last name"
+              prepend-inner-icon="mdi-account-outline" variant="outlined"></v-text-field>
+          </div>
+          <button @click="saveEdit('name')">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="d-flex justify-between align-center">
+        <div>
+          <p class="body2_semiold purple90">Email address</p>
+        </div>
+        <p @click="toggleEdit('email')" class="h6_bold purple50">{{ editFields.email ? 'Cancel' : 'Edit' }}</p>
+      </div>
+      <p v-if="!editFields.email" class="body2_medium dark2">eventify@gmail.com</p>
+      <div v-if="editFields.email">
+        <v-text-field label="Email address" density="compact" placeholder="Email address"
+          prepend-inner-icon="mdi-email-outline" variant="outlined"></v-text-field>
+        <button @click="saveEdit('email')">Verify email</button>
+      </div>
+    </div>
+
+
+    <div>
+      <div class="d-flex justify-between align-center">
+        <div>
+          <p class="body2_semiold purple90">Phone number</p>
+        </div>
+        <p @click="toggleEdit('phone')" class="h6_bold purple50">{{ editFields.phone ? 'Cancel' : 'Edit' }}</p>
+      </div>
+      <p v-if="!editFields.phone" class="body2_medium dark2">0908503430</p>
+      <div v-if="editFields.phone">
+        <v-text-field label="Phone number" density="compact" placeholder="Phone number"
+          prepend-inner-icon="mdi-phone-outline" variant="outlined"></v-text-field>
+        <button @click="saveEdit('phone')">Verify phone number</button>
+      </div>
+    </div>
+
+
+    <div>
+      <div class="d-flex justify-between align-center">
+        <div>
+          <p class="body2_semiold purple90">Address</p>
+        </div>
+        <p @click="toggleEdit('address')" class="h6_bold purple50">{{ editFields.address ? 'Cancel' : 'Edit' }}</p>
+      </div>
+      <p v-if="!editFields.address" class="body2_medium dark2">No Address added</p>
+      <div v-if="editFields.address">
+        <v-text-field label="Street address" density="compact" placeholder="Street address"
+          prepend-inner-icon="mdi-map-marker-outline" variant="outlined"></v-text-field>
+        <v-text-field label="City" density="compact" placeholder="City" prepend-inner-icon="mdi-city"
+          variant="outlined"></v-text-field>
+        <div class="d-flex">
+          <v-text-field label="State" density="compact" placeholder="State" prepend-inner-icon="mdi-home-city-outline"
+            variant="outlined"></v-text-field>
+          <v-text-field label="Country" density="compact" placeholder="Country" prepend-inner-icon="mdi-earth"
+            variant="outlined"></v-text-field>
+        </div>
+        <button @click="saveEdit('address')">Save</button>
+      </div>
+    </div>
+
+
+    <div>
+      <div class="d-flex justify-between align-center">
+        <div>
+          <p class="body2_semiold purple90">Security</p>
+        </div>
+        <p @click="toggleEdit('password')" class="h6_bold purple50">{{ editFields.password ? 'Cancel' : 'Edit' }}</p>
+      </div>
+      <p v-if="!editFields.password" class="body2_medium dark2">Change your password</p>
+      <div v-if="editFields.password">
+        <v-text-field label="Current Password" density="compact" placeholder="Current Password" prepend-inner-icon="mdi-lock-outline"
+          variant="outlined"></v-text-field>
+        <v-text-field label="New Password" density="compact" placeholder="New Password" prepend-inner-icon="mdi-lock-outline"
+          variant="outlined"></v-text-field>
+        <v-text-field label="Confirm Password" density="compact" placeholder="Confirm Password" prepend-inner-icon="mdi-lock-outline"
+          variant="outlined"></v-text-field>
+        <button @click="saveEdit('password')">Save</button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+definePageMeta({
   layout: "dashboard",
-});
-  const user = ref({
-    firstName: 'Damilola',
-    lastName: 'Yekinni',
-    email: 'damilolayak1@gmail.com',
-    contact: '9125447565',
-    gender: '',
-    timeZone: ''
-  })
-  
-  const timeZones = [
-    'UTC -12:00', 'UTC -11:00', 'UTC -10:00', 'UTC -09:00', 
-    'UTC -08:00', 'UTC -07:00', 'UTC -06:00', 'UTC -05:00'
-  ]
-  
-  const onFileChange = (event) => {
-    const file = event.target.files[0]
-    if (file) {
-      console.log('File uploaded:', file)
-      // Handle file upload logic here
-    }
-  }
-  
-  const updateProfile = () => {
-    console.log('Profile updated:', user.value)
-    // Handle profile update logic here
-  }
+})
 
+const editFields = ref({
+  name: false,
+  email: false,
+  phone: false,
+  address: false,
+  password: false,
+})
 
-  </script>
-  
-  <style scoped>
-  /* Responsive styling using Vuetify’s CSS grid */
-  .input-field {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .gender-options {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .upload-box {
-    border: 2px dashed #ccc;
-    padding: 40px;
-    text-align: center;
-    cursor: pointer;
-  }
-  
-  .btn-update {
-    padding: 10px 15px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 20px;
-    display: inline-block;
-    width: 100%;
-  }
-  
-  .btn-update:hover {
-    background-color: #218838;
-  }
-  </style>
-  
+function toggleEdit(field) {
+  editFields.value[field] = !editFields.value[field];
+}
+
+function saveEdit(field) {
+  // Logic to save the edited data (e.g., API call)
+  editFields.value[field] = false; // Close the edit mode after saving
+}
+</script>
+
+<style scoped></style>

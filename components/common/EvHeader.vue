@@ -32,7 +32,7 @@
             <div class="profile-dropdown" v-bind="props">
               <img class="profile-pic" src="../../assets/images/svg/profilepic.svg" alt="Profile Picture" />
               <div class="profile-name d-flex align-center">
-                <p>Dami</p>
+                <p>{{ account?.name || 'Guest' }}</p>
                 <v-icon class="ml-1">mdi-chevron-down</v-icon>
               </div>
             </div>
@@ -46,9 +46,7 @@
         </v-menu>
       </div>
     </div>
-
     <div class="divider-line"></div>
-
     <div class="tab-content">
       <component :is="getComponent(tab)"></component>
     </div>
@@ -56,16 +54,20 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import Evoverview from '~/components/dashboard/Evoverview.vue';
 import IndexVue from '~/pages/events/index.vue';
 import EvRecords from '~/components/dashboard/EvRecords.vue';
 import EvProfile from '~/pages/profile/index.vue';
-
 const tab = ref('overview');
 const router = useRouter();
-
+defineProps({
+  account: {
+    type: Object,
+    default: null,
+  }
+});
 const items = ref([
   { title: 'Profile', route: 'profile' },
   { title: 'Explore events', route: '/user-event' },

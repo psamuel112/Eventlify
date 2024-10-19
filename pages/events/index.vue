@@ -10,11 +10,7 @@
 
           <div class="d-md-block d-none custom-dropdown px-2 py-2">
             <div class="dropdown-wrapper">
-              <select
-                v-model="selectedOption"
-                class="dropdown-select"
-                @change="handleChange"
-              >
+              <select v-model="selectedOption" class="dropdown-select" @change="handleChange">
                 <option value="option1">Upcoming Event</option>
                 <option value="option2">Week</option>
                 <option value="option3">Month</option>
@@ -29,11 +25,7 @@
         <div class="d-flex pl-2 align-center d-md-none d-block">
           <div class="custom-dropdown px-2 py-2">
             <div class="dropdown-wrapper">
-              <select
-                v-model="selectedOption"
-                class="dropdown-select"
-                @change="handleChange"
-              >
+              <select v-model="selectedOption" class="dropdown-select" @change="handleChange">
                 <option value="option1">Upcoming Event</option>
                 <option value="option2">Week</option>
                 <option value="option3">Month</option>
@@ -44,63 +36,59 @@
           <v-btn class="text-none create_btn_mobile">+ Create</v-btn>
         </div>
       </div>
-      <div class="event pl-4 pl-md-4 pointer card_container">
-        <div v-for="(event, index) in events" :key="index" class="pointer">
-          <div
-            style="cursor: pointer"
-            @click="navigateToCard(event.id)"
-            class="card mb-4 pointer"
-          >
-            <div class="image_wrapper">
-              <img
-                class="card_img"
-                v-if="event.images && event.images.length > 0"
-                :src="event.images[0].url"
-              />
-              <div v-if="event.is_online === 1">
-                <v-btn class="text-none status_btn mr-6 mt-6" flat
-                  >On Sale</v-btn
-                >
+
+      <div class="event pl-4 pl-md-4 card_img pointer card_container" v-if="loading">
+        <skeletonLoader class="card_img" v-for="index in 6" :key="index" :loaderWidth="imageWidth"
+          :loaderHeight="imageHeight" />
+      </div>
+      <div>
+        <div v-if="!events || events.length === 0" class="text-center no-event d-flex align-center justify-center">
+          <p>No events available</p>
+        </div>
+        <div v-else class="event pl-4 pl-md-4 pointer card_container">
+          <div v-for="(event, index) in events" :key="index" class="pointer">
+            <div style="cursor: pointer" @click="navigateToCard(event.id)" class="card mb-4 pointer">
+              <div class="image_wrapper">
+                <img class="card_img" v-if="event.images && event.images.length > 0" :src="event.images[0].url" />
+                <div v-if="event.is_online === 1">
+                  <v-btn class="text-none status_btn mr-6 mt-6" flat>On Sale</v-btn>
+                </div>
+                <div v-else>
+                  <v-btn class="text-none ended_btn mr-6 mt-6" flat>Ended</v-btn>
+                </div>
               </div>
-              <div v-else>
-                <v-btn class="text-none ended_btn mr-6 mt-6" flat>Ended</v-btn>
-              </div>
-            </div>
-            <div class="px-4 py-4">
-              <div class="d-flex mb-4 align-center gap-4">
-                <p class="card_text">
-                  {{ event.start_date }} {{ event.start_time }}
-                  {{ event.timezone }}
-                </p>
-                <img src="../../assets/images/svg/dot.svg" />
-                <img src="../../assets/images/svg/ticket.svg" />
-                <p class="card_text">
-                  {{ event.tickets[0]?.plan_value || 0 }} sold
-                </p>
-              </div>
-              <p class="card_heading mb-4">{{ event.description }}</p>
-              <div class="d-flex gap-4">
-                <img src="../../assets/images/svg/spot.svg" />
-                <p v-if="event.online_location" class="card_text">Online</p>
-                /
-                <p v-if="event.location" class="card_text">Offline</p>
+              <div class="px-4 py-4">
+                <div class="d-flex mb-4 align-center gap-4">
+                  <p class="card_text">
+                    {{ event.start_date }} {{ event.start_time }}
+                    {{ event.timezone }}
+                  </p>
+                  <img src="../../assets/images/svg/dot.svg" />
+                  <img src="../../assets/images/svg/ticket.svg" />
+                  <p class="card_text">
+                    {{ event.tickets[0]?.plan_value || 0 }} sold
+                  </p>
+                </div>
+                <p class="card_heading mb-4">{{ event.description }}</p>
+                <div class="d-flex gap-4">
+                  <img src="../../assets/images/svg/spot.svg" />
+                  <p v-if="event.online_location" class="card_text">Online</p>
+                  <p v-if="event.location" class="card_text">Offline</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <ev-pagination
-        :currentPage="currentPage"
-        :totalRecords="total"
-        :perPage="1"
-        @onchange="handlePaginateEvent"
-      />
+
+      <ev-pagination :currentPage="currentPage" :totalRecords="total" :perPage="6" @onchange="handlePaginateEvent" />
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import skeletonLoader from '~/components/common/skeletonLoader.vue';
 import EvHeader from '~/components/common/EvHeader.vue';
 import EvSearchInput from '~/components/common/EvSearchInput.vue';
 import eventcard1 from '../../assets/images/png/eventcard1.png';
@@ -115,9 +103,9 @@ const form = ref(null);
 const total = ref();
 const perPage = ref(1);
 const currentPage = ref(1);
-
+const loading = ref(true);
 onMounted(async () => {
-  loadData({ page: 1, perPage: 1 });
+  loadData({ page: 1, perPage: 6 });
 });
 definePageMeta({
   layout: 'dashboard',
@@ -126,7 +114,7 @@ async function loadData(e) {
   try {
     const data = await event.fetchEvents(e);
     events.value = data.data.data;
-
+    loading.value = false;
     // console.log(data.data.total);
     // console.log('events', events);
     currentPage.value = data.data.current_page;
@@ -134,12 +122,14 @@ async function loadData(e) {
     console.log(total.value);
   } catch (error) {
     console.error(error);
+  } finally {
+    loading.value = false;
   }
 }
 
 async function handlePaginateEvent(e) {
   console.log(e);
-  loadData({ page: e, perPage: 1 });
+  loadData({ page: e, perPage: 6 });
 }
 
 const selectedOption = ref('option1');
@@ -155,6 +145,9 @@ const router = useRouter();
 const navigateToCard = (id) => {
   router.push(`/events/${id}`);
 };
+const imageWidth = '100%';
+const imageHeight = '300px';
+
 
 const cards = ref([
   {
@@ -207,6 +200,10 @@ const cards = ref([
 .custom-dropdown {
   position: relative;
   /* Adjust the width as per your needs */
+}
+.no-event {
+ margin-top: 20%;
+ margin-bottom: 20%;
 }
 
 .dropdown-wrapper {
@@ -304,8 +301,7 @@ const cards = ref([
   color: #ffffff;
 }
 
-.state_color-online {
-}
+.state_color-online {}
 
 .card_img {
   border-radius: 16px 16px 0 0;
@@ -332,17 +328,20 @@ const cards = ref([
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 24px;
+  border: none;
 }
 
 @media screen and (max-width: 1200px) {
   .card_container {
     grid-template-columns: 1fr 1fr;
+    border: none;
   }
 }
 
 @media screen and (max-width: 680px) {
   .card_container {
     grid-template-columns: 1fr;
+    border: none;
   }
 
   .image_wrapper {

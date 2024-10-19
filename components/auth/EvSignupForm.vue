@@ -57,15 +57,18 @@
         </v-btn>
       </v-col>
     </v-form>
+    <Loader v-if="isLoading" />
   </div>
 </template>
 <script setup>
 import { ref } from "vue";
 import { useToast } from 'vue-toastification';
+import Loader from "~/components/common/loader.vue";
 const toast = useToast();
 const loading = ref(false)
 const visible = ref(false);
 const isenable = ref(true);
+const isLoading = ref(false)
 
 const router = useRouter();
 const auth = useAuthService();
@@ -112,6 +115,7 @@ function validateForm() {
 async function submit() {
   if (!validateForm()) return;
   loading.value = true;
+  isLoading.value = true
   try {
 
     const response = await auth.register(form);
@@ -125,12 +129,14 @@ async function submit() {
     }
     else {
       loading.value = false;
+      isLoading.value = false;
       toast.error('Email already exists');
 
     }
   }
    catch (error) {
     console.log("error", error);
+    loading.value = false;
     toast.error('Something went wrong. Please try again.');
     
   } finally {

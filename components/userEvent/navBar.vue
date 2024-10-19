@@ -5,7 +5,7 @@
         <img src="../../assets/images/png/Logo.png" alt="" />
       </div>
       <div class="nav-links mt-2 d-flex gap-8">
-        <NuxtLink to="overview" class="nav-item" @click="tab = 'overview'">
+        <NuxtLink to="/dashboard" class="nav-item" @click="tab = 'overview'">
           <img
               class="pr-1"
               src="../../assets/images/svg/home.svg"
@@ -43,7 +43,7 @@
             <div class="profile-dropdown" v-bind="props">
               <img class="profile-pic" src="../../assets/images/svg/profilepic.svg" alt="Profile Picture" />
               <div class="profile-name d-flex align-center">
-                <p>Dami</p>
+                <p>{{ account?.name || 'Guest' }}</p>
                 <v-icon class="ml-1">mdi-chevron-down</v-icon>
               </div>
             </div>
@@ -64,6 +64,7 @@
       </div>
     </div>
     <div class="divider-line"></div>
+    
   </div>
 </template>
 
@@ -74,7 +75,12 @@ import { ref } from 'vue';
 import Evoverview from '~/components/dashboard/Evoverview.vue';
 import IndexVue from '~/pages/events/index.vue';
 import EvRecords from '~/components/dashboard/EvRecords.vue';
-
+defineProps({
+  account: {
+    type: Object,
+    default: null,
+  }
+});
 const tab = ref('records');
 
 const items = ref([

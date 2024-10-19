@@ -4,7 +4,7 @@
       <div class="d-flex gap-4">
         <img src="../../assets/images/svg/Ellipse.svg" />
         <div>
-          <p class="welcome_text">Hello Dami!👋🏽</p>
+          <p class="welcome_text"> {{ account?.name || 'Guest' }}!👋🏽</p>
           <p class="sub_text">Hope you’re having a good day</p>
         </div>
       </div>
@@ -207,11 +207,28 @@
 </template> 
 
 <script setup>
-import { ref } from "vue";
 import BarChart from "~/components/dashboard/BarChart.vue"
 import LineChart from "~/components/dashboard/LineChart.vue";
 import DonutChart from "~/components/dashboard/DonutChart.vue";
-
+import { ref, onMounted } from 'vue';
+import { useAccountStore } from "~/store/Account";
+const Account = useAccountStore();
+import { useAuthentication } from '~/store/Authentication';
+const auth = useAuthentication();
+const account = ref("")
+onMounted(() => {
+ loadData();
+});
+async function loadData() {
+  try {
+    const data = await Account.fetchAccountDetails();
+    const fullName = data.data.name;  
+    const firstName = fullName.split(' ')[0];  
+    account.value = { ...data.data, name: firstName };  
+  } catch (error) {
+    console.error(error);
+  }
+}
 </script>
 
 <style lang="scss" scoped>
