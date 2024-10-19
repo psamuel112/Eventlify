@@ -8,7 +8,6 @@
       ref="dropzone"
     >
       <div>
-        <img src="../../assets/svg/document_upload.svg" alt="" />
         <p>Upload image</p>
         <p>or</p>
         <button @click="handleClick">Browse Here</button>
@@ -24,7 +23,7 @@
       <div v-for="(item, i) in fileArray" :key="i">
         <div class="image_holder">
           <img
-            src="../../assets/images/png/cancel.png"
+            src="../../assets/images/png/cancel.svg"
             class="cancel"
             @click="removeFile(i)"
           />
