@@ -67,7 +67,7 @@
                     convertTo12Hour(singleEvent.end_time) }}</p>
               </div>
               <div>
-                <img src="../../assets/images/svg/bluecalander.svg" alt="" />
+                <img src="../../../assets/images/svg/bluecalander.svg" alt="" />
               </div>
             </div>
           </div>
@@ -340,8 +340,8 @@
 
 <script setup>
 import Paystack from "~/components/payment/paystack.vue";
-import purpleframe from "../../assets/images/png/Subtract.png";
-import purpleticket from "../../assets/images/svg/buyticket.svg";
+import purpleframe from "../../../assets/images/png/Subtract.png";
+import purpleticket from "../../../assets/images/svg/buyticket.svg";
 import darkframe from "../../assets/images/png/darkframe.png";
 import darkticket from "../../assets/images/svg/darkticket.svg";
 import paystack from "vue3-paystack";
