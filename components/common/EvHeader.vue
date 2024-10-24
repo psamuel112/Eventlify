@@ -4,42 +4,65 @@
       <div class="logo">
         <img src="../../assets/images/png/Logo.png" alt="Logo" />
       </div>
-      
+
       <div class="nav-links mt-2 d-flex gap-8">
         <NuxtLink to="/dashboard" class="nav-item" @click="tab = 'overview'">
-          <img class="pr-1" src="../../assets/images/svg/element-3.svg" alt="Overview Icon" />
+          <img
+            class="pr-1"
+            src="../../assets/images/svg/element-3.svg"
+            alt="Overview Icon"
+          />
           <span>Overview</span>
         </NuxtLink>
         <NuxtLink to="/events" class="nav-item" @click="tab = 'events'">
-          <img class="pr-1" src="../../assets/images/svg/Icons2.svg" alt="Events Icon" />
+          <img
+            class="pr-1"
+            src="../../assets/images/svg/Icons2.svg"
+            alt="Events Icon"
+          />
           <span>Events</span>
         </NuxtLink>
         <NuxtLink to="/records" class="nav-item" @click="tab = 'records'">
-          <img class="pr-1" src="../../assets/images/svg/Icons3.svg" alt="Records Icon" />
+          <img
+            class="pr-1"
+            src="../../assets/images/svg/Icons3.svg"
+            alt="Records Icon"
+          />
           <span>Records</span>
         </NuxtLink>
       </div>
-      
+
       <div class="right-side d-flex gap-6 align-center">
         <NuxtLink to="/basicInfo">
           <button class="create-btn">+ Create</button>
         </NuxtLink>
-        <img src="../../assets/images/svg/notification.svg" alt="Notifications" />
+        <img
+          src="../../assets/images/svg/notification.svg"
+          alt="Notifications"
+        />
         <div class="divider"></div>
-       
+
         <v-menu open-on-click>
           <template #activator="{ props }">
             <div class="profile-dropdown" v-bind="props">
-              <img class="profile-pic" src="../../assets/images/svg/profilepic.svg" alt="Profile Picture" />
+              <img
+                class="profile-pic"
+                src="../../assets/images/svg/profilepic.svg"
+                alt="Profile Picture"
+              />
               <div class="profile-name d-flex align-center">
-                <p>{{ account?.name || 'Guest' }}</p>
+                <p>{{ name }}</p>
                 <v-icon class="ml-1">mdi-chevron-down</v-icon>
               </div>
             </div>
           </template>
 
           <v-list>
-            <v-list-item v-for="(item, index) in items" :key="index" @click="handleProfileClick(item.route)">
+            <v-list-item
+              v-for="(item, index) in items"
+              :key="index"
+              @click="handleProfileClick(item.route)"
+            >
               <v-list-item-title>{{ item.title }}</v-list-item-title>
             </v-list-item>
           </v-list>
@@ -66,7 +89,7 @@ defineProps({
   account: {
     type: Object,
     default: null,
-  }
+  },
 });
 const items = ref([
   { title: 'Profile', route: 'profile' },
@@ -91,11 +114,15 @@ const getComponent = (tab) => {
 
 const handleProfileClick = (route) => {
   if (route === 'profile') {
-    tab.value = 'profile'; 
+    tab.value = 'profile';
   } else {
-    router.push(route); 
+    router.push(route);
   }
 };
+
+const name =
+  JSON.parse(localStorage.getItem('user'))?.user?.name.split(' ')[0] || 'Guest';
+console.log(name);
 </script>
 
 <style scoped lang="scss">

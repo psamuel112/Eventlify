@@ -7,24 +7,57 @@
           <p class="sub_header">Below is the summary of your booking</p>
         </div>
         <div class="d-flex mb-4 gap-4">
-          <div :class="state == 'personalData' ? 'tab__active' : 'white'" @click="state = 'personalData'"
-            class="d-flex gap-4 align-center">
-            <v-btn :icon="`mdi-numeric-${n}`" border height="28" variant="text" width="28" @click="toggle"
-              color="#624cf5">1</v-btn>
+          <div
+            :class="state == 'personalData' ? 'tab__active' : 'white'"
+            @click="state = 'personalData'"
+            class="d-flex gap-4 align-center"
+          >
+            <v-btn
+              :icon="`mdi-numeric-${n}`"
+              border
+              height="28"
+              variant="text"
+              width="28"
+              @click="toggle"
+              color="#624cf5"
+              >1</v-btn
+            >
             <p class="data_text">Personal Data</p>
             <img src="../../assets/images/svg/next.svg" alt="" />
           </div>
-          <div :class="state == 'ticket' ? 'tab__active' : 'white'" @click="state = 'ticket'"
-            class="d-flex gap-4 align-center">
-            <v-btn :icon="`mdi-numeric-${n}`" border height="28" variant="text" width="28" @click="toggle"
-              color="#624cf5">2</v-btn>
+          <div
+            :class="state == 'ticket' ? 'tab__active' : 'white'"
+            @click="state = 'ticket'"
+            class="d-flex gap-4 align-center"
+          >
+            <v-btn
+              :icon="`mdi-numeric-${n}`"
+              border
+              height="28"
+              variant="text"
+              width="28"
+              @click="toggle"
+              color="#624cf5"
+              >2</v-btn
+            >
             <p class="data_text">Select Tickets</p>
             <img src="../../assets/images/svg/next.svg" alt="" />
           </div>
-          <div :class="state == 'summary' ? 'tab__active' : 'white'" @click="state = 'summary'"
-            class="d-flex gap-4 align-center">
-            <v-btn :icon="`mdi-numeric-${n}`" border height="28" variant="text" width="28" @click="toggle"
-              color="#624cf5">3</v-btn>
+          <div
+            :class="state == 'summary' ? 'tab__active' : 'white'"
+            @click="state = 'summary'"
+            class="d-flex gap-4 align-center"
+          >
+            <v-btn
+              :icon="`mdi-numeric-${n}`"
+              border
+              height="28"
+              variant="text"
+              width="28"
+              @click="toggle"
+              color="#624cf5"
+              >3</v-btn
+            >
             <p class="data_text">Summary</p>
             <img src="../../assets/images/svg/next.svg" alt="" />
           </div>
@@ -33,11 +66,16 @@
       <div class="container">
         <div class="wrapper px-6 py-6">
           <div class="card_wrapper">
-            <img class="card_img card_wrapper" v-if="singleEvent.images && singleEvent.images.length > 0"
-              :src="singleEvent.images[0].url" />
+            <img
+              class="card_img card_wrapper"
+              v-if="singleEvent.images && singleEvent.images.length > 0"
+              :src="singleEvent.images[0].url"
+            />
             <div class="px-6 py-6">
               <div class="d-flex gap-4">
-                <p class="month_text">{{ formatMonth(singleEvent.start_date) }}</p>
+                <p class="month_text">
+                  {{ formatMonth(singleEvent.start_date) }}
+                </p>
                 <p class="card_text">{{ singleEvent.name }}</p>
               </div>
               <div class="d-flex gap-4">
@@ -53,18 +91,30 @@
             </p>
           </div>
           <div class="d-flex gap-4 flex-wrap">
-            <div v-for="(tag, index) in singleEvent.tags" :key="index" class="tags_wrapper d-flex">
+            <div
+              v-for="(tag, index) in singleEvent.tags"
+              :key="index"
+              class="tags_wrapper d-flex"
+            >
               <p class="body3_medium dark1">#{{ tag }}</p>
             </div>
           </div>
           <div class="">
             <p class="section_title my-6">Date & Time</p>
-            <div class="d-flex wrapper gap-14 justify-between px-4 py-4 datetime_wrapper">
+            <div
+              class="d-flex wrapper gap-14 justify-between px-4 py-4 datetime_wrapper"
+            >
               <div>
-                <p class="date_card_text">{{ formatDate(singleEvent.start_date) }}</p>
-                <p v-if="singleEvent.start_time && singleEvent.end_time" class="about_text">{{
-                  convertTo12Hour(singleEvent.start_time) }} - {{
-                    convertTo12Hour(singleEvent.end_time) }}</p>
+                <p class="date_card_text">
+                  {{ formatDate(singleEvent.start_date) }}
+                </p>
+                <p
+                  v-if="singleEvent.start_time && singleEvent.end_time"
+                  class="about_text"
+                >
+                  {{ convertTo12Hour(singleEvent.start_time) }} -
+                  {{ convertTo12Hour(singleEvent.end_time) }}
+                </p>
               </div>
               <div>
                 <img src="../../assets/images/svg/bluecalander.svg" alt="" />
@@ -86,12 +136,31 @@
           <p class="header my-4">Personal Data</p>
           <div>
             <div class="d-md-flex gap-4">
-              <input v-model="form.first_name" placeholder="First name" type="text"
-                class="w-100 mt-2 input px-2 py-2" />
-              <input v-model="form.last_name" placeholder="Last name" type="text" class="w-100 mt-2 input px-2 py-2" />
+              <input
+                v-model="form.first_name"
+                placeholder="First name"
+                type="text"
+                class="w-100 mt-2 input px-2 py-2"
+              />
+              <input
+                v-model="form.last_name"
+                placeholder="Last name"
+                type="text"
+                class="w-100 mt-2 input px-2 py-2"
+              />
             </div>
-            <input v-model="form.email" placeholder="Email address" type="text" class="w-100 mt-2 input px-2 py-2" />
-            <input v-model="form.phone" placeholder="Phone number" type="text" class="w-100 mt-2 input px-2 py-2" />
+            <input
+              v-model="form.email"
+              placeholder="Email address"
+              type="text"
+              class="w-100 mt-2 input px-2 py-2"
+            />
+            <input
+              v-model="form.phone"
+              placeholder="Phone number"
+              type="text"
+              class="w-100 mt-2 input px-2 py-2"
+            />
           </div>
           <div>
             <div class="">
@@ -103,7 +172,8 @@
                       organizer.
                     </p>
                   </div>
-                </template></v-checkbox>
+                </template></v-checkbox
+              >
             </div>
             <div class="mt-n8">
               <v-checkbox>
@@ -114,7 +184,8 @@
                       online.
                     </p>
                   </div>
-                </template></v-checkbox>
+                </template></v-checkbox
+              >
             </div>
             <div class="mt-n8">
               <v-checkbox v-model="isenable">
@@ -125,18 +196,27 @@
                       Policy.
                     </p>
                   </div>
-                </template></v-checkbox>
+                </template></v-checkbox
+              >
             </div>
-            <v-btn @click="handleContinue" :disabled="!isenable" block flat border class="text-none" size="large"
-              color="#624cf5">
+            <v-btn
+              @click="handleContinue"
+              :disabled="!isenable"
+              block
+              flat
+              border
+              class="text-none"
+              size="large"
+              color="#624cf5"
+            >
               Continue
             </v-btn>
           </div>
         </div>
 
-        <div v-if="state == 'ticket'" class="wrapper  px-6 py-6">
+        <div v-if="state == 'ticket'" class="wrapper px-6 py-6">
           <p class="my-4 header">Select Tickets</p>
-          <div v-for="(ticket, index) in tickets" :key="index">
+          <div v-for="(ticket, index) in form.tickets" :key="index">
             <div class="d-flex">
               <div @click="addTicket(ticket.name)" class="gap-4 pointer">
                 <div class="ticket relative">
@@ -153,136 +233,31 @@
                 </div>
               </div>
             </div>
+
             <div class="d-flex mb-4 justify-space-between align-center">
               <p>{{ ticket.plan }} Tickets</p>
-              <input class="ticket-input" v-model="form.tickets[index].quantity" type="number" />
+              <input
+                class="ticket-input"
+                v-model="form.tickets[index].quantity"
+                type="number"
+              />
             </div>
           </div>
-          <!-- <div class="d-flex ticket-container" v-for="(tickets, index) in ticket" :key="index">
-            <div class="">
-              <div class="" v-if="tickets.plan === 'regular'">
-                <div @click="addTicket('Regular')" class=" gap-4 pointer">
-                  <div class="ticket relative">
-                    <div class="px-6 py-6 absolute">
-                      <img class="" :src="purpleticket" />
-                      <p class="ticket_title mt-3">{{ tickets.name }}</p>
-                      <p class="ticket_note mb-3 mt-1">{{ tickets.plan }}</p>
-                      <div class="dashed-line"></div>
-                      <p class="ticket_price mt-3">
-                        {{ tickets.price }}<span>/person</span>
-                      </p>
-                    </div>
-                    <img class="" :src="purpleframe" />
-                  </div>
-                </div>
-              
-
-              <div v-if="tickets.plan === 'vip'">
-                <div @click="addTicket('Vip')" class="">
-                  <div class="ticket relative">
-                    <div class="px-6 py-6 absolute">
-                      <img class="" :src="purpleticket" />
-                      <p class="ticket_title mt-3">{{ tickets.name }}</p>
-                      <p class="ticket_note mb-3 mt-1">{{ tickets.plan }}</p>
-                      <div class="dashed-line"></div>
-                      <p class="ticket_price mt-3">
-                        {{ tickets.price }}<span>/person</span>
-                      </p>
-                    </div>
-                    <img class="" :src="purpleframe" />
-                  </div>
-                </div>
-              </div>
-
-              <div v-if="ticket.plan === 'vvip'">
-                <div @click="addTicket('Student')" class="">
-                  <div class="ticket relative">
-                    <div class="px-6 py-6 absolute">
-                      <img class="" :src="purpleticket" />
-                      <p class="ticket_title mt-3">{{ tickets.name }}</p>
-                      <p class="ticket_note mb-3 mt-1">{{ tickets.plan }}</p>
-                      <div class="dashed-line"></div>
-                      <p class="ticket_price mt-3">
-                        {{ tickets.price }}<span>/person</span>
-                      </p>
-                    </div>
-                    <img class="" :src="purpleframe" />
-                  </div>
-                </div>
-              </div>
-
-              <div v-if="tickets.plan === 'tables'">
-                <div @click="addTicket('Senior')" class="">
-                  <div class="ticket relative">
-                    <div class="px-6 py-6 absolute">
-                      <img class="" :src="purpleticket" />
-                      <p class="ticket_title mt-3">{{ tickets.name }}</p>
-                      <p class="ticket_note mb-3 mt-1">{{ tickets.plan }}</p>
-                      <div class="dashed-line"></div>
-                      <p class="ticket_price mt-3">
-                        {{ tickets.price }}<span>/person</span>
-                      </p>
-                    </div>
-                    <img class="" :src="purpleframe" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            </div>
-          </div> -->
-
-          <!-- Display ticket count for each selected ticket type -->
-          <!-- <div class="d-flex mb-4 justify-space-between align-ccenter" v-if="tickets.plan === 'regular'">
-              <p>{{ tickets.plan }} Tickets</p>
-              <input
-              class="ticket-input"
-              v-model="form.tickets.quantity"
-              type="number" />
-              <p v-if="form.tickets.quantity > 0" class="price_text text-right">Price:  ₦{{ multipliedResult(tickets.price, form.tickets.quantity) }}</p>
-            </div> -->
-
-          <!-- <div class="d-flex mb-4 justify-space-between align-center" v-if="tickets.plan === 'vip'">
-              <p>{{ tickets.plan }} Tickets</p>
-              <input class="ticket-input" v-model="form.tickets.quantity" type="number" />
-              <p v-if="form.tickets.quantity > 0" class="price_text text-right">Price: ₦{{
-                multipliedResult(tickets.price,
-                form.tickets.quantity) }}</p>
-            </div>
-
-            <div class="d-flex mb-4 justify-space-between align-center" v-if="tickets.plan === 'vvip'">
-              <p>{{ tickets.plan }} Tickets</p>
-              <input class="ticket-input" v-model="form.tickets.quantity" type="number" />
-            </div>
-
-
-            <div class="d-flex justify-space-between align-center" v-if="ticket.plan === 'tables'">
-              <p>{{ tickets.plan }} Tickets</p>
-              <input class="ticket-input" v-model="form.tickets.quantity" type="number" />
-            </div> -->
-
-          <!-- <div 
-              class="ticket-section mt-4 d-flex align-center justify-between">
-              <p>{{ ticketss.plan }} Tickets</p>
-              <div class="d-flex mx-auto align-center">
-                <button class="minus_btn">-</button>
-                <div class="counter">
-                  <input
-                  type="number" />
-                </div>
-                <button class="plus_btn">+</button>
-                <img class="ml-2 delete-icon"
-                  src="../../../assets/images/svg/delete.svg" alt="Remove ticket" />
-              </div>
-              <p class="price_text text-right">₦{{ getTicketPrice(ticketss.price) }}</p>
-            </div> -->
-
 
           <div class="line mt-8 mb-8"></div>
           <div class="d-flex justify-between align-center">
             <p class="section_title">Total Amount</p>
-            <p class="ticket_price">₦16,000</p>
+            <p class="ticket_price">₦{{ totalAmount }}</p>
           </div>
-          <v-btn block @click="submitTicket" flat border class="text-none mt-8" size="large" color="#624cf5">
+          <v-btn
+            block
+            @click="submitTicket"
+            flat
+            border
+            class="text-none mt-8"
+            size="large"
+            color="#624cf5"
+          >
             Continue
           </v-btn>
         </div>
@@ -302,10 +277,11 @@
                 </div>
                 <div class="text-right">
                   <p class="mb-4">{{ singleEvent.name }}</p>
-                  <p class="mb-4"> {{ singleEvent.location }}</p>
+                  <p class="mb-4">{{ singleEvent.location }}</p>
                   <p class="mb-4">{{ formatDate(singleEvent.start_date) }}</p>
-                  <p class="mb-4">{{
-                    convertTo12Hour(singleEvent.start_time) }}</p>
+                  <p class="mb-4">
+                    {{ convertTo12Hour(singleEvent.start_time) }}
+                  </p>
                 </div>
               </div>
             </div>
@@ -319,18 +295,25 @@
                 </div>
                 <div class="text-right">
                   <p class="mb-4">2 Regular & 1 VIP</p>
-                  <p class="mb-4">₦ 16,000</p>
-                  <p class="mb-4">₦ 1,250</p>
+                  <p class="mb-4">₦{{ totalAmount }}</p>
+                  <p class="mb-4">₦1222</p>
                 </div>
               </div>
             </div>
             <div class="line mt-8 mb-8"></div>
             <div class="my-4 d-flex justify-between align-center">
               <p class="sub_header section_title">Total Amount</p>
-              <p class="ticket_price">₦16,000</p>
+              <p class="ticket_price">₦{{ totalAmount }}</p>
             </div>
-            <paystack buttonText="Pay Online" :publicKey="publicKey" :email="email" :amount="amount"
-              :reference="reference" :onSuccess="onSuccessfulPayment" :onCancel="onCancelledPayment" />
+            <paystack
+              buttonText="Pay Online"
+              :publicKey="publicKey"
+              :email="email"
+              :amount="totalAmount * 100"
+              :reference="reference"
+              :onSuccess="onSuccessfulPayment"
+              :onCancel="onCancelledPayment"
+            />
           </div>
         </div>
       </div>
@@ -339,52 +322,51 @@
 </template>
 
 <script setup>
-import Paystack from "~/components/payment/paystack.vue";
-import purpleframe from "../../assets/images/png/Subtract.png";
-import purpleticket from "../../assets/images/svg/buyticket.svg";
-import darkframe from "../../assets/images/png/darkframe.png";
-import darkticket from "../../assets/images/svg/darkticket.svg";
-import paystack from "vue3-paystack";
-import { nanoid } from "nanoid"; // if using nanoid
-import { useEventStore } from "~/store/Event";
+import Paystack from '~/components/payment/paystack.vue';
+import purpleframe from '@/assets/images/png/Subtract.png';
+import purpleticket from '@/assets/images/svg/buyticket.svg';
+import darkframe from '@/assets/images/png/darkframe.png';
+import darkticket from '@/assets/images/svg/darkticket.svg';
+import paystack from 'vue3-paystack';
+import { nanoid } from 'nanoid'; // if using nanoid
+import { useEventStore } from '~/store/Event';
 import { useEventBookingStore } from '~/store/EventBooking';
-import { useRoute } from "nuxt/app";
+import { useRoute, useRouter } from 'nuxt/app';
 
 const booking = useEventBookingStore();
 definePageMeta({
-  layout: "user-event",
+  layout: 'user-event',
 });
 
-const ticket = ref({})
+const ticket = ref([
+  { id: 1, name: 'VIP', plan: 'Premium', price: 100 },
+  { id: 2, name: 'General', plan: 'Standard', price: 50 },
+]);
+
 const route = useRoute();
+
 const ID = route.params.id;
-const singleEvent = ref("");
+const singleEvent = ref('');
 const event = useEventStore();
 
-const form = ref(
-  {
-    email: "",
-    phone: "",
-    last_name: "",
-    first_name: "",
-    event_id: "",
-    tickets: [
-      {
-        ticket_id: "",
-        quantity: 0
-      }
-    ],
-    payment_method: ""
-  })
+const form = ref({
+  email: '',
+  phone: '',
+  last_name: '',
+  first_name: '',
+  event_id: route.params.id,
+  tickets: [], // Initialize as an empty array
+  payment_method: '',
+});
 
 onMounted(async () => {
   try {
     const data = await event.fetchAllEventsById(ID);
-    singleEvent.value = data
-    console.log("booking-event", singleEvent);
-    const tickets = await event.fetchTicketsById(ID)
-    ticket.value = tickets
-    console.log("booking-ticket", tickets)
+    singleEvent.value = data;
+    console.log('booking-event', singleEvent);
+    const tickets = await event.fetchTicketsById(ID);
+    form.value.tickets = tickets;
+    console.log('booking-ticket', tickets);
   } catch (error) {
     console.log(error);
   } finally {
@@ -407,8 +389,27 @@ async function submitForm() {
     console.error('Error logging in:', error);
   }
 }
+
 function submitTicket() {
-  console.log('site')
+  localStorage.setItem('event-form', JSON.stringify(form.value));
+  state.value = 'summary';
+  // console.log(form.value);
+  // Clear the tickets array first
+  // form.value.tickets = [];
+  // // Loop through the ticket options and add those with a quantity greater than 0
+  // ticket.value.forEach((ticketOption) => {
+  //   const quantity = form.value.tickets[ticketOption.name] || 0; // Get the quantity from the form
+  //   if (quantity > 0) {
+  //     // Push the ticket data into the form.tickets array
+  //     form.value.tickets.push({
+  //       ticket_id: ticketOption.id, // Make sure to replace this with the actual ticket ID
+  //       quantity: quantity,
+  //     });
+  //   }
+  // });
+  // // Log the form value
+  // console.log(form.value);
+  // You can also proceed with the payment or further processing here
 }
 
 const formatMonth = (fullDateString) => {
@@ -423,7 +424,12 @@ const formatDay = (fullDateString) => {
 };
 function formatDate(dateString) {
   const date = new Date(dateString);
-  const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  };
   return date.toLocaleDateString('en-GB', options);
 }
 function convertTo12Hour(timeString) {
@@ -434,8 +440,14 @@ function convertTo12Hour(timeString) {
   return `${hour12}:${minutes} ${period}`;
 }
 
-const publicKey = ref('pk_test_25fe56e27d7d24435f8dd16d46df0a01b14905d9');
-const amount = ref(1000); // Expressed in lowest denomination, so 1000kobo is equivalent to 10 Naira
+const totalAmount = computed(() => {
+  return form.value.tickets.reduce((total, ticket) => {
+    return total + parseFloat(ticket.price) * ticket.quantity;
+  }, 0);
+});
+
+const publicKey = import.meta.env.VITE_VUE_APP_PAYSTACK_KEY;
+const amount = totalAmount.value * 100; // Expressed in lowest denomination, so 1000kobo is equivalent to 10 Naira
 const email = ref('somteacodes@gmail.com');
 const firstname = ref('Somtea'); // optional field
 const lastname = ref('Codes'); // optional field
@@ -445,7 +457,7 @@ const reference = computed(() => {
   return nanoid(15); // Generates a 15 character random reference using nanoid
   /*
     Uncomment and use this if you prefer using plain JavaScript to generate the reference:
-    
+
     let randomRef = "";
     let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     for (let i = 0; i < 15; i++) {
@@ -462,18 +474,20 @@ function onSuccessfulPayment(response) {
 
 // Handle payment cancellation
 function onCancelledPayment() {
-  console.log("Payment cancelled by user");
+  console.log('Payment cancelled by user');
 }
 
-const state = ref("personalData");
+const state = ref('personalData');
 const model = ref(null);
 const isenable = ref(true);
 
 const handleContinue = () => {
+  console.log('here');
+  state.value = 'ticket';
   // You can add any validation or actions here before transitioning to 'ticket'
   if (isenable.value) {
     state.value = 'ticket'; // Change the state
-    saveForm()
+    saveForm();
     // Additional actions can be performed here, like logging or analytics
   }
 };
@@ -482,90 +496,38 @@ const tickets = ref([
   { type: 'Regular', count: 0, price: 0 },
   { type: 'Vip', count: 0, price: 0 },
   { type: 'Student', count: 0, price: 0 },
-  { type: 'Senior', count: 0, price: 2000 }
-])
-
-// const removeTicket = (type) => {
-//   selectedTickets.value = selectedTickets.value.filter(t => t.type !== type)
-// }
-// // State to hold the currently selected tickets
-// const selectedTickets = ref([])
-
-// // Methods to increase and decrease ticket counts
-// const increaseCount = (type) => {
-//   const ticket = tickets.value.find(t => t.type === type)
-//   if (ticket) {
-//     ticket.count++
-//   }
-// }
-
-// const decreaseCount = (type) => {
-//   const ticket = tickets.value.find(t => t.type === type)
-//   if (ticket && ticket.count > 0) {
-//     ticket.count--
-//   }
-// }
+  { type: 'Senior', count: 0, price: 2000 },
+]);
 
 // Add a ticket type to the selectedTickets array if it hasn't been selected yet
 const addTicket = (type) => {
-  const alreadySelected = selectedTickets.value.find(t => t.type === type)
+  const alreadySelected = selectedTickets.value.find((t) => t.type === type);
   if (!alreadySelected) {
-    selectedTickets.value.push({ type })
+    selectedTickets.value.push({ type });
   }
-}
-
-// Getters to retrieve ticket count and price dynamically
-// const getTicketCount = (type) => {
-//   const ticket = tickets.value.find(t => t.type === type)
-//   return ticket ? ticket.count : 0
-// }
-// const getTicketPrice = function (type) {
-//   // Check if ticket.value has been populated by the backend
-//   if (!ticket.value || !ticket.value.price) {
-//     console.log("Ticket data is not available yet.");
-//     return 0;
-//   }
-
-//   // Assuming selectedTickets has a type and quantity
-//   var selectedTicket = selectedTickets.value.find(function (ticket) {
-//     return ticket.type === type;
-//   });
-
-//   // Check if the selected ticket exists
-//   if (selectedTicket) {
-//     var totalPrice = ticket.value.price * selectedTicket.count;
-//     console.log("Ticket Type: " + type + ", Price: " + ticket.value.price + ", Quantity: " + selectedTicket.count + ", Total Price: " + totalPrice);
-//     return totalPrice;
-//   }
-
-//   console.log("Ticket Type: " + type + " is either not selected or has no quantity.");
-//   return 0;
-// };
+};
 
 onMounted(() => {
-  const savedForm = JSON.parse(localStorage.getItem("formData"));
+  const savedForm = JSON.parse(localStorage.getItem('formData'));
   if (savedForm) {
     Object.assign(form, savedForm);
   }
 });
 
-
 const savedData = () => {
-  const currentData = JSON.parse(localStorage.getItem("form")) ||
-    {};
+  const currentData = JSON.parse(localStorage.getItem('form')) || {};
   const updatedData = {
     ...currentData,
-    ...form
-  }
-  localStorage.setItem("form", JSON.stringify(updatedData))
-  console.log("info", updatedData)
-}
+    ...form,
+  };
+  localStorage.setItem('form', JSON.stringify(updatedData));
+  console.log('info', updatedData);
+};
 const saveForm = (form) => {
   //  if (!validateForm()) return; {
   savedData();
   //  }
 };
-
 </script>
 
 <style lang="scss" scoped>
@@ -603,7 +565,7 @@ const saveForm = (form) => {
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
-  color: #211B57;
+  color: #211b57;
 }
 
 .ticket_text {
@@ -615,11 +577,9 @@ const saveForm = (form) => {
 }
 
 .ticket-input {
-  border: 1px solid #D7DFEA;
+  border: 1px solid #d7dfea;
   width: 56px;
   height: 40px;
-
-
 }
 
 .plus_btn {
