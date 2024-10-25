@@ -8,7 +8,7 @@
       <img class="main-image" v-if="singleEvent.images && singleEvent.images.length > 0"
         :src="singleEvent.images[0].url" />
     </div>
-    <div class="secondary_wrapper px-8 px-md-16 py-8">
+    <div class="secondary_wrapper px-md-16 py-8">
       <div class="">
         <div>
           <p class="h3_semibold purple90">{{ singleEvent.name }}</p>
@@ -100,7 +100,7 @@
         </div>
       </div>
     </div>
-    <div class="px-8 px-md-16">
+    <div class="px-md-16">
       <div class="d-flex  justify-between align-center">
         <p class="h5_semibold purple90">Similar events</p>
         <p class="h6_bold purple50">See all</p>

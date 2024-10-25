@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="px-6 px-md-16">
+    <div class="px-md-16 pr-4">
       <p class="heading_text mt-8 ml-4">Events</p>
       <div class="d-md-flex align-center justify-between">
         <div class="d-md-flex gap-4 align-center">

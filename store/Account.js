@@ -21,7 +21,17 @@ export const useAccountStore = defineStore("account", {
       console.log("config", config)
       const  data  = await AccountService.fetchAccountDetails(config);
       return data;
-    },    
+    },  
+    async updateProfile(form) {
+      const AccountService = useAccountService();
+      const auth = useAuthentication().userTokens;
+      const config = {
+        headers: {
+          Authorization: "Bearer" + `${auth}`
+        },
+      };
+      const data = await AccountService.updateProfile(config, form)
+    } 
   
   },
 });

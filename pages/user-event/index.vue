@@ -3,7 +3,7 @@
     <div class="d-flex gap-4">
       <img src="../../assets/images/svg/Ellipse.svg" />
       <div>
-        <p class="h5_semibold purple90">Hello Hendrix!👋🏽</p>
+        <p class="h5_semibold purple90">{{ account?.name || 'Guest' }}!👋🏽</p>
         <p class="body3_medium dark3">Hope you’re having a good day</p>
       </div>
     </div>
@@ -165,6 +165,11 @@ import event4 from '../../assets/images/png/p4.png';
 import { defineProps } from 'vue';
 import skeletonLoader from '~/components/common/skeletonLoader.vue';
 import { useEventStore } from '~/store/Event';
+import { useAccountStore } from "~/store/Account";
+const Account = useAccountStore();
+import { useAuthentication } from '~/store/Authentication';
+const auth = useAuthentication();
+const account = ref("")
 const event = useEventStore();
 const allEvents = ref('');
 const loading = ref(true);
@@ -177,6 +182,13 @@ onMounted(async () => {
 
 async function loadData(event_type_id) {
   try {
+    //user name
+    const name = await Account.fetchAccountDetails();
+    const fullName = name.data.name;  
+    const firstName = fullName.split(' ')[0];  
+    account.value = { ...name.data, name: firstName };  
+
+    // event card
     await new Promise(resolve => setTimeout(resolve, 2000));
     const data = await event.fetchAllEvents();
     allEvents.value = data.data.data;

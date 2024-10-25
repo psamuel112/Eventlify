@@ -5,7 +5,7 @@
         <img src="../../assets/images/png/Logo.png" alt="" />
       </div>
       <div class="nav-links mt-2 d-flex gap-8">
-        <NuxtLink to="/dashboard" class="nav-item" @click="tab = 'overview'">
+        <NuxtLink to="/dashboard" class="nav-item" @click="tab = 'dashboard'">
           <img
               class="pr-1"
               src="../../assets/images/svg/home.svg"
@@ -13,21 +13,21 @@
             />
           <span>Home</span>
         </NuxtLink>
-        <NuxtLink to="/events" class="nav-item" @click="tab = 'events'">
+        <NuxtLink to="/favorites" class="nav-item" @click="tab = 'favorites'">
           <img
               class="pr-1"
               src="../../assets/images/svg/tickets.svg"
               alt=""
             />
-          <span>Favorite</span>
+          <span>All Events</span>
         </NuxtLink>
-        <NuxtLink to="/records" class="nav-item" @click="tab = 'records'">
+        <NuxtLink to="/user-tickets" class="nav-item" @click="tab = 'usertickets'">
           <img
               class="pr-1"
               src="../../assets/images/svg/ticket.svg"
               alt=""
             />
-          <span>Tickets</span>
+          <span>My Tickets</span>
         </NuxtLink>
       </div>
       <div class="d-flex align-center gap-4">

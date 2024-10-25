@@ -19,6 +19,7 @@ export const SEARCH_EVENT = (keyword) => `events/public/search/${keyword}`
 
 //Account 
 export const GET_PROFILE = 'user/profile'
+export const UPDATE_PROFILE = 'user/profile'
 
 // Booking
 export const EVENT_BOOKING = '/booking'

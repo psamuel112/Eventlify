@@ -616,10 +616,7 @@ const saveForm = (form) => {
   border: 1px solid #D7DFEA;
   width: 56px;
   height: 40px;
-
-
 }
-
 .plus_btn {
   width: 40px;
   height: 40px;
@@ -643,18 +640,15 @@ const saveForm = (form) => {
 .flex {
   display: flex;
 }
-
 .dashed-line {
   border: 1px dashed #624cf5;
 }
-
 .date_card_text {
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
   color: #121933;
 }
-
 .price_text {
   font-size: 16px;
   font-weight: 700;
@@ -662,7 +656,6 @@ const saveForm = (form) => {
   color: #624cf5;
   width: 144px;
 }
-
 .tag_text {
   font-size: 12px;
   font-weight: 500;

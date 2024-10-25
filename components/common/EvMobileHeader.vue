@@ -1,8 +1,8 @@
 <template>
-  <div :class="{ 'h-100': drawer }" class="container">
-    <v-card>
+  <div :class="{ 'h-100': drawer }" class="container z-200">
+    <v-card class="app-navbar">
       <v-layout>
-        <v-app-bar flat border prominent>
+        <v-app-bar class="app-navbar" flat border prominent>
           <v-app-bar-nav-icon
             variant="text"
             @click.stop="drawer = !drawer"
@@ -15,9 +15,10 @@
           v-model="drawer"
           location="left"
           temporary
+           @click-outside="closeDrawer"
         >
           <v-list color="#624CF5" class="container">
-            <nuxt-link to="dashboard">
+            <nuxt-link to="/dashboard">
               <v-list-item class="list_item" value="1">
                 <div value="1" flat class="d-flex gap-4">
                   <img src="../../assets/images/svg/info.svg" alt="" />
@@ -26,7 +27,7 @@
               </v-list-item>
             </nuxt-link>
 
-            <nuxt-link to="events">
+            <nuxt-link to="/events">
               <v-list-item class="list_item" value="2">
                 <div flat class="d-flex gap-4">
                   <img src="../../assets/images/svg/details.svg" alt="" />
@@ -35,7 +36,7 @@
               </v-list-item>
             </nuxt-link>
 
-            <nuxt-link to="records">
+            <nuxt-link to="/records">
               <v-list-item class="list_item" value="3">
                 <div flat class="d-flex gap-4">
                   <img src="../../assets/images/svg/ticket.svg" alt="" />
@@ -44,7 +45,7 @@
               </v-list-item>
             </nuxt-link>
 
-            <nuxt-link to="user-event">
+            <nuxt-link to="/user-event">
               <v-list-item class="list_item" value="4">
                 <div flat class="d-flex gap-4">
                   <img src="../../assets/images/svg/ticket.svg" alt="" />
@@ -53,7 +54,7 @@
               </v-list-item>
             </nuxt-link>
 
-            <nuxt-link to="event-details">
+            <nuxt-link to="/event-details">
               <v-list-item class="list_item" value="5">
                 <div flat class="d-flex gap-4">
                   <img src="../../assets/images/svg/ticket.svg" alt="" />
@@ -62,7 +63,7 @@
               </v-list-item>
             </nuxt-link>
 
-            <nuxt-link to="basicinfo">
+            <nuxt-link to="/basicinfo">
               <v-list-item class="list_item" value="6">
                 <v-btn class="text-none ml-8 create_btn">+ Create</v-btn>
               </v-list-item>
@@ -76,8 +77,20 @@
 
 <script setup>
 import { ref } from "vue";
-const drawer = ref(null);
+const drawer = ref(false);  // Drawer starts closed
+
+// Toggle drawer open/close
+const toggleDrawer = () => {
+  drawer.value = !drawer.value;
+};
+
+// Close drawer function
+const closeDrawer = () => {
+  drawer.value = false;
+};
+
 const value = ref(0);
+
 </script>
 
 <style lang="scss" scoped>
@@ -101,5 +114,10 @@ const value = ref(0);
   letter-spacing: 0em;
   text-align: left;
   color: #ffffff;
+}
+.app-navbar{
+  position: fixed;
+    top: 0;
+    z-index: 1;
 }
 </style>
