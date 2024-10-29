@@ -12,16 +12,15 @@ export const useEventService = () => {
     },
     async fetchEvents(params) {
       console.log(params);
-      console.log('did we get here?');
       try {
         const { data } = await api.get(ENDPOINTS.GET_EVENT, { params });
         console.log(data);
         return data;
       } catch (err) {}
     },
-    async fetchAllEvents(config) {
+    async fetchAllEvents(params) {
       try {
-        const { data } = await api.get(ENDPOINTS.GET_ALL_EVENTS, config);
+        const { data } = await api.get(ENDPOINTS.GET_ALL_EVENTS, { params });
         console.log(data);
         return data;
       } catch (err) {}

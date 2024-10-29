@@ -1,6 +1,6 @@
 <template>
-  <div v-if="ticket">
-    <p class="mt-8 header">Event Booking</p>
+  <div class="px-md-16 px-8" v-if="ticket">
+    <p class="mt-8  header">Event Booking</p>
     <div>
       <div class="d-block d-md-flex align-center justify-between">
         <div>
@@ -294,7 +294,7 @@
                   <p class="mb-4">VAT</p>
                 </div>
                 <div class="text-right">
-                  <p class="mb-4">2 Regular & 1 VIP</p>
+                  <p class="mb-4">{{ plan }} x {{ quantity }}</p>
                   <p class="mb-4">₦{{ totalAmount }}</p>
                   <p class="mb-4">₦1222</p>
                 </div>
@@ -308,8 +308,11 @@
             <paystack
               buttonText="Pay Online"
               :publicKey="publicKey"
-              :email="email"
-              :amount="totalAmount * 100"
+              :email="form.email"
+              :lastname="form.last_name"
+              :firsnName="form.first_name"
+              :phone="form.phone"
+              :amount="amount"
               :reference="reference"
               :onSuccess="onSuccessfulPayment"
               :onCancel="onCancelledPayment"
@@ -337,7 +340,9 @@ const booking = useEventBookingStore();
 definePageMeta({
   layout: 'user-event',
 });
-
+const name =
+  JSON.parse(localStorage.getItem('user'))?.user?.name.split(' ')[0] || 'Guest';
+console.log(name);
 const ticket = ref([
   { id: 1, name: 'VIP', plan: 'Premium', price: 100 },
   { id: 2, name: 'General', plan: 'Standard', price: 50 },
@@ -390,26 +395,11 @@ async function submitForm() {
   }
 }
 
+
+
 function submitTicket() {
   localStorage.setItem('event-form', JSON.stringify(form.value));
   state.value = 'summary';
-  // console.log(form.value);
-  // Clear the tickets array first
-  // form.value.tickets = [];
-  // // Loop through the ticket options and add those with a quantity greater than 0
-  // ticket.value.forEach((ticketOption) => {
-  //   const quantity = form.value.tickets[ticketOption.name] || 0; // Get the quantity from the form
-  //   if (quantity > 0) {
-  //     // Push the ticket data into the form.tickets array
-  //     form.value.tickets.push({
-  //       ticket_id: ticketOption.id, // Make sure to replace this with the actual ticket ID
-  //       quantity: quantity,
-  //     });
-  //   }
-  // });
-  // // Log the form value
-  // console.log(form.value);
-  // You can also proceed with the payment or further processing here
 }
 
 const formatMonth = (fullDateString) => {
@@ -419,8 +409,8 @@ const formatMonth = (fullDateString) => {
 };
 const formatDay = (fullDateString) => {
   const date = new Date(fullDateString);
-  const day = date.getDate(); // Get the day of the month
-  return day; // Return the formatted day
+  const day = date.getDate(); 
+  return day; 
 };
 function formatDate(dateString) {
   const date = new Date(dateString);
@@ -447,11 +437,12 @@ const totalAmount = computed(() => {
 });
 
 const publicKey = import.meta.env.VITE_VUE_APP_PAYSTACK_KEY;
-const amount = totalAmount.value * 100; // Expressed in lowest denomination, so 1000kobo is equivalent to 10 Naira
-const email = ref('somteacodes@gmail.com');
-const firstname = ref('Somtea'); // optional field
-const lastname = ref('Codes'); // optional field
-
+// Expressed in lowest denomination, so 1000kobo is equivalent to 10 Naira
+const amount = computed(() => totalAmount.value * 100); // Paystack amount in kobo
+const email = computed(() => form.value.email);
+const first_name = computed(() => form.value.first_name);
+const last_name = computed(() => form.value.last_name);
+const phone = computed(() => form.value.phone)
 // Generate the reference using nanoid or JS logic
 const reference = computed(() => {
   return nanoid(15); // Generates a 15 character random reference using nanoid
@@ -466,6 +457,7 @@ const reference = computed(() => {
     return randomRef;
   */
 });
+const localStorage =
 
 // Handle successful payment
 function onSuccessfulPayment(response) {
@@ -492,13 +484,6 @@ const handleContinue = () => {
   }
 };
 
-const tickets = ref([
-  { type: 'Regular', count: 0, price: 0 },
-  { type: 'Vip', count: 0, price: 0 },
-  { type: 'Student', count: 0, price: 0 },
-  { type: 'Senior', count: 0, price: 2000 },
-]);
-
 // Add a ticket type to the selectedTickets array if it hasn't been selected yet
 const addTicket = (type) => {
   const alreadySelected = selectedTickets.value.find((t) => t.type === type);
@@ -507,12 +492,12 @@ const addTicket = (type) => {
   }
 };
 
-onMounted(() => {
-  const savedForm = JSON.parse(localStorage.getItem('formData'));
-  if (savedForm) {
-    Object.assign(form, savedForm);
-  }
-});
+// onMounted(() => {
+//   const savedForm = JSON.parse(localStorage.getItem('formData'));
+//   if (savedForm) {
+//     Object.assign(form, savedForm);
+//   }
+// });
 
 const savedData = () => {
   const currentData = JSON.parse(localStorage.getItem('form')) || {};

@@ -27,9 +27,7 @@ export const useEventStore = defineStore('event', {
     },
     async fetchEvents(params) {
       console.log(params);
-      console.log('did we get here tooo?');
       const EventService = useEventService();
-
       const data = await EventService.fetchEvents(params);
       return data;
     },
@@ -46,16 +44,10 @@ export const useEventStore = defineStore('event', {
       return data;
     },
     
-    async fetchAllEvents() {
+    async fetchAllEvents(params) {
+      console.log('did we get here tooo?');
       const EventService = useEventService();
-      const auth = useAuthentication().userTokens;
-      const config = {
-        headers: {
-          Authorization: 'Bearer ' + `${auth}`,
-        },
-      };
-      console.log('config', config);
-      const data = await EventService.fetchAllEvents(config);
+      const data = await EventService.fetchAllEvents(params);
       return data;
     },
     async fetchEventTypes() {

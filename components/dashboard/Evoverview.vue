@@ -4,7 +4,7 @@
       <div class="d-flex gap-4">
         <img src="../../assets/images/svg/Ellipse.svg" />
         <div>
-          <p class="welcome_text"> {{ account?.name || 'Guest' }}!👋🏽</p>
+          <p class="welcome_text"> {{ name }}!👋🏽</p>
           <p class="sub_text">Hope you’re having a good day</p>
         </div>
       </div>
@@ -229,6 +229,9 @@ async function loadData() {
     console.error(error);
   }
 }
+const name =
+  JSON.parse(localStorage.getItem('user'))?.user?.name.split(' ')[0] || 'Guest';
+console.log(name);
 </script>
 
 <style lang="scss" scoped>

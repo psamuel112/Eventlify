@@ -14,11 +14,11 @@ export const useAccountService = () => {
     },
     async updateProfile(form, config) {
       try {
-        const { data } = await api.put(ENDPOINTS.UPDATE_PROFILE(form), config)
-      }
-      catch (err) {
-      }
-    }
+        const { data } = await api.put(ENDPOINTS.UPDATE_PROFILE, form, config);
+        console.log("compo data", data);
+        return data;
+      } catch (err) {}
+    },
   };
 
 };

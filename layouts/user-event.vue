@@ -44,8 +44,12 @@ async function loadData() {
 </script>
 
 <style lang="scss" scoped>
+* {
+  padding: 0;
+  margin: 0;
+}
 .content {
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   
 }

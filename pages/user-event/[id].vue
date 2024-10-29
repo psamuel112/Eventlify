@@ -2,13 +2,20 @@
   <div class="" v-if="singleEvent">
     <div class="relative">
       <div class="absolute arrow w-100 px-24 justify-between d-flex">
-        <img class="backward" src="../../assets/images/png/back.png" alt="" />
-        <img class="forward" src="../../assets/images/png/forward.png" alt="" />
+        <img class="backward" src="../../assets/images/png/back.png" alt="" @click="showPreviousImage"/>
+        <img class="forward" src="../../assets/images/png/forward.png" alt="" @click="showNextImage" />
       </div>
-      <img class="main-image" v-if="singleEvent.images && singleEvent.images.length > 0"
-        :src="singleEvent.images[0].url" />
+      <div class="image-wrapper">
+        <img 
+        class="main-image" 
+        v-if="singleEvent.images && singleEvent.images.length > 0" 
+        :src="singleEvent.images[currentImageIndex].url" 
+        alt="Event Image" 
+      />
+        <div class="overlay"></div>
+      </div>
     </div>
-    <div class="secondary_wrapper px-md-16 py-8">
+    <div class="secondary_wrapper px-md-16 px-8 py-8">
       <div class="">
         <div>
           <p class="h3_semibold purple90">{{ singleEvent.name }}</p>
@@ -23,7 +30,7 @@
             <div>
               <p class="h6_medium purple90">{{ formatDate(singleEvent.start_date) }}</p>
               <p class="body3_medium dark3">{{ convertTo12Hour(singleEvent.start_time) }}- {{
-                convertTo12Hour(singleEvent.end_time)}}</p>
+                convertTo12Hour(singleEvent.end_time) }}</p>
             </div>
             <div>
               <img src="../../assets/images/svg/bluecalander.svg" alt="" />
@@ -82,9 +89,9 @@
         </div>
         <div class="ticket_wrapper mt-12 px-6 py-6">
           <p class="body3_medium dark3">Ticket base price</p>
-          
-          <div  v-for="(ticket, index) in ticket" :key="index" >
-            <p v-if="ticket.plan === 'regular'" class="h4_bold purple50 mb-6">₦{{  ticket.price || ticket.price }}</p>
+
+          <div v-for="(ticket, index) in ticket" :key="index">
+            <p v-if="ticket.plan === 'regular'" class="h4_bold purple50 mb-6">₦{{ ticket.price || ticket.price }}</p>
           </div>
           <div class="d-flex gap-2 px-6 py-6 ticket_note_container">
             <img src="../../assets/images/svg/ticketnote.svg" alt="" />
@@ -96,11 +103,12 @@
           <div class="py-6">
             <v-divider border-opacity-100></v-divider>
           </div>
-            <v-btn @click="eventBooking(singleEvent.id)" border flat class="w-100  follow_btn text-none"> Buy Ticket </v-btn>
+          <v-btn @click="eventBooking(singleEvent.id)" border flat class="w-100  follow_btn text-none"> Buy Ticket
+          </v-btn>
         </div>
       </div>
     </div>
-    <div class="px-md-16">
+    <div class="px-md-16 px-8">
       <div class="d-flex  justify-between align-center">
         <p class="h5_semibold purple90">Similar events</p>
         <p class="h6_bold purple50">See all</p>
@@ -153,12 +161,18 @@ onMounted(async () => {
     const tickets = await event.fetchTicketsById(ID)
     ticket.value = tickets
     console.log("ticket", tickets)
+
   } catch (error) {
     console.log(error);
   } finally {
   }
 });
-
+onMounted(( )=> {
+  interval = setInterval(showNextImage, 3000); 
+})
+onUnmounted(() => {
+  clearInterval(interval);
+});
 function formatDate(dateString) {
   const date = new Date(dateString);
   const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
@@ -186,7 +200,18 @@ async function submitForm() {
 }
 
 
+const currentImageIndex = ref(0);
+let interval = null;
 
+function showNextImage() {
+  currentImageIndex = (currentImageIndex + 1) % singleEvent.images.length;
+}
+function showPreviousImage() {
+  currentImageIndex = 
+    currentImageIndex.value > 0 
+      ? currentImageIndex.value - 1 
+      : singleEvent.images?.length - 1;
+}
 
 const cards = ref([
   {
@@ -226,7 +251,12 @@ const eventBooking = (id) => {
 
 <style lang="scss" scoped>
 .arrow {
-  top: 40%;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 24px;
+  z-index: 1;
 }
 
 .secondary_wrapper {
@@ -235,7 +265,9 @@ const eventBooking = (id) => {
   gap: 5rem;
 }
 
-
+.user-event-container { 
+  padding: 0 !important;
+}
 @media screen and (max-width: 768px) {
   .secondary_wrapper {
     grid-template-columns: 1fr;
@@ -295,13 +327,34 @@ const eventBooking = (id) => {
   object-fit: cover;
   width: 100%;
 }
+
 .main-image {
-  border-radius: 16px 16px 0 0;
+
   object-fit: cover;
   width: 100%;
   height: 600px;
-  object-fit: cover ;
 }
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 600px;
+ 
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  /* Adjust the color and opacity as needed */
+  pointer-events: none;
+  /* Makes the overlay non-interactive */
+}
+
 .card_container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

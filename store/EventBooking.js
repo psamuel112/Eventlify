@@ -19,6 +19,5 @@ export const useEventBookingStore = defineStore("account", {
       const  data  = await EventBookingService.eventBooking(config);
       return data;
     },    
-  
   },
 });

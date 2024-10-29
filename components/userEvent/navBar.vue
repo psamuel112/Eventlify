@@ -1,22 +1,22 @@
 <template>
-  <div class="">
+  <div class="relative">
     <div class="d-flex justify-between align-center  px-14">
       <div>
         <img src="../../assets/images/png/Logo.png" alt="" />
       </div>
       <div class="nav-links mt-2 d-flex gap-8">
-        <NuxtLink to="/dashboard" class="nav-item" @click="tab = 'dashboard'">
+        <!-- <NuxtLink to="/dashboard" class="nav-item" @click="tab = 'dashboard'">
           <img
               class="pr-1"
               src="../../assets/images/svg/home.svg"
               alt=""
             />
           <span>Home</span>
-        </NuxtLink>
+        </NuxtLink> -->
         <NuxtLink to="/favorites" class="nav-item" @click="tab = 'favorites'">
           <img
               class="pr-1"
-              src="../../assets/images/svg/tickets.svg"
+              src="../../assets/images/svg/home.svg"
               alt=""
             />
           <span>All Events</span>

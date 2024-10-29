@@ -22,16 +22,22 @@ export const useAccountStore = defineStore("account", {
       const  data  = await AccountService.fetchAccountDetails(config);
       return data;
     },  
+ 
     async updateProfile(form) {
       const AccountService = useAccountService();
       const auth = useAuthentication().userTokens;
+      console.log('auth', auth);
       const config = {
         headers: {
-          Authorization: "Bearer" + `${auth}`
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + `${auth}`,
+          // Accept: "application/json"
         },
       };
-      const data = await AccountService.updateProfile(config, form)
-    } 
-  
+      console.log('config', config);
+      const { data } = await AccountService.updateProfile(form, config);
+      console.log('payload', data);
+      return data;
+    },
   },
 });

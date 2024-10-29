@@ -1,9 +1,9 @@
 <template>
-  <div class="container mt-8">
+  <div class="px-md-16 px-8 mt-8">
     <div class="d-flex gap-4">
       <img src="../../assets/images/svg/Ellipse.svg" />
       <div>
-        <p class="h5_semibold purple90">{{ account?.name || 'Guest' }}!👋🏽</p>
+        <p class="h5_semibold purple90">{{ name }}!👋🏽</p>
         <p class="body3_medium dark3">Hope you’re having a good day</p>
       </div>
     </div>
@@ -42,7 +42,7 @@
     </div>
     <div>
       <div>
-        <div class="event pl-4 ga-4 pl-md-4 card_img pointer card_container" v-if="loading">
+        <div class="event pl-4 ga-4 pl-md-4 card_img pointer cart_contain" v-if="loading">
           <skeletonLoader 
             class="card_img ga-8" 
             v-for="index in 3" 
@@ -52,7 +52,7 @@
           />
         </div>
       </div>
-      <div class="card_container pointer gap-4 mb-10 mt-6">
+      <div class="cart_contain pointer gap-4 mb-10 mt-6">
         <div
           @click="navigateToCard(card.id)"
           class="card pointer mb-4"
@@ -179,6 +179,9 @@ const ticket = ref('');
 onMounted(async () => {
   loadData();
 });
+const name =
+  JSON.parse(localStorage.getItem('user'))?.user?.name.split(' ')[0] || 'Guest';
+console.log(name);
 
 async function loadData(event_type_id) {
   try {
@@ -187,9 +190,7 @@ async function loadData(event_type_id) {
     const fullName = name.data.name;  
     const firstName = fullName.split(' ')[0];  
     account.value = { ...name.data, name: firstName };  
-
     // event card
-    await new Promise(resolve => setTimeout(resolve, 2000));
     const data = await event.fetchAllEvents();
     allEvents.value = data.data.data;
     loading.value = false;
@@ -219,37 +220,6 @@ definePageMeta({
   layout: 'user-event',
 });
 
-const selectedOption = ref('option1');
-
-const cards = ref([
-  {
-    id: 1,
-    time: '8:45AMApr (WAT)',
-    note: 'The Beginning of financial freedom for you',
-    img: eventcard1,
-    price: 'N8,000',
-    state_color: 'green',
-    state_text: 'Today',
-  },
-  {
-    id: 2,
-    time: '8:45AMApr (WAT)',
-    note: 'Celebrating the Co-Founder’s birthday',
-    img: eventcard2,
-    price: 'N8,000',
-    state_text: 'Trending',
-    state_color: 'red',
-  },
-  {
-    id: 3,
-    time: '8:45AMApr (WAT)',
-    note: 'The Art of Digital Marketing for better conversion',
-    img: eventcard3,
-    price: 'N8,000',
-    state_text: 'Trending',
-    state_color: 'red',
-  },
-]);
 
 const followCards = ref([
   {
@@ -311,9 +281,6 @@ const navigateToCard = (id) => {
 </script>
 
 <style lang="scss" scoped>
-.container {
-}
-
 .organizer_container {
   display: grid;
   gap: 1.5rem;
@@ -382,7 +349,6 @@ const navigateToCard = (id) => {
   white-space: nowrap; /* Prevent wrapping of buttons */
   padding-bottom: 10px;
 }
-
 .form_container {
   border: 1px solid #e2e8f0;
   border-radius: 12px;
@@ -419,21 +385,21 @@ const navigateToCard = (id) => {
   object-fit: cover;
   width: 100%;
 }
-.card_container {
+.cart_contain {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
-.card_container {
+.cart_contain {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
 @media screen and (max-width: 1200px) {
-  .card_container {
+  .cart_contain {
     grid-template-columns: 1fr 1fr;
   }
 }
 @media screen and (max-width: 768px) {
-  .card_container {
+  .cart_contain {
     grid-template-columns: 1fr;
   }
 }

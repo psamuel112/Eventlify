@@ -92,7 +92,7 @@ defineProps({
   },
 });
 const items = ref([
-  { title: 'Profile', route: 'profile' },
+  { title: 'Profile', route: '/profile' },
   { title: 'Explore events', route: '/user-event' },
   { title: 'Switch to creator', route: '/dashboard' },
   { title: 'Logout', route: '/signin' },
@@ -105,8 +105,6 @@ const getComponent = (tab) => {
       return EvRecords;
     case 'events':
       return IndexVue;
-    case 'profile':
-      return EvProfile;
     default:
       return Evoverview;
   }
